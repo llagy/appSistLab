@@ -1,0 +1,94 @@
+<ui:composition 
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:ui="http://java.sun.com/jsf/facelets" 
+    xmlns:a4j="http://richfaces.org/a4j"
+    xmlns:rich="http://richfaces.org/rich"
+    >
+    <!-- Enviamos parametros para la siguiente pagina-->
+   
+ 
+    
+    <div id="element-box" class="login">
+    <!--<f:view>-->
+    <!--<rich:panel >-->
+       <!-- <f:facet name="header">
+            <h:outputText value="Inicio de Sesión" />
+        </f:facet>-->
+      <div class="m wbg">
+	  <h1>Acceso al Sistema de Gestion Laboratorio. !</h1>					
+       <div id="system-message-container"> </div>
+       <div id="section-box">
+       <div class="m">
+        <h:form id="userBean">
+            <!--h:panelGrid columns="3" width="300"  -->
+            <fieldset class="loginform">
+            <div id="LoginUsuarios">  
+            <div class="fila">
+                    <div class="LoginUsuariosCabecera">Usuario:
+                        <!--<span id="idCabeceraLogin" style="color:Red;"><rich:message for="usuario" ajaxRendered="true" /></span>-->
+                    </div>
+                    <div class="LoginUsuariosDato">
+                            <h:inputText label="usuario" id="usuario" required="true" value="#{userBean.usuario}" style="width:300px;" >
+                              <f:validateRequired />
+                              <rich:validator />
+                           </h:inputText>
+                     </div>
+            <!--<div class="LoginUsuariosError"></div>-->
+            </div> 
+            <div class="fila">
+                 <div class="LoginUsuariosCabecera">Contraseña: 
+                 <!--<span id="idContrasenia" style="color:Red;"> <rich:message for="pwd" ajaxRendered="true" /></span>-->
+                 </div>
+                 <div class="LoginUsuariosDato">
+                  <h:inputSecret label="password"   id="pwd" required="true" value="#{userBean.password}" style="width:300px;" >
+                                 
+                      <f:validateRequired />
+                   <rich:validator />
+                  </h:inputSecret>
+                 </div>
+                 <div class="LoginUsuariosError"></div>
+              </div>
+            <div class="fila">  
+            <!--f:facet name="footer"-->
+            <div class="LoginUsuariosCabecera">
+            <h:commandButton action="#{userBean.validUser}"  value="Ingresar" style="width:100px;"> 
+                <!--f:param name="idRol" value="#{userBean.id}"/-->
+            </h:commandButton > 
+            </div>
+            <!--/f:facet-->   
+            <!--<div class="LoginUsuariosDato"></div>
+            <h:outputText value="#{userBean.text}" style="color:#ff0000;" />-->
+            </div>  
+                    <!--/f:facet-->
+
+           </div>  
+      </fieldset>   
+            <!--/h:panelGrid-->
+            <rich:message for="usuario" ajaxRendered="true" />
+            <rich:message for="pwd" ajaxRendered="true" />
+            <h:outputText value="#{userBean.text}" style="color:#ff0000;" />
+        </h:form>
+         <div class="clr"></div>
+         <div class="clr"></div>
+       </div>
+       </div>
+       <p>Usar un nombre de usuario y contraseña válido para poder tener acceso a la Administración..</p>
+       <p>Control de Seguridad</p>
+        <div id="lock"></div>
+        
+        
+    <!--</rich:panel>-->
+    <!-- </f:view>-->
+       </div>
+       <div id="Mensaje"><span id="ctl00" style="color:Red;"></span></div>
+                <a href="../downloads/SYWBHelp.pdf" target="popup" onClick="window.open(this.href, this.target, 'width=800,height=600'); return false;" rel="help" class="toolbar">
+                    <strong>Vista Previa de la Guia del Sistema Laboratorio</strong></a>
+                <br/>		
+                <div class="clr"></div>	
+    </div>
+     <center><h2>Sistema versátil, muy amigable</h2></center>
+			<noscript>Advertencia! JavaScript debe estar habilitado para realizar esta operación en el panel de administración.			</noscript>
+	     
+</ui:composition>

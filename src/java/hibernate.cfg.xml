@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+  <session-factory>
+    <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+    <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+    <property name="hibernate.configurationClass">org.hibernate.cfg.AnnotationConfiguration</property>
+    <property name="transaction.factory_class">org.hibernate.transaction.JDBCTransactionFactory	</property>
+    <property name="hibernate.cache.provider_class">org.hibernate.cache.HashtableCacheProvider</property>
+    <property name="hibernate.hbm2ddl.auto">update</property>
+    <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/db_laboratorio?zeroDateTimeBehavior=convertToNull</property>
+    <property name="hibernate.connection.username">sis_lab</property>
+    <property name="hibernate.connection.password">m261082</property>
+    <property name="hibernate.show_sql">true</property>
+    <property name="hibernate.current_session_context_class">thread</property>
+    <property name="hibernate.query.factory_class">org.hibernate.hql.classic.ClassicQueryTranslatorFactory</property>
+    <mapping class="com.raitcon.hibernate.factory.HibernateSessionFactory"/>
+    <mapping class="com.raitcon.hibernate.bean.DetalleExamen"/>
+    <mapping class="com.raitcon.hibernate.bean.Instruccion"/>
+    <mapping class="com.raitcon.hibernate.bean.Departamento"/>
+    <mapping class="com.raitcon.hibernate.bean.Menu"/>
+    <mapping class="com.raitcon.hibernate.bean.SubMenu"/>
+    <mapping class="com.raitcon.hibernate.bean.SubDetExamen"/>
+    <mapping class="com.raitcon.hibernate.bean.Distrito"/>
+    <mapping class="com.raitcon.hibernate.bean.Religion"/>
+    <mapping class="com.raitcon.hibernate.bean.Estacivil"/>
+    <mapping class="com.raitcon.hibernate.bean.Provincia"/>
+    <mapping class="com.raitcon.hibernate.bean.Clase"/>
+    <mapping class="com.raitcon.hibernate.bean.RolesAccion"/>
+    <mapping class="com.raitcon.hibernate.bean.Ocupacion"/>
+    <mapping class="com.raitcon.hibernate.bean.Usuario"/>
+    <mapping class="com.raitcon.hibernate.bean.ValoresNormales"/>
+    <mapping class="com.raitcon.hibernate.bean.Personal"/>
+    <mapping class="com.raitcon.hibernate.bean.Rol"/>
+    <mapping class="com.raitcon.hibernate.bean.Cliente"/>
+    <mapping class="com.raitcon.hibernate.bean.Accion"/>
+    <mapping class="com.raitcon.hibernate.bean.Examen"/>
+    <mapping class="com.raitcon.hibernate.bean.Sexo"/>
+    
+  </session-factory>
+</hibernate-configuration>

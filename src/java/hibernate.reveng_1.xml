@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd">
+<hibernate-reverse-engineering>
+  <schema-selection match-catalog="db_laboratorio"/>
+  <table-filter match-name="cliente"/>
+  <table-filter match-name="menu"/>
+  <table-filter match-name="provincia"/>
+  <table-filter match-name="religion"/>
+  <table-filter match-name="detalle_examen"/>
+  <table-filter match-name="valores_normales"/>
+  <table-filter match-name="sub_det_examen"/>
+  <table-filter match-name="distrito"/>
+  <table-filter match-name="examen"/>
+  <table-filter match-name="ocupacion"/>
+  <table-filter match-name="sub_menu"/>
+  <table-filter match-name="personal"/>
+  <table-filter match-name="instruccion"/>
+  <table-filter match-name="clase"/>
+  <table-filter match-name="rol"/>
+  <table-filter match-name="estacivil"/>
+  <table-filter match-name="roles_accion"/>
+  <table-filter match-name="departamento"/>
+  <table-filter match-name="usuario"/>
+  <table-filter match-name="accion"/>
+</hibernate-reverse-engineering>

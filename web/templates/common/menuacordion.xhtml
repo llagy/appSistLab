@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+xmlns:h="http://java.sun.com/jsf/html"
+xmlns:f="http://java.sun.com/jsf/core"
+xmlns:ui="http://java.sun.com/jsf/facelets"
+xmlns:a4j="http://richfaces.org/a4j"
+xmlns:rich="http://richfaces.org/rich"
+xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+<h:head>
+ 
+</h:head>
+<h:body>
+    <h:outputStylesheet>
+        .rf-ntf-shdw{
+         
+        }
+        .rf-ac-itm-hdr{
+        background-color: #FFFFFF;
+        color=#FFFFFF;
+        border-color: #FFF;
+        background-image:url("./images/j_header_middle.png");
+        headerTextColor :#FFFFFF;
+        }
+        .rf-ac {
+       /* vertical-align: top;*/
+       /* padding=0 !important;*/
+        background-color: #FFFFCC;
+       /* margin:-10px;*/
+       width:198;
+        
+        }
+ 
+        .rf-ac-itm-c {
+        height: 220px;
+        }
+        .rf-ac-itm-cnt{
+        border-color:#FFFFFF;
+        height: 260px;
+        }
+        
+    </h:outputStylesheet>
+   
+    <h:form>
+        <rich:accordion switchType="ajax" activeItem="#{dynamicPanelBean.activeTab}" >
+            <a4j:repeat value="#{menuBean.list}" var="list">
+                      
+                <rich:accordionItem header="#{list.value1}">
+              
+                   <a4j:repeat value="#{list.listDetail}" var="listDetail">  
+                       
+                         <h:link value="#{listDetail.itemValue}" outcome="#{listDetail.pageName}"/><br/>
+                            
+                              
+                    </a4j:repeat> 
+                     
+                   
+                  
+                  
+                </rich:accordionItem>
+           </a4j:repeat>
+        </rich:accordion>
+    </h:form>
+ 
+</h:body>
+</ui:composition>

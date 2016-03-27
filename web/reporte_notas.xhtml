@@ -1,0 +1,199 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="/templates/common/template.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:a4j="http://richfaces.org/a4j"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:rich="http://richfaces.org/rich"
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+
+    <ui:define name="left">
+        <ui:include src="menuacordion.xhtml" />
+    </ui:define>
+
+    <ui:define name="content">
+        
+        <h:outputScript target="body">
+            
+        function targetDimanic(tipo){
+        
+        if (tipo=="idReport")
+        {
+        //document.forms.formu.oculto.valu="opcion1";
+        document.getElementById("idFormProf").target="_blank";
+        return true;
+        }
+       document.getElementById("idFormProf").target="_self";
+       document.getElementById("idFormProf").submit();
+       return true;
+        
+    }
+             
+        </h:outputScript>
+        <h:outputStylesheet>
+            
+            a.no-decor>img {
+                     border: none;
+              }
+              
+               .even-row {
+        background-color: #FCFFFE;
+        }
+ 
+        .odd-row {
+        background-color: #ECF3FE;
+        }
+ 
+        .active-row {
+        background-color: #FFEBDA !important;
+        cursor: pointer;
+        }
+       </h:outputStylesheet>
+         <a4j:status onstart="#{rich:component('statPane')}.show()" onstop="#{rich:component('statPane')}.hide()" />
+        <h1>Libretas</h1>  
+        <h:form id="frmReporteNotas" target="_blank" >
+           <a4j:jsFunction name="remove" action="#{libretaBean.delAsignatura}" render="idTablaAsignaturas" execute="@this"
+            oncomplete="#{rich:component('confirmPane')}.hide();" />
+            
+                
+                  <h:panelGrid columns="1"  cellspacing="10" bgcolor="White" >
+
+                      <h:panelGroup>
+
+                       <h:outputText value="Alumno"/>
+                       <h:inputText id="txtDniAlumno" value="#{reportNotaBean.dniAlumno}" />
+                       <a4j:commandButton id="cboBuscarAlumno" value=".."
+                                          oncomplete="#{rich:component('popupAlumnos')}.show()"
+                                          action="#{alumnoBean.listAlumnoAll()}"  
+                                                   render="popupAlumnos"
+                                                   execute="@this"  />
+                       <h:inputText id="txtApellNombre" value="#{reportNotaBean.apellNombres}" style="width: 300px" disabled="true"/>
+                       
+                       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                       <h:outputText value="Grado" />
+                       <h:selectOneMenu id="idSelectGrado" value="#{reportNotaBean.idGrado}">
+                           <f:selectItems value="#{gradoBean.gradoList}" />
+                            
+                        </h:selectOneMenu>
+                       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                       <h:outputText value="Año" />
+                       <h:selectOneMenu id="idSelectAnio" value="#{reportNotaBean.idAnio}" >
+                           <f:selectItems value="#{anioBean.anioList}" 
+                                           />
+                          
+                        </h:selectOneMenu>
+                       
+                       </h:panelGroup>
+                       
+                    </h:panelGrid>
+                  
+                
+                  
+                  
+                    <rich:popupPanel id="statPane" autosized="true" >
+                    <h:graphicImage value="/images/ai.gif" alt="ai" />
+                     Espere por favor...
+                 </rich:popupPanel>
+                
+                    
+                <!--/rich:tab-->
+                <h:panelGroup>
+                  
+                      <h:commandButton  id="btnGenerarReport"  
+                                          action="#{reportNotaBean.execute()}"
+                               value="Generar Reporte" 
+                                >
+                         <!--a4j:ajax onbeforedomupdate="disableButton();"/-->
+                 
+                     </h:commandButton>
+                                                      
+                 <br/>
+                 <h:outputText  id="txtMensaje" value="#{libretaBean.msg}" style="color:#ff0000;"  />
+                
+                </h:panelGroup>     
+                  <!--/h:panelGrid-->
+            <!--/rich:tabPanel-->
+             <rich:popupPanel id="popupAlumnos" 
+                             autosized="true"  resizeable="false"  moveable="true"
+                             >
+                <f:facet name="controls">
+                    <h:outputLink value="#" onclick="#{rich:component('popupAlumnos')}.hide();
+                                                           return false;">X</h:outputLink>
+                </f:facet>
+                <h:panelGrid columns="1" id="editGrid">
+                   
+                    <h:panelGroup>  
+                        <a>DNI:</a>
+                        <h:inputText id="txtCodDniFind"  value="#{alumnoBean.dni}"/> 
+                        <a4j:commandButton value=".."  render="table" execute="@this"
+                                       action="#{alumnoBean.listAlumnoByDNI()}">
+                        <!--f:setPropertyActionListener target="#{alumnoBean.dni}" value="#{alumno.dniAlumno}" /-->
+                    </a4j:commandButton>
+                    </h:panelGroup>
+                    <rich:dataTable value="#{alumnoBean.lisAlumno}" 
+                                    var="alumno" 
+                                    iterationStatusVar="itAux" 
+                                    id="table" 
+                                    rows="15">
+                        <rich:column>
+                            <f:facet name="header">#</f:facet>
+                            <h:outputText value="#{itAux.index+1}" />
+                        </rich:column>
+                        <rich:column>
+                            <f:facet name="header">Codigo</f:facet>
+                            <h:outputText value="#{alumno.idAlumno}" />
+                        </rich:column>
+                        <rich:column>
+                            <f:facet name="header">DNI</f:facet>
+                            <h:outputText value="#{alumno.dniAlumno}" />
+                        </rich:column>
+                        <rich:column>
+                            <f:facet name="header">apellido Paterno</f:facet>
+                            <h:outputText value="#{alumno.apellidoPaterno}" />
+                        </rich:column>
+                         <rich:column>
+                            <f:facet name="header">apellido Materno</f:facet>
+                            <h:outputText value="#{alumno.apellidoMaterno}" />
+                        </rich:column>
+                        <rich:column>
+                            <f:facet name="header">Nombres</f:facet>
+                            <h:outputText value="#{alumno.nombres}" />
+                        </rich:column>
+                          <rich:column>
+                             
+                            <a4j:commandLink styleClass="no-decor" 
+                                             render="txtDniAlumno,txtApellNombre" execute="@this" 
+                                             action="#{reportNotaBean.actualizarValores()}"
+                                             onclick="#{rich:component('popupAlumnos')}.hide()">
+                                <h:graphicImage value="/images/icons/filter.gif"/>
+
+                               <f:setPropertyActionListener target="#{reportNotaBean.alumno}" value="#{alumno}" />
+                            </a4j:commandLink>
+                           
+                             
+                                  
+                        </rich:column>
+
+                        <f:facet name="footer">
+                            <rich:dataScroller page="1" />
+                        </f:facet>
+                    </rich:dataTable>
+                </h:panelGrid>
+            </rich:popupPanel>
+            <rich:popupPanel id="confirmPane" autosized="true">
+             Estas seguro de eliminar el registro?
+            <a4j:commandButton value="Cancelar" onclick="#{rich:component('confirmPane')}.hide(); return false;" />
+            <a4j:commandButton value="Eliminar" onclick="remove(); return false;" />
+           </rich:popupPanel>
+            
+        </h:form>
+        <h:form id="idpopup">
+         </h:form>
+    </ui:define>
+    
+
+</ui:composition>

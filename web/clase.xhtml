@@ -1,0 +1,288 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition 
+    xmlns:ui="http://java.sun.com/jsf/facelets" 
+    template="/templates/common/template.xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:a4j="http://richfaces.org/a4j"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:rich="http://richfaces.org/rich"
+    xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+    xmlns="http://www.w3.org/1999/xhtml">
+    <ui:define name="left">
+        <ui:include src="/templates/common/menuacordion.xhtml" />
+    </ui:define> 
+
+    <h:head>
+
+    </h:head>
+
+    <ui:define name="content">    
+        <h:outputScript target="body">
+           
+            document.getElementById("formClass:codPersonal").disabled=true;
+            document.getElementById("formClass:nomPers").disabled=true;
+            document.getElementById("formClass:dniPers").disabled=true;
+            document.getElementById("formClass:apePatPers").disabled=true; 
+            document.getElementById("formClass:apeMatPers").disabled=true; 
+            document.getElementById("formClass:espPers").disabled=true; 
+            document.getElementById("formClass:dirPers").disabled=true; 
+            document.getElementById("formClass:telfPers").disabled=true;
+            document.getElementById("formClass:mailPers").disabled=true;
+            document.getElementById("formClass:estcPers").disabled=true;
+            document.getElementById("formClass:calPers").disabled=true;
+            document.getElementById("formClass:sexPers").disabled=true;
+            document.getElementById("formClass:ocupPers").disabled=true;
+            
+            document.getElementById("formClass:btnGrabar").disabled=true;
+            
+            function activar(){
+            document.getElementById("formClass:codPersonal").disabled=false;
+            document.getElementById("formClass:nomPers").disabled=false;
+            document.getElementById("formClass:dniPers").disabled=false;
+            document.getElementById("formClass:apePatPers").disabled=false; 
+            document.getElementById("formClass:apeMatPers").disabled=false; 
+            document.getElementById("formClass:espPers").disabled=false; 
+            document.getElementById("formClass:dirPers").disabled=false; 
+            document.getElementById("formClass:telfPers").disabled=false;
+            document.getElementById("formClass:mailPers").disabled=false;
+            document.getElementById("formClass:estcPers").disabled=false;
+            document.getElementById("formClass:calPers").disabled=false;
+            document.getElementById("formClass:sexPers").disabled=false;
+            document.getElementById("formClass:ocupPers").disabled=false; 
+            
+            document.getElementById("formClass:btnGrabar").disabled=false;
+            limpiarCampos();
+            }
+
+            function desactivar(){
+            document.getElementById("formClass:codPersonal").disabled=true;
+            document.getElementById("formClass:nomPers").disabled=true;
+            document.getElementById("formClass:dniPers").disabled=true;
+            document.getElementById("formClass:apePatPers").disabled=true; 
+            document.getElementById("formClass:apeMatPers").disabled=true; 
+            document.getElementById("formClass:espPers").disabled=true; 
+            document.getElementById("formClass:dirPers").disabled=true; 
+            document.getElementById("formClass:telfPers").disabled=true;
+            document.getElementById("formClass:mailPers").disabled=true;
+            document.getElementById("formClass:estcPers").disabled=true;
+            document.getElementById("formClass:calPers").disabled=true;
+            document.getElementById("formClass:sexPers").disabled=true;
+            document.getElementById("formClass:ocupPers").disabled=true;
+            
+            document.getElementById("formClass:btnGrabar").disabled=true;
+            }
+            
+            function limpiarCampos(){
+            document.getElementById("formClass:codPersonal").value="";
+            document.getElementById("formClass:nomPers").value="";
+            document.getElementById("formClass:dniPers").value="";
+            document.getElementById("formClass:apePatPers").value="";
+            document.getElementById("formClass:apeMatPers").value=""; 
+            document.getElementById("formClass:espPers").value=""; 
+            document.getElementById("formClass:dirPers").value=""; 
+            document.getElementById("formClass:telfPers").value="";
+            document.getElementById("formClass:mailPers").value="";
+            document.getElementById("formClass:estcPers").value="";
+            document.getElementById("formClass:calPers").value="";
+            document.getElementById("formClass:sexPers").value="";
+            document.getElementById("formClass:ocupPers").value="";
+            }
+            
+            function activarUpdate(){
+            document.getElementById("formClass:btnGrabar").disabled=false;
+            }
+            function Cancelar(){
+            
+            limpiarCampos();
+            document.getElementById("formClass:btnGrabar").disabled=true;
+            }
+            
+            function mensajeConfirmar(){
+               var statusConf=confirm("¿Desea eliminar personal?");
+               if(statusConf==true){
+                document.getElementById("formClass").submit();
+                alert("ingreso aqui");
+                }else
+                {
+                 alert("No se elimina");
+                return false;
+                }
+              
+            }
+            
+
+        </h:outputScript>
+        <h:outputStylesheet>
+        .top {
+        vertical-align: top;
+        }
+ 
+        .info {
+        height: 202px;
+        overflow: auto;
+        }
+    </h:outputStylesheet>
+        <h:body onload="" >
+            <h1>Registro Clase</h1>
+            <h:form id="formClass" > 
+                
+               <rich:panel id="sample2" styleClass="tooltip-text" bodyClass="rich-laguna-panel-no-header">
+                        <table>
+                            <tr>
+                                <td>
+                                    
+                                    <h:panelGrid columns="6" cellspacing="10">
+                          
+                            <h:outputText value="Código:" />
+                            
+                            <h:panelGroup>
+                                <h:inputText id="codClase"  style="width: 30px;"
+                                         value="#{claseBean.idClase}" required="true" 
+                                         requiredMessage="Id clase es requerido."
+                                         >
+                                
+                            </h:inputText>
+                             
+                                <a4j:commandButton id="btnListar" 
+                                                   value=".." 
+                                                   oncomplete="#{rich:component('popupClase')}.show()"
+                                                   action="#{claseBean.listClaseAll()}"  
+                                                   render="popupClase"
+                                                   execute="@this"   >
+                                </a4j:commandButton>
+                            </h:panelGroup>
+
+                            <h:outputText value="Descripción "/>
+                            <h:inputText id="desClase"
+                                         value="#{claseBean.desClase}" required="true" 
+                                         requiredMessage="Descripción es requerido."
+                                         >
+                            </h:inputText>
+                            
+                        </h:panelGrid>
+                                </td> 
+                                                        
+            
+                            </tr>
+                                
+                        </table>
+                       
+                        
+                   
+                    
+                   </rich:panel>          
+
+                    <rich:panel id="sample1" styleClass="tooltip-text" bodyClass="rich-laguna-panel-no-header">
+
+                        <span >
+                            <span >
+                                <a4j:commandButton id="btnNuevo" 
+                                                   value="Nuevo" 
+                                                   onclick="activar();"
+                                                   action="#{claseBean.getOpcNew()}"  
+                                                   render="codPersonal,txtMensaje"
+                                                   execute="@this"   >
+                                </a4j:commandButton>
+                            </span>
+                            <span >
+                                 <a4j:commandButton id="btnEditar" 
+                                                   value="Editar" 
+                                                   onclick="activarUpdate();"
+                                                   action="#{claseBean.getOpcSave()}"  
+                                                   render="codPersonal,txtMensaje"
+                                                   execute="@this"   
+                                                   >
+                                </a4j:commandButton>
+                            </span>
+                            <span >
+                                <h:commandButton id="btnGrabar" 
+                                                 value="Grabar" 
+                                                 action="#{personalBean.agregarPersonal}"
+                                                 />
+                                
+                            </span>
+
+                            <span >
+                                 <h:commandButton id="btnElim" 
+                                                 value="Elimi" 
+                                                 onclick="if (!mensajeConfirmar()) return false;"
+                                                 action="#{personalBean.deletePersonal()}"
+                                                 />
+                                <a4j:commandButton id="btnEliminar" 
+                                                   value="Eliminar" 
+                                                   onclick="if (!mensajeConfirmar()) return false;"
+                                                   action="#{personalBean.deletePersonal()}"  
+                                                   render="codPersonal"
+                                                   execute="@this"   >
+                                </a4j:commandButton>
+                            </span>
+
+                            <span >
+                                <a4j:commandButton id="btnCancelar" 
+                                                   value="Cancelar" 
+                                                   onclick="Cancelar();"
+                                                   execute="@this"   >
+                                </a4j:commandButton>
+                            </span>
+                          
+                        </span>
+                        <br/>
+                        <rich:message for="codPersonal" ajaxRendered="true" />
+                        <rich:message for="nomPers" ajaxRendered="true" />
+                                           
+                        <h:outputText  id="txtMensaje" value="#{personalBean.mensaje}" style="color:#ff0000;"  />
+                   
+                    </rich:panel>
+               
+            </h:form> 
+
+            <rich:popupPanel id="popupClase" 
+                             autosized="true" 
+                             onmaskclick="#{rich:component('popupClase')}.hide()">
+                <f:facet name="controls">
+                    <h:outputLink value="#" onclick="#{rich:component('popupClase')}.hide();
+                            return false;">X</h:outputLink>
+                </f:facet>
+                <h:panelGrid columns="1" id="editGrid">
+                    <rich:dataTable value="#{claseBean.listClase}" 
+                                    var="clase" 
+                                    id="tb_Clase" 
+                                    rows="15">
+                        <rich:column>
+                            <f:facet name="header">Codigo</f:facet>
+                            <h:outputText value="#{clase.idClase}" />
+                        </rich:column>
+                        <rich:column>
+                            <f:facet name="header">Descripción</f:facet>
+                            <h:outputText value="#{clase.desClase}" />
+                        </rich:column>
+                         <rich:column>
+                            <a4j:commandLink styleClass="no-decor" 
+                                             render="codClase,desClase" 
+                                             execute="@this" action="#{claseBean.pintarFrmClase()}"
+                                              onclick="#{rich:component('popupClase')}.hide()">
+                                <h:graphicImage value="/images/icons/edit.gif"/>
+                                <f:setPropertyActionListener target="#{claseBean.idClase}" value="#{clase.idClase}" />
+                            </a4j:commandLink>
+                              <a4j:commandLink styleClass="no-decor" 
+                                             render="codClase" 
+                                             execute="@this" action="#{claseBean.pintarFrmClase()}"
+                                              onclick="#{rich:component('popupClase')}.hide()">
+                                <h:graphicImage value="/images/icons/delete.gif"/>
+                                <f:setPropertyActionListener target="#{claseBean.idClase}" value="#{clase.idClase}" />
+                            </a4j:commandLink>
+                        </rich:column>
+
+                        <f:facet name="footer">
+                            <rich:dataScroller page="1" />
+                        </f:facet>
+                    </rich:dataTable>
+                </h:panelGrid>
+            </rich:popupPanel>
+          
+            
+
+        </h:body>
+    </ui:define>
+</ui:composition>

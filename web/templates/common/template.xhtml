@@ -1,0 +1,79 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:a4j="http://richfaces.org/a4j">
+
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <link href="./resources/css/default.css" rel="stylesheet" type="text/css" />
+        <link href="./resources/css/cssLayout.css" rel="stylesheet" type="text/css" />
+        <link  href="./resources/css/demos.css" rel="stylesheet" type="text/css" />
+        <link href="./resources/css/rounded.css" rel="stylesheet" type="text/css" />
+        <link href="./resources/css/template.css" rel="stylesheet" type="text/css" />
+        <title>Pagina Principal</title>
+    </h:head>
+
+    <h:body>
+
+        <div id="border-top"  class="h_blue">
+            <ui:insert name="top">
+                <div>               
+                <div>
+                    
+                    <span class="title">
+                        <a > 
+                            <!--a href="/appSistLab/faces/index.xhtml"-->
+                            <h:outputLabel value="Administración : #{userBean.nombre} #{userBean.apellidos }"/>
+                           
+                        </a>
+                    </span>
+                    
+                        <span class="logo">
+                           <h:form>
+                           <a4j:commandButton image="./images/icon-48-user.png"  action="#{userBean.logout()}" 
+                                              style="background-color: transparent; border: 0 none;"/>
+                            </h:form> 
+                           
+                         </span>
+                        <span class="terminarsesion">
+                        <h:form>
+                            <h:commandLink value="Terminar Sesión" action="#{userBean.logout()}" />
+                       </h:form> 
+
+                        </span>
+                  
+                </div>
+                    
+                </div>
+                
+            </ui:insert>
+        </div>
+        <div>
+            <div id="left" style="color:#FFF;">
+                <ui:insert name="left">Left</ui:insert>
+            </div>
+            <div id="content" class="left_content">
+                
+                <ui:insert name="content" >Content</ui:insert>
+                
+            </div>
+           
+            
+        </div>
+        <div id="footer">
+            <ui:insert name="footer">
+                <p class="copyright">SISLAB RaitCon ® Sistema Integrado de Gestión Laboratorio.
+                <br/>
+               <a href="http://www.raitconcorporation.com/">Copyright © 2016</a>
+                 -
+               <a href="http://www.raitconcorporation.com/">RaitCon Corporation</a>
+              <span class="version">Versión 1.0.0.0</span>
+               </p>
+            </ui:insert>
+        </div>
+
+    </h:body>
+
+</html>

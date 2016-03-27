@@ -1,0 +1,1355 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="libretaPrimerGrado" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" fontName="Arial" fontSize="26" isBold="true" pdfFontName="Helvetica-Bold"/>
+	<style name="SubTitle" forecolor="#666666" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<style name="styleMatI">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$P{mateI}.intValue()<11]]></conditionExpression>
+			<style forecolor="#FF0000"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$P{mateI}.intValue()>=11]]></conditionExpression>
+			<style forecolor="#000000"/>
+		</conditionalStyle>
+	</style>
+	<style name="styleMatII">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$P{mateII}.intValue()<11]]></conditionExpression>
+			<style forecolor="#FF0000"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$P{mateII}.intValue()>=11]]></conditionExpression>
+			<style forecolor="#000000"/>
+		</conditionalStyle>
+	</style>
+	<style name="styleMatIII">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$P{mateIII}.intValue()<11]]></conditionExpression>
+			<style forecolor="#FF0000"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$P{mateIII}.intValue()>=11]]></conditionExpression>
+			<style forecolor="#000000"/>
+		</conditionalStyle>
+	</style>
+	<style name="styleMatProm">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[((new Double($P{mateI}+$P{mateII}+$P{mateIII}))/3)<11]]></conditionExpression>
+			<style forecolor="#FF0000"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[((new Double($P{mateI}+$P{mateII}+$P{mateIII}))/3)>=11]]></conditionExpression>
+			<style forecolor="#000000"/>
+		</conditionalStyle>
+	</style>
+	<style name="styleRazI">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$P{razonI}.intValue()<11]]></conditionExpression>
+			<style forecolor="#FF0000"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$P{razonI}.intValue()>=11]]></conditionExpression>
+			<style forecolor="#000000"/>
+		</conditionalStyle>
+	</style>
+	<style name="styleRazII">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$P{razonII}.intValue()<11]]></conditionExpression>
+			<style forecolor="#FF0000"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$P{razonII}.intValue()>=11]]></conditionExpression>
+			<style forecolor="#000000"/>
+		</conditionalStyle>
+	</style>
+	<style name="styleRazIII">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$P{razonIII}.intValue()<11]]></conditionExpression>
+			<style forecolor="#FF0000"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$P{razonIII}.intValue()>=11]]></conditionExpression>
+			<style forecolor="#000000"/>
+		</conditionalStyle>
+	</style>
+	<style name="styleRazProm">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[((new Double($P{razonI}+$P{razonII}+$P{razonIII}))/3)<11]]></conditionExpression>
+			<style forecolor="#FF0000"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[((new Double($P{razonI}+$P{razonII}+$P{razonIII}))/3)>=11]]></conditionExpression>
+			<style forecolor="#000000"/>
+		</conditionalStyle>
+	</style>
+	<style name="styleComunI">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$P{comunI}.intValue()<11]]></conditionExpression>
+			<style forecolor="#FF0000"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$P{comunI}.intValue()>=11]]></conditionExpression>
+			<style forecolor="#000000"/>
+		</conditionalStyle>
+	</style>
+	<style name="styleComunII">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$P{comunII}.intValue()<11]]></conditionExpression>
+			<style forecolor="#FF0000"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$P{comunII}.intValue()>=11]]></conditionExpression>
+			<style forecolor="#000000"/>
+		</conditionalStyle>
+	</style>
+	<style name="styleComunIII">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$P{comunIII}.intValue()<11]]></conditionExpression>
+			<style forecolor="#FF0000"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$P{comunIII}.intValue()>=11]]></conditionExpression>
+			<style forecolor="#000000"/>
+		</conditionalStyle>
+	</style>
+	<style name="styleComunProm">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[((new Double($P{comunI}+$P{comunII}+$P{comunIII}))/3)<11]]></conditionExpression>
+			<style forecolor="#FF0000"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[((new Double($P{comunI}+$P{comunII}+$P{comunIII}))/3)>=11]]></conditionExpression>
+			<style forecolor="#000000"/>
+		</conditionalStyle>
+	</style>
+	<style name="styleAptI">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$P{aptI}.intValue()<11]]></conditionExpression>
+			<style forecolor="#FF0000"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$P{aptI}.intValue()>=11]]></conditionExpression>
+			<style forecolor="#000000"/>
+		</conditionalStyle>
+	</style>
+	<style name="styleAptII">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$P{aptII}.intValue()<11]]></conditionExpression>
+			<style forecolor="#FF0000"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$P{aptII}.intValue()>=11]]></conditionExpression>
+			<style forecolor="#000000"/>
+		</conditionalStyle>
+	</style>
+	<style name="styleAptIII">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$P{aptIII}.intValue()<11]]></conditionExpression>
+			<style forecolor="#FF0000"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$P{aptIII}.intValue()>=11]]></conditionExpression>
+			<style forecolor="#000000"/>
+		</conditionalStyle>
+	</style>
+	<style name="styleAptProm">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[((new Double($P{aptI}+$P{aptII}+$P{aptIII}))/3)<11]]></conditionExpression>
+			<style forecolor="#FF0000"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[((new Double($P{aptI}+$P{aptII}+$P{aptIII}))/3)>=11]]></conditionExpression>
+			<style forecolor="#000000"/>
+		</conditionalStyle>
+	</style>
+	<style name="stylePlanI">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$P{planI}.intValue()<11]]></conditionExpression>
+			<style forecolor="#FF0000"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$P{planI}.intValue()>=11]]></conditionExpression>
+			<style forecolor="#000000"/>
+		</conditionalStyle>
+	</style>
+	<style name="stylePlanII">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$P{planII}.intValue()<11]]></conditionExpression>
+			<style forecolor="#FF0000"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$P{planII}.intValue()>=11]]></conditionExpression>
+			<style forecolor="#000000"/>
+		</conditionalStyle>
+	</style>
+	<style name="stylePlanIII">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$P{planIII}.intValue()<11]]></conditionExpression>
+			<style forecolor="#FF0000"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$P{planIII}.intValue()>=11]]></conditionExpression>
+			<style forecolor="#000000"/>
+		</conditionalStyle>
+	</style>
+	<style name="stylePlanProm">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[((new Double($P{planI}+$P{planII}+$P{planIII}))/3)<11]]></conditionExpression>
+			<style forecolor="#FF0000"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[((new Double($P{planI}+$P{planII}+$P{planIII}))/3)>=11]]></conditionExpression>
+			<style forecolor="#000000"/>
+		</conditionalStyle>
+	</style>
+	<style name="styleArteI">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$P{arteI}.intValue()<11]]></conditionExpression>
+			<style forecolor="#FF0000"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$P{arteI}.intValue()>=11]]></conditionExpression>
+			<style forecolor="#000000"/>
+		</conditionalStyle>
+	</style>
+	<style name="styleArteII">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$P{arteII}.intValue()<11]]></conditionExpression>
+			<style forecolor="#FF0000"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$P{arteII}.intValue()>=11]]></conditionExpression>
+			<style forecolor="#000000"/>
+		</conditionalStyle>
+	</style>
+	<style name="styleArteIII">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$P{arteIII}.intValue()<11]]></conditionExpression>
+			<style forecolor="#FF0000"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$P{arteIII}.intValue()>=11]]></conditionExpression>
+			<style forecolor="#000000"/>
+		</conditionalStyle>
+	</style>
+	<style name="styleArteProm">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[((new Double($P{arteI}+$P{arteII}+$P{arteIII}))/3)<11]]></conditionExpression>
+			<style forecolor="#FF0000"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[((new Double($P{planI}+$P{planII}+$P{planIII}))/3)>=11]]></conditionExpression>
+			<style forecolor="#000000"/>
+		</conditionalStyle>
+	</style>
+	<style name="stylePersonI">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$P{personI}.intValue()<11]]></conditionExpression>
+			<style forecolor="#FF0000"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$P{personI}.intValue()>=11]]></conditionExpression>
+			<style forecolor="#000000"/>
+		</conditionalStyle>
+	</style>
+	<style name="stylePersonII">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$P{personII}.intValue()<11]]></conditionExpression>
+			<style forecolor="#FF0000"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$P{personII}.intValue()>=11]]></conditionExpression>
+			<style forecolor="#000000"/>
+		</conditionalStyle>
+	</style>
+	<style name="stylePersonIII">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$P{personIII}.intValue()<11]]></conditionExpression>
+			<style forecolor="#FF0000"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$P{personIII}.intValue()>=11]]></conditionExpression>
+			<style forecolor="#000000"/>
+		</conditionalStyle>
+	</style>
+	<style name="stylePersonProm">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[((new Double($P{personI}+$P{personII}+$P{personIII}))/3)<11]]></conditionExpression>
+			<style forecolor="#FF0000"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[((new Double($P{personI}+$P{personII}+$P{personIII}))/3)>=11]]></conditionExpression>
+			<style forecolor="#000000"/>
+		</conditionalStyle>
+	</style>
+	<style name="styleEducaI">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$P{educaI}.intValue()<11]]></conditionExpression>
+			<style forecolor="#FF0000"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$P{educaI}.intValue()>=11]]></conditionExpression>
+			<style forecolor="#000000"/>
+		</conditionalStyle>
+	</style>
+	<style name="styleEducaII">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$P{educaII}.intValue()<11]]></conditionExpression>
+			<style forecolor="#FF0000"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$P{educaII}.intValue()>=11]]></conditionExpression>
+			<style forecolor="#000000"/>
+		</conditionalStyle>
+	</style>
+	<style name="styleEducaIII">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$P{educaIII}.intValue()<11]]></conditionExpression>
+			<style forecolor="#FF0000"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$P{educaIII}.intValue()>=11]]></conditionExpression>
+			<style forecolor="#000000"/>
+		</conditionalStyle>
+	</style>
+	<style name="styleEducaProm">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[((new Double($P{educaI}+$P{educaII}+$P{educaIII}))/3)<11]]></conditionExpression>
+			<style forecolor="#FF0000"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[((new Double($P{educaI}+$P{educaII}+$P{educaIII}))/3)>=11]]></conditionExpression>
+			<style forecolor="#000000"/>
+		</conditionalStyle>
+	</style>
+	<style name="styleCienciaI">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$P{cienciaI}.intValue()<11]]></conditionExpression>
+			<style forecolor="#FF0000"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$P{cienciaI}.intValue()>=11]]></conditionExpression>
+			<style forecolor="#000000"/>
+		</conditionalStyle>
+	</style>
+	<style name="styleCienciaII">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$P{cienciaII}.intValue()<11]]></conditionExpression>
+			<style forecolor="#FF0000"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$P{cienciaII}.intValue()>=11]]></conditionExpression>
+			<style forecolor="#000000"/>
+		</conditionalStyle>
+	</style>
+	<style name="styleCienciaIII">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$P{cienciaIII}.intValue()<11]]></conditionExpression>
+			<style forecolor="#FF0000"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$P{cienciaIII}.intValue()>=11]]></conditionExpression>
+			<style forecolor="#000000"/>
+		</conditionalStyle>
+	</style>
+	<style name="styleCienciaProm">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[((new Double($P{cienciaI}+$P{cienciaII}+$P{cienciaIII}))/3)<11]]></conditionExpression>
+			<style forecolor="#FF0000"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[((new Double($P{cienciaI}+$P{cienciaII}+$P{cienciaIII}))/3)>=11]]></conditionExpression>
+			<style forecolor="#000000"/>
+		</conditionalStyle>
+	</style>
+	<style name="styleReligionI">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$P{religionI}.intValue()<11]]></conditionExpression>
+			<style forecolor="#FF0000"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$P{religionI}.intValue()>=11]]></conditionExpression>
+			<style forecolor="#000000"/>
+		</conditionalStyle>
+	</style>
+	<style name="styleReligionII">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$P{religionII}.intValue()<11]]></conditionExpression>
+			<style forecolor="#FF0000"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$P{religionII}.intValue()>=11]]></conditionExpression>
+			<style forecolor="#000000"/>
+		</conditionalStyle>
+	</style>
+	<style name="styleReligionIII">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$P{religionIII}.intValue()<11]]></conditionExpression>
+			<style forecolor="#FF0000"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$P{religionIII}.intValue()>=11]]></conditionExpression>
+			<style forecolor="#000000"/>
+		</conditionalStyle>
+	</style>
+	<style name="styleReligionProm">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[((new Double($P{religionI}+$P{religionII}+$P{religionIII}))/3)<11]]></conditionExpression>
+			<style forecolor="#FF0000"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[((new Double($P{religionI}+$P{religionII}+$P{religionIII}))/3)>=11]]></conditionExpression>
+			<style forecolor="#000000"/>
+		</conditionalStyle>
+	</style>
+	<style name="styleCompuI">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$P{compuI}.intValue()<11]]></conditionExpression>
+			<style forecolor="#FF0000"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$P{compuI}.intValue()>=11]]></conditionExpression>
+			<style forecolor="#000000"/>
+		</conditionalStyle>
+	</style>
+	<style name="styleCompuII">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$P{compuII}.intValue()<11]]></conditionExpression>
+			<style forecolor="#FF0000"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$P{compuII}.intValue()>=11]]></conditionExpression>
+			<style forecolor="#000000"/>
+		</conditionalStyle>
+	</style>
+	<style name="styleCompuIII">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$P{compuIII}.intValue()<11]]></conditionExpression>
+			<style forecolor="#FF0000"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$P{compuIII}.intValue()>=11]]></conditionExpression>
+			<style forecolor="#000000"/>
+		</conditionalStyle>
+	</style>
+	<style name="styleCompuProm">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[((new Double($P{compuI}+$P{compuII}+$P{compuIII}))/3)<11]]></conditionExpression>
+			<style forecolor="#FF0000"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[((new Double($P{compuI}+$P{compuII}+$P{compuIII}))/3)>=11]]></conditionExpression>
+			<style forecolor="#000000"/>
+		</conditionalStyle>
+	</style>
+	<style name="styleInglesI">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$P{inglesI}.intValue()<11]]></conditionExpression>
+			<style forecolor="#FF0000"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$P{inglesI}.intValue()>=11]]></conditionExpression>
+			<style forecolor="#000000"/>
+		</conditionalStyle>
+	</style>
+	<style name="styleInglesII">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$P{inglesII}.intValue()<11]]></conditionExpression>
+			<style forecolor="#FF0000"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$P{inglesII}.intValue()>=11]]></conditionExpression>
+			<style forecolor="#000000"/>
+		</conditionalStyle>
+	</style>
+	<style name="styleInglesIII">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$P{inglesIII}.intValue()<11]]></conditionExpression>
+			<style forecolor="#FF0000"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$P{inglesIII}.intValue()>=11]]></conditionExpression>
+			<style forecolor="#000000"/>
+		</conditionalStyle>
+	</style>
+	<style name="styleInglesProm">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[((new Double($P{inglesI}+$P{inglesII}+$P{inglesIII}))/3)<11]]></conditionExpression>
+			<style forecolor="#FF0000"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[((new Double($P{inglesI}+$P{inglesII}+$P{inglesIII}))/3)>=11]]></conditionExpression>
+			<style forecolor="#000000"/>
+		</conditionalStyle>
+	</style>
+	<style name="styleConducI">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$P{conducI}.intValue()<11]]></conditionExpression>
+			<style forecolor="#FF0000"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$P{conducI}.intValue()>=11]]></conditionExpression>
+			<style forecolor="#000000"/>
+		</conditionalStyle>
+	</style>
+	<style name="styleConducII">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$P{conducII}.intValue()<11]]></conditionExpression>
+			<style forecolor="#FF0000"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$P{conducII}.intValue()>=11]]></conditionExpression>
+			<style forecolor="#000000"/>
+		</conditionalStyle>
+	</style>
+	<style name="styleConducIII">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$P{conducIII}.intValue()<11]]></conditionExpression>
+			<style forecolor="#FF0000"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$P{conducIII}.intValue()>=11]]></conditionExpression>
+			<style forecolor="#000000"/>
+		</conditionalStyle>
+	</style>
+	<style name="styleConducProm">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[((new Double($P{conducI}+$P{conducII}+$P{conducIII}))/3)<11]]></conditionExpression>
+			<style forecolor="#FF0000"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[((new Double($P{conducI}+$P{conducII}+$P{conducIII}))/3)>=11]]></conditionExpression>
+			<style forecolor="#000000"/>
+		</conditionalStyle>
+	</style>
+	<style name="styleToeI">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$P{toeI}.intValue()<11]]></conditionExpression>
+			<style forecolor="#FF0000"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$P{toeI}.intValue()>=11]]></conditionExpression>
+			<style forecolor="#000000"/>
+		</conditionalStyle>
+	</style>
+	<style name="styleToeII">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$P{toeII}.intValue()<11]]></conditionExpression>
+			<style forecolor="#FF0000"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$P{toeII}.intValue()>=11]]></conditionExpression>
+			<style forecolor="#000000"/>
+		</conditionalStyle>
+	</style>
+	<style name="styleToeIII">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$P{toeIII}.intValue()<11]]></conditionExpression>
+			<style forecolor="#FF0000"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$P{toeIII}.intValue()>=11]]></conditionExpression>
+			<style forecolor="#000000"/>
+		</conditionalStyle>
+	</style>
+	<style name="styleToeProm">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[((new Double($P{toeI}+$P{toeII}+$P{toeIII}))/3)<11]]></conditionExpression>
+			<style forecolor="#FF0000"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[((new Double($P{toeI}+$P{toeII}+$P{toeIII}))/3)>=11]]></conditionExpression>
+			<style forecolor="#000000"/>
+		</conditionalStyle>
+	</style>
+	<subDataset name="dataset1"/>
+	<parameter name="apell_name" class="java.lang.String"/>
+	<parameter name="grade_section" class="java.lang.String"/>
+	<parameter name="anio" class="java.lang.String"/>
+	<parameter name="directora" class="java.lang.String"/>
+	<parameter name="merito" class="java.lang.String"/>
+	<parameter name="mateI" class="java.lang.Long"/>
+	<parameter name="mateII" class="java.lang.Long"/>
+	<parameter name="mateIII" class="java.lang.Long"/>
+	<parameter name="razonI" class="java.lang.Long"/>
+	<parameter name="razonII" class="java.lang.Long"/>
+	<parameter name="razonIII" class="java.lang.Long"/>
+	<parameter name="comunI" class="java.lang.Long"/>
+	<parameter name="comunII" class="java.lang.Long"/>
+	<parameter name="comunIII" class="java.lang.Long"/>
+	<parameter name="aptI" class="java.lang.Long"/>
+	<parameter name="aptII" class="java.lang.Long"/>
+	<parameter name="aptIII" class="java.lang.Long"/>
+	<parameter name="planI" class="java.lang.Long"/>
+	<parameter name="planII" class="java.lang.Long"/>
+	<parameter name="planIII" class="java.lang.Long"/>
+	<parameter name="arteI" class="java.lang.Long"/>
+	<parameter name="arteII" class="java.lang.Long"/>
+	<parameter name="arteIII" class="java.lang.Long"/>
+	<parameter name="personI" class="java.lang.Long"/>
+	<parameter name="personII" class="java.lang.Long"/>
+	<parameter name="personIII" class="java.lang.Long"/>
+	<parameter name="educaI" class="java.lang.Long"/>
+	<parameter name="educaII" class="java.lang.Long"/>
+	<parameter name="educaIII" class="java.lang.Long"/>
+	<parameter name="cienciaI" class="java.lang.Long"/>
+	<parameter name="cienciaII" class="java.lang.Long"/>
+	<parameter name="cienciaIII" class="java.lang.Long"/>
+	<parameter name="religionI" class="java.lang.Long"/>
+	<parameter name="religionII" class="java.lang.Long"/>
+	<parameter name="religionIII" class="java.lang.Long"/>
+	<parameter name="compuI" class="java.lang.Long"/>
+	<parameter name="compuII" class="java.lang.Long"/>
+	<parameter name="compuIII" class="java.lang.Long"/>
+	<parameter name="inglesI" class="java.lang.Long"/>
+	<parameter name="inglesII" class="java.lang.Long"/>
+	<parameter name="inglesIII" class="java.lang.Long"/>
+	<parameter name="conducI" class="java.lang.Long"/>
+	<parameter name="conducII" class="java.lang.Long"/>
+	<parameter name="conducIII" class="java.lang.Long"/>
+	<parameter name="toeI" class="java.lang.Long"/>
+	<parameter name="toeII" class="java.lang.Long"/>
+	<parameter name="toeIII" class="java.lang.Long"/>
+	<parameter name="logo" class="java.io.InputStream"/>
+	<variable name="fieldCalculate" class="java.lang.Long" calculation="Sum">
+		<variableExpression><![CDATA[]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="82" splitType="Stretch">
+			<staticText>
+				<reportElement style="Title" x="290" y="7" width="235" height="75"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Colegio
+SANTO DOMINGO DE GUZMÁN
+“Nacimos para ser el orgullo del Perú”
+INICIAL – PRIMARIA – SECUNDARIA
+UGEL N° 04 – COMAS – CARABAYLLO
+Correo: sdg_carabayllo@hotmail.com
+Teléfono: 717 – 6550
+]]></text>
+			</staticText>
+			<image>
+				<reportElement x="101" y="-1" width="107" height="83"/>
+				<imageExpression><![CDATA[$P{logo}]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="679" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="73" width="525" height="41"/>
+			</rectangle>
+			<rectangle radius="10">
+				<reportElement x="90" y="27" width="374" height="20" forecolor="#FF0033" backcolor="#FF3333"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="208" y="7" width="93" height="20"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[AÑO ESCOLAR ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="101" y="27" width="352" height="20" backcolor="#FF0033"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[BOLETA DE NOTAS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="208" y="52" width="136" height="20"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[EDUCACION PRIMARIA]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="0" y="73" width="525" height="20"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="18" y="76" width="100" height="20"/>
+				<text><![CDATA[Apellidos y Nombre:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="189" y="76" width="323" height="20"/>
+				<textFieldExpression><![CDATA[$P{apell_name}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="170" y="72" width="1" height="42"/>
+			</line>
+			<staticText>
+				<reportElement x="17" y="97" width="100" height="20"/>
+				<text><![CDATA[Grado  y Sección:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="0" y="-159" width="100" height="20"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{anio}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="192" y="97" width="320" height="20"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$P{grade_section}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="301" y="7" width="100" height="20"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{anio}]]></textFieldExpression>
+			</textField>
+			<rectangle>
+				<reportElement x="1" y="124" width="524" height="33" backcolor="#999999"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="18" y="124" width="72" height="33" forecolor="#FFFFFF"/>
+				<textElement textAlignment="Center">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ÁREA CURRICULAR]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="178" y="130" width="72" height="19" forecolor="#FFFFFF"/>
+				<textElement textAlignment="Center">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ASIGNATURAS]]></text>
+			</staticText>
+			<line>
+				<reportElement x="388" y="124" width="1" height="440"/>
+			</line>
+			<line>
+				<reportElement x="170" y="124" width="1" height="439"/>
+			</line>
+			<staticText>
+				<reportElement x="2" y="172" width="168" height="20"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial Black" size="11" isBold="false"/>
+				</textElement>
+				<text><![CDATA[MATEMÁTICA]]></text>
+			</staticText>
+			<line>
+				<reportElement x="171" y="180" width="354" height="1"/>
+			</line>
+			<staticText>
+				<reportElement x="178" y="158" width="100" height="20"/>
+				<textElement>
+					<font fontName="Arial Black" size="10"/>
+				</textElement>
+				<text><![CDATA[Matemática]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="178" y="181" width="168" height="20"/>
+				<textElement>
+					<font fontName="Arial Black" size="10"/>
+				</textElement>
+				<text><![CDATA[Razonamiento Matemático]]></text>
+			</staticText>
+			<line>
+				<reportElement x="388" y="141" width="77" height="1"/>
+			</line>
+			<staticText>
+				<reportElement x="393" y="125" width="72" height="19" forecolor="#FFFFFF"/>
+				<textElement textAlignment="Center">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[TRIMESTRE]]></text>
+			</staticText>
+			<line>
+				<reportElement x="414" y="142" width="1" height="422"/>
+			</line>
+			<line>
+				<reportElement x="441" y="142" width="1" height="422"/>
+			</line>
+			<line>
+				<reportElement x="466" y="125" width="1" height="439"/>
+			</line>
+			<staticText>
+				<reportElement x="393" y="144" width="19" height="13" forecolor="#FFFFFF"/>
+				<textElement textAlignment="Center">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[I]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="419" y="144" width="19" height="13" forecolor="#FFFFFF"/>
+				<textElement textAlignment="Center">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[II]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="443" y="144" width="19" height="13" forecolor="#FFFFFF"/>
+				<textElement textAlignment="Center">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[III]]></text>
+			</staticText>
+			<line>
+				<reportElement x="495" y="124" width="1" height="440"/>
+			</line>
+			<line>
+				<reportElement x="525" y="124" width="1" height="440"/>
+			</line>
+			<staticText>
+				<reportElement x="473" y="127" width="22" height="25" forecolor="#FFFFFF"/>
+				<textElement textAlignment="Center" rotation="Left">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[PJE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="503" y="124" width="22" height="33" forecolor="#FFFFFF"/>
+				<textElement textAlignment="Center" rotation="Left">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[PROM]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2" y="228" width="168" height="20"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial Black" size="11" isBold="false"/>
+				</textElement>
+				<text><![CDATA[COMUNICACIÓN]]></text>
+			</staticText>
+			<line>
+				<reportElement x="171" y="225" width="353" height="1"/>
+			</line>
+			<staticText>
+				<reportElement x="178" y="204" width="100" height="20"/>
+				<textElement>
+					<font fontName="Arial Black" size="10"/>
+				</textElement>
+				<text><![CDATA[Comunicación]]></text>
+			</staticText>
+			<line>
+				<reportElement x="171" y="248" width="353" height="1"/>
+			</line>
+			<line>
+				<reportElement x="0" y="272" width="524" height="1"/>
+			</line>
+			<staticText>
+				<reportElement x="178" y="251" width="100" height="20"/>
+				<textElement>
+					<font fontName="Arial Black" size="10"/>
+				</textElement>
+				<text><![CDATA[Plan Lector]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="178" y="227" width="100" height="20"/>
+				<textElement>
+					<font fontName="Arial Black" size="10"/>
+				</textElement>
+				<text><![CDATA[Aptitud Verbal]]></text>
+			</staticText>
+			<line>
+				<reportElement x="1" y="295" width="524" height="1"/>
+			</line>
+			<staticText>
+				<reportElement x="179" y="274" width="100" height="20"/>
+				<textElement>
+					<font fontName="Arial Black" size="10"/>
+				</textElement>
+				<text><![CDATA[Arte]]></text>
+			</staticText>
+			<line>
+				<reportElement x="1" y="318" width="524" height="1"/>
+			</line>
+			<staticText>
+				<reportElement x="179" y="297" width="100" height="20"/>
+				<textElement>
+					<font fontName="Arial Black" size="10"/>
+				</textElement>
+				<text><![CDATA[Personal Social]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="179" y="320" width="100" height="20"/>
+				<textElement>
+					<font fontName="Arial Black" size="10"/>
+				</textElement>
+				<text><![CDATA[Educación Física]]></text>
+			</staticText>
+			<line>
+				<reportElement x="1" y="342" width="524" height="1"/>
+			</line>
+			<line>
+				<reportElement x="0" y="365" width="524" height="1"/>
+			</line>
+			<staticText>
+				<reportElement x="180" y="344" width="140" height="20"/>
+				<textElement>
+					<font fontName="Arial Black" size="10"/>
+				</textElement>
+				<text><![CDATA[Ciencia y Ambiente]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="179" y="368" width="140" height="20"/>
+				<textElement>
+					<font fontName="Arial Black" size="10"/>
+				</textElement>
+				<text><![CDATA[Religión]]></text>
+			</staticText>
+			<line>
+				<reportElement x="1" y="390" width="524" height="1"/>
+			</line>
+			<staticText>
+				<reportElement x="180" y="393" width="140" height="20"/>
+				<textElement>
+					<font fontName="Arial Black" size="10"/>
+				</textElement>
+				<text><![CDATA[Computación]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="414" width="524" height="1"/>
+			</line>
+			<line>
+				<reportElement x="0" y="127" width="1" height="436"/>
+			</line>
+			<line>
+				<reportElement x="1" y="438" width="524" height="1"/>
+			</line>
+			<staticText>
+				<reportElement x="180" y="417" width="140" height="20"/>
+				<textElement>
+					<font fontName="Arial Black" size="10"/>
+				</textElement>
+				<text><![CDATA[Ingles]]></text>
+			</staticText>
+			<line>
+				<reportElement x="1" y="202" width="525" height="1"/>
+			</line>
+			<line>
+				<reportElement x="171" y="464" width="353" height="1"/>
+			</line>
+			<line>
+				<reportElement x="170" y="488" width="354" height="1"/>
+			</line>
+			<line>
+				<reportElement x="1" y="513" width="524" height="1"/>
+			</line>
+			<line>
+				<reportElement x="0" y="538" width="524" height="1"/>
+			</line>
+			<line>
+				<reportElement x="0" y="563" width="524" height="1"/>
+			</line>
+			<staticText>
+				<reportElement x="180" y="516" width="140" height="20"/>
+				<textElement>
+					<font fontName="Arial Black" size="10"/>
+				</textElement>
+				<text><![CDATA[Conducta]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="180" y="540" width="140" height="20"/>
+				<textElement>
+					<font fontName="Arial Black" size="10"/>
+				</textElement>
+				<text><![CDATA[T.O.E]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2" y="275" width="168" height="20"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial Black" size="11" isBold="false"/>
+				</textElement>
+				<text><![CDATA[ARTE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2" y="297" width="168" height="20"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial Black" size="11" isBold="false"/>
+				</textElement>
+				<text><![CDATA[PERSONAL SOCIAL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2" y="320" width="168" height="20"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial Black" size="11" isBold="false"/>
+				</textElement>
+				<text><![CDATA[EDUACION FÍSICA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2" y="344" width="168" height="20"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial Black" size="11" isBold="false"/>
+				</textElement>
+				<text><![CDATA[CIENCIA Y AMBIENTE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2" y="369" width="168" height="20"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial Black" size="11" isBold="false"/>
+				</textElement>
+				<text><![CDATA[EDUCACIÓN RELIGIOSA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="392" width="169" height="20"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial Black" size="11" isBold="false"/>
+				</textElement>
+				<text><![CDATA[EDUC. PARA EL TRABAJO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2" y="418" width="169" height="20"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial Black" size="11" isBold="false"/>
+				</textElement>
+				<text><![CDATA[INGLES]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="516" width="169" height="20"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial Black" size="11" isBold="false"/>
+				</textElement>
+				<text><![CDATA[CONDUCTA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="541" width="169" height="20"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial Black" size="11" isBold="false"/>
+				</textElement>
+				<text><![CDATA[T.O.E]]></text>
+			</staticText>
+			<line>
+				<reportElement x="263" y="639" width="232" height="1"/>
+			</line>
+			<staticText>
+				<reportElement x="266" y="639" width="35" height="20"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial Black" size="10"/>
+				</textElement>
+				<text><![CDATA[Prof.]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="304" y="639" width="191" height="20"/>
+				<textElement>
+					<font fontName="Arial Black" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{directora}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="25" y="586" width="60" height="31"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial Black" size="10"/>
+				</textElement>
+				<text><![CDATA[Orden de Mérito]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="33" y="617" width="49" height="34"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial Black" size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{merito}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="304" y="659" width="137" height="20"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial Black" size="10"/>
+				</textElement>
+				<text><![CDATA[Directora]]></text>
+			</staticText>
+			<textField pattern="00">
+				<reportElement style="styleMatI" x="390" y="162" width="21" height="16"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$P{mateI}]]></textFieldExpression>
+			</textField>
+			<textField pattern="00">
+				<reportElement style="styleMatII" x="419" y="162" width="19" height="17"/>
+				<textFieldExpression><![CDATA[$P{mateII}]]></textFieldExpression>
+			</textField>
+			<textField pattern="00">
+				<reportElement style="styleMatIII" x="445" y="162" width="19" height="16"/>
+				<textFieldExpression><![CDATA[$P{mateIII}]]></textFieldExpression>
+			</textField>
+			<textField pattern="00">
+				<reportElement x="473" y="162" width="19" height="16"/>
+				<textFieldExpression><![CDATA[$P{mateI}+$P{mateII}+$P{mateIII}]]></textFieldExpression>
+			</textField>
+			<textField pattern="00">
+				<reportElement style="styleMatProm" x="500" y="162" width="19" height="16"/>
+				<textFieldExpression><![CDATA[(new Double($P{mateI}+$P{mateII}+$P{mateIII}))/3]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="styleRazI" x="393" y="184" width="19" height="16"/>
+				<textFieldExpression><![CDATA[$P{razonI}]]></textFieldExpression>
+			</textField>
+			<textField pattern="00">
+				<reportElement style="styleRazII" x="419" y="184" width="19" height="16"/>
+				<textFieldExpression><![CDATA[$P{razonII}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="styleRazIII" x="445" y="184" width="19" height="16"/>
+				<textFieldExpression><![CDATA[$P{razonIII}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="473" y="184" width="19" height="16"/>
+				<textFieldExpression><![CDATA[$P{razonI}+$P{razonII}+$P{razonIII}]]></textFieldExpression>
+			</textField>
+			<textField pattern="00">
+				<reportElement style="styleRazProm" x="501" y="184" width="19" height="16"/>
+				<textFieldExpression><![CDATA[(new Double($P{razonI}+$P{razonII}+$P{razonIII}))/3]]></textFieldExpression>
+			</textField>
+			<textField pattern="00">
+				<reportElement style="styleComunI" x="393" y="206" width="19" height="16"/>
+				<textFieldExpression><![CDATA[$P{comunI}]]></textFieldExpression>
+			</textField>
+			<textField pattern="00">
+				<reportElement style="styleComunII" x="421" y="206" width="19" height="16"/>
+				<textFieldExpression><![CDATA[$P{comunII}]]></textFieldExpression>
+			</textField>
+			<textField pattern="00">
+				<reportElement style="styleComunIII" x="445" y="206" width="19" height="16"/>
+				<textFieldExpression><![CDATA[$P{comunIII}]]></textFieldExpression>
+			</textField>
+			<textField pattern="00">
+				<reportElement x="473" y="206" width="19" height="16"/>
+				<textFieldExpression><![CDATA[$P{comunI}+$P{comunII}+$P{comunIII}]]></textFieldExpression>
+			</textField>
+			<textField pattern="00">
+				<reportElement x="502" y="206" width="19" height="16"/>
+				<textFieldExpression><![CDATA[(new Double($P{comunI}+$P{comunII}+$P{comunIII}))/3]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="styleAptProm" x="503" y="228" width="19" height="16"/>
+				<textFieldExpression><![CDATA[(new Double($P{aptI}+$P{aptII}+$P{aptIII}))/3]]></textFieldExpression>
+			</textField>
+			<textField pattern="00">
+				<reportElement style="styleAptI" x="421" y="228" width="19" height="16"/>
+				<textFieldExpression><![CDATA[$P{aptI}]]></textFieldExpression>
+			</textField>
+			<textField pattern="00">
+				<reportElement style="styleAptII" x="446" y="228" width="19" height="16"/>
+				<textFieldExpression><![CDATA[$P{aptII}]]></textFieldExpression>
+			</textField>
+			<textField pattern="00">
+				<reportElement style="styleAptIII" x="393" y="228" width="19" height="16"/>
+				<textFieldExpression><![CDATA[$P{aptIII}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="473" y="228" width="19" height="16"/>
+				<textFieldExpression><![CDATA[$P{aptI}+$P{aptII}+$P{aptIII}]]></textFieldExpression>
+			</textField>
+			<textField pattern="00">
+				<reportElement style="stylePlanI" x="393" y="252" width="19" height="16"/>
+				<textFieldExpression><![CDATA[$P{planI}]]></textFieldExpression>
+			</textField>
+			<textField pattern="00">
+				<reportElement style="stylePlanProm" x="503" y="252" width="19" height="16"/>
+				<textFieldExpression><![CDATA[(new Double($P{planI}+$P{planII}+$P{planIII}))/3]]></textFieldExpression>
+			</textField>
+			<textField pattern="00">
+				<reportElement x="473" y="252" width="19" height="16"/>
+				<textFieldExpression><![CDATA[$P{planI}+$P{planII}+$P{planIII}]]></textFieldExpression>
+			</textField>
+			<textField pattern="00">
+				<reportElement style="stylePlanIII" x="446" y="252" width="19" height="16"/>
+				<textFieldExpression><![CDATA[$P{aptIII}]]></textFieldExpression>
+			</textField>
+			<textField pattern="00">
+				<reportElement style="stylePlanII" x="421" y="252" width="19" height="16"/>
+				<textFieldExpression><![CDATA[$P{planII}]]></textFieldExpression>
+			</textField>
+			<textField pattern="00">
+				<reportElement style="styleArteIII" x="445" y="277" width="19" height="16"/>
+				<textFieldExpression><![CDATA[$P{arteIII}]]></textFieldExpression>
+			</textField>
+			<textField pattern="00">
+				<reportElement style="styleArteProm" x="502" y="277" width="19" height="16"/>
+				<textFieldExpression><![CDATA[(new Double($P{arteI}+$P{arteII}+$P{arteIII}))/3]]></textFieldExpression>
+			</textField>
+			<textField pattern="00">
+				<reportElement x="472" y="277" width="19" height="16"/>
+				<textFieldExpression><![CDATA[$P{arteI}+$P{arteII}+$P{arteIII}]]></textFieldExpression>
+			</textField>
+			<textField pattern="00">
+				<reportElement style="styleArteI" x="392" y="277" width="19" height="16"/>
+				<textFieldExpression><![CDATA[$P{arteI}]]></textFieldExpression>
+			</textField>
+			<textField pattern="00">
+				<reportElement style="styleArteIII" x="420" y="277" width="19" height="16"/>
+				<textFieldExpression><![CDATA[$P{arteII}]]></textFieldExpression>
+			</textField>
+			<textField pattern="00">
+				<reportElement style="stylePersonIII" x="446" y="299" width="19" height="16"/>
+				<textFieldExpression><![CDATA[$P{personIII}]]></textFieldExpression>
+			</textField>
+			<textField pattern="00">
+				<reportElement style="stylePersonProm" x="503" y="299" width="19" height="16"/>
+				<textFieldExpression><![CDATA[(new Double($P{personI}+$P{personII}+$P{personIII}))/3]]></textFieldExpression>
+			</textField>
+			<textField pattern="00">
+				<reportElement x="473" y="299" width="19" height="16"/>
+				<textFieldExpression><![CDATA[$P{personI}+$P{personII}+$P{personIII}]]></textFieldExpression>
+			</textField>
+			<textField pattern="00">
+				<reportElement style="stylePersonI" x="393" y="299" width="19" height="16"/>
+				<textFieldExpression><![CDATA[$P{personI}]]></textFieldExpression>
+			</textField>
+			<textField pattern="00">
+				<reportElement style="stylePersonII" x="421" y="299" width="19" height="16"/>
+				<textFieldExpression><![CDATA[$P{personII}]]></textFieldExpression>
+			</textField>
+			<textField pattern="00">
+				<reportElement style="styleEducaProm" x="503" y="323" width="19" height="16"/>
+				<textFieldExpression><![CDATA[(new Double($P{educaI}+$P{educaII}+$P{educaIII}))/3]]></textFieldExpression>
+			</textField>
+			<textField pattern="00">
+				<reportElement x="473" y="323" width="19" height="16"/>
+				<textFieldExpression><![CDATA[$P{aptI}+$P{aptII}+$P{aptIII}]]></textFieldExpression>
+			</textField>
+			<textField pattern="00">
+				<reportElement style="styleEducaI" x="393" y="323" width="19" height="16"/>
+				<textFieldExpression><![CDATA[$P{educaI}]]></textFieldExpression>
+			</textField>
+			<textField pattern="00">
+				<reportElement style="styleEducaII" x="421" y="323" width="19" height="16"/>
+				<textFieldExpression><![CDATA[$P{educaII}]]></textFieldExpression>
+			</textField>
+			<textField pattern="00">
+				<reportElement style="styleEducaIII" x="446" y="323" width="19" height="16"/>
+				<textFieldExpression><![CDATA[$P{educaIII}]]></textFieldExpression>
+			</textField>
+			<textField pattern="00">
+				<reportElement style="styleCienciaProm" x="503" y="346" width="19" height="16"/>
+				<textFieldExpression><![CDATA[(new Double($P{cienciaI}+$P{cienciaII}+$P{cienciaIII}))/3]]></textFieldExpression>
+			</textField>
+			<textField pattern="00">
+				<reportElement x="473" y="346" width="19" height="16"/>
+				<textFieldExpression><![CDATA[$P{cienciaI}+$P{cienciaII}+$P{cienciaIII}]]></textFieldExpression>
+			</textField>
+			<textField pattern="00">
+				<reportElement style="styleCienciaI" x="393" y="346" width="19" height="16"/>
+				<textFieldExpression><![CDATA[$P{cienciaI}]]></textFieldExpression>
+			</textField>
+			<textField pattern="00">
+				<reportElement style="styleCienciaII" x="421" y="346" width="19" height="16"/>
+				<textFieldExpression><![CDATA[$P{aptII}]]></textFieldExpression>
+			</textField>
+			<textField pattern="00">
+				<reportElement style="styleCienciaIII" x="446" y="346" width="19" height="16"/>
+				<textFieldExpression><![CDATA[$P{cienciaIII}]]></textFieldExpression>
+			</textField>
+			<textField pattern="00">
+				<reportElement x="473" y="370" width="19" height="16"/>
+				<textFieldExpression><![CDATA[$P{religionI}+$P{religionII}+$P{religionIII}]]></textFieldExpression>
+			</textField>
+			<textField pattern="00">
+				<reportElement style="styleReligionProm" x="503" y="370" width="19" height="16"/>
+				<textFieldExpression><![CDATA[(new Double($P{religionI}+$P{religionII}+$P{religionIII}))/3]]></textFieldExpression>
+			</textField>
+			<textField pattern="00">
+				<reportElement style="styleReligionI" x="393" y="370" width="19" height="16"/>
+				<textFieldExpression><![CDATA[$P{religionI}]]></textFieldExpression>
+			</textField>
+			<textField pattern="00">
+				<reportElement style="styleReligionII" x="421" y="370" width="19" height="16"/>
+				<textFieldExpression><![CDATA[$P{religionII}]]></textFieldExpression>
+			</textField>
+			<textField pattern="00">
+				<reportElement style="styleReligionIII" x="446" y="370" width="19" height="16"/>
+				<textFieldExpression><![CDATA[$P{religionIII}]]></textFieldExpression>
+			</textField>
+			<textField pattern="00">
+				<reportElement x="473" y="394" width="19" height="16"/>
+				<textFieldExpression><![CDATA[$P{compuI}+$P{compuII}+$P{compuIII}]]></textFieldExpression>
+			</textField>
+			<textField pattern="00">
+				<reportElement style="styleCompuProm" x="503" y="394" width="19" height="16"/>
+				<textFieldExpression><![CDATA[(new Double($P{compuI}+$P{compuII}+$P{compuIII}))/3]]></textFieldExpression>
+			</textField>
+			<textField pattern="00">
+				<reportElement style="styleCompuI" x="393" y="394" width="19" height="16" isPrintInFirstWholeBand="true"/>
+				<textFieldExpression><![CDATA[$P{compuI}]]></textFieldExpression>
+			</textField>
+			<textField pattern="00">
+				<reportElement style="styleCompuII" x="421" y="394" width="19" height="16"/>
+				<textFieldExpression><![CDATA[$P{compuII}]]></textFieldExpression>
+			</textField>
+			<textField pattern="00">
+				<reportElement style="styleCompuIII" x="446" y="394" width="19" height="16"/>
+				<textFieldExpression><![CDATA[$P{compuIII}]]></textFieldExpression>
+			</textField>
+			<textField pattern="00">
+				<reportElement style="styleInglesII" x="421" y="419" width="19" height="16"/>
+				<textFieldExpression><![CDATA[$P{inglesII}]]></textFieldExpression>
+			</textField>
+			<textField pattern="00">
+				<reportElement x="473" y="419" width="19" height="16"/>
+				<textFieldExpression><![CDATA[$P{inglesI}+$P{inglesII}+$P{inglesIII}]]></textFieldExpression>
+			</textField>
+			<textField pattern="00">
+				<reportElement style="styleInglesProm" x="503" y="419" width="19" height="16"/>
+				<textFieldExpression><![CDATA[(new Double($P{inglesI}+$P{inglesII}+$P{inglesIII}))/3]]></textFieldExpression>
+			</textField>
+			<textField pattern="00">
+				<reportElement style="styleInglesI" x="393" y="419" width="19" height="16"/>
+				<textFieldExpression><![CDATA[$P{inglesI}]]></textFieldExpression>
+			</textField>
+			<textField pattern="00">
+				<reportElement style="styleInglesIII" x="446" y="419" width="19" height="16"/>
+				<textFieldExpression><![CDATA[$P{inglesIII}]]></textFieldExpression>
+			</textField>
+			<textField pattern="00">
+				<reportElement style="styleConducIII" x="446" y="518" width="19" height="16"/>
+				<textFieldExpression><![CDATA[$P{conducII}]]></textFieldExpression>
+			</textField>
+			<textField pattern="00">
+				<reportElement x="473" y="518" width="19" height="16"/>
+				<textFieldExpression><![CDATA[$P{conducI}+$P{conducII}+$P{conducIII}]]></textFieldExpression>
+			</textField>
+			<textField pattern="00">
+				<reportElement style="styleConducII" x="421" y="518" width="19" height="16"/>
+				<textFieldExpression><![CDATA[$P{conducII}]]></textFieldExpression>
+			</textField>
+			<textField pattern="00">
+				<reportElement style="styleConducProm" x="503" y="518" width="19" height="16"/>
+				<textFieldExpression><![CDATA[(new Double($P{conducI}+$P{conducII}+$P{conducIII}))/3]]></textFieldExpression>
+			</textField>
+			<textField pattern="00">
+				<reportElement style="styleConducI" x="393" y="518" width="19" height="16"/>
+				<textFieldExpression><![CDATA[$P{conducI}]]></textFieldExpression>
+			</textField>
+			<textField pattern="00">
+				<reportElement style="styleToeIII" x="446" y="542" width="19" height="16"/>
+				<textFieldExpression><![CDATA[$P{toeIII}]]></textFieldExpression>
+			</textField>
+			<textField pattern="00">
+				<reportElement x="473" y="542" width="19" height="16"/>
+				<textFieldExpression><![CDATA[$P{toeI}+$P{toeII}+$P{toeIII}]]></textFieldExpression>
+			</textField>
+			<textField pattern="00">
+				<reportElement style="styleToeII" x="421" y="542" width="19" height="16"/>
+				<textFieldExpression><![CDATA[$P{toeII}]]></textFieldExpression>
+			</textField>
+			<textField pattern="00">
+				<reportElement style="styleToeProm" x="503" y="542" width="19" height="16"/>
+				<textFieldExpression><![CDATA[(new Double($P{toeI}+$P{toeII}+$P{toeIII}))/3]]></textFieldExpression>
+			</textField>
+			<textField pattern="00">
+				<reportElement style="styleToeI" x="393" y="542" width="19" height="16"/>
+				<textFieldExpression><![CDATA[$P{toeI}]]></textFieldExpression>
+			</textField>
+			<rectangle radius="10">
+				<reportElement x="14" y="581" width="76" height="70" forecolor="#FFFFFF"/>
+				<graphicElement>
+					<pen lineWidth="1.75" lineColor="#FFFFFF"/>
+				</graphicElement>
+			</rectangle>
+		</band>
+	</columnHeader>
+</jasperReport>

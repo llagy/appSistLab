@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<faces-config version="2.2"
+    xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd">
+
+    <application>
+      <locale-config>
+          <default-locale>es</default-locale>
+      </locale-config>
+    </application>-->
+    
+    <navigation-rule>
+     <from-view-id>/index.xhtml</from-view-id> 
+     <navigation-case> 
+      <from-outcome>success</from-outcome> 
+      <to-view-id>/templateMain.xhtml</to-view-id> 
+    </navigation-case>
+    </navigation-rule>
+   <error-page>
+    <exception-type>javax.faces.application.ViewExpiredException</exception-type>
+    <location>/sessionExpired.xhtml</location>
+   </error-page>  
+     
+   <error-page>
+    <error-code>400</error-code>
+    <location>/400.html</location>
+   </error-page>
+   <message-bundle>ShowcaseErrorMessages</message-bundle>    
+  
+   <lifecycle>
+       <phase-listener>com.raitcon.web.session.SessionPhaseListener</phase-listener>
+   </lifecycle>   
+    
+</faces-config>

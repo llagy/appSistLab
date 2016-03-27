@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="3.0" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
+    <context-param>
+        <param-name>javax.faces.STATE_SAVING_METHOD</param-name>
+        <param-value>server</param-value>
+    </context-param>
+    <!--<listener>
+    <listener-class>com.sun.faces.config.ConfigureListener</listener-class>
+    </listener>-->
+    <context-param>
+        <param-name>javax.faces.FACELETS_LIBRARIES</param-name>
+        <param-value>/WEB-INF/app-tags.taglib.xml</param-value>
+    </context-param>
+    <servlet>
+        <servlet-name>Faces Servlet</servlet-name>
+        <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+      <!-- Log4j-->
+    <servlet>
+        <servlet-name>InitLog4J</servlet-name>
+        <servlet-class>com.raitcon.logging.LoadProperties</servlet-class>
+        <init-param>
+        <param-name>log4j-init-file</param-name>
+        <param-value>WEB-INF/log4j.properties</param-value>
+        </init-param>
+        <load-on-startup>0</load-on-startup>
+    </servlet>
+     <!-- Log4j-->
+    <servlet-mapping>
+        <servlet-name>Faces Servlet</servlet-name>
+        <url-pattern>/faces/*</url-pattern>
+    </servlet-mapping>
+    <welcome-file-list>
+        <welcome-file>faces/index.xhtml</welcome-file>
+    </welcome-file-list>
+
+    <!-- Plugging the "Blue Sky" skin into the project -->
+
+<!-- Making the RichFaces skin spread to standard HTML controls -->
+
+    <context-param>
+
+      <param-name>org.richfaces.skin</param-name>
+
+      <!--<param-value>blueSky</param-value>-->
+      <!--<param-value>deepMarine</param-value>-->
+      <!--<param-value>wine</param-value>-->
+      <!--<param-value>ruby</param-value>-->
+      <!--<param-value>japanCherry</param-value>-->
+      <!--<param-value>emeraldTown</param-value>-->
+         <param-value>classic</param-value>
+      <!--<param-value>raitCon</param-value>-->
+      <!--<param-value>#{skinBean.skin}</param-value>-->
+   
+
+    </context-param>
+    
+    <servlet>
+        <servlet-name>Resource Servlet</servlet-name>
+        <servlet-class>org.richfaces.webapp.ResourceServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    
+    <servlet-mapping>
+        <servlet-name>Resource Servlet</servlet-name>
+        <url-pattern>/org.richfaces.resources/*</url-pattern>
+    </servlet-mapping>
+    <context-param>
+        <param-name>org.richfaces.fileUpload.maxRequestSize</param-name>
+        <param-value>100000</param-value>
+    </context-param>
+    <context-param>
+        <param-name>org.richfaces.fileUpload.createTempFiles</param-name>
+        <param-value>false</param-value>
+    </context-param>
+    <context-param>
+        <param-name>org.richfaces.resourceOptimization.enabled</param-name>
+        <param-value>true</param-value>
+    </context-param>
+    
+   
+    <!-- JasperReports Servlet -->
+    <servlet>
+        <servlet-name>PdfServlet</servlet-name>
+        <servlet-class>net.sf.jasperreports.j2ee.servlets.PdfServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>JExcelApiServlet</servlet-name>
+        <servlet-class>net.sf.jasperreports.j2ee.servlets.JExcelApiServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>RtfServlet</servlet-name>
+        <servlet-class>net.sf.jasperreports.j2ee.servlets.RtfServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ImageServlet</servlet-name>
+        <servlet-class>net.sf.jasperreports.j2ee.servlets.ImageServlet</servlet-class>
+    </servlet>
+        <!-- JasperReports Servlet Mapping -->   
+    <servlet-mapping>
+        <servlet-name>PdfServlet</servlet-name>
+        <url-pattern>/servlets/reports/PDF</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>JExcelApiServlet</servlet-name>
+        <url-pattern>/servlets/reports/EXCEL</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RtfServlet</servlet-name>
+        <url-pattern>/servlets/reports/RTF</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ImageServlet</servlet-name>
+        <url-pattern>/servlets/image</url-pattern>
+    </servlet-mapping>
+    <mime-mapping>
+       <extension>htm html xhtml</extension>
+       <mime-type>text/html</mime-type>
+  </mime-mapping>
+  <mime-mapping>
+        <extension>txt</extension>
+        <mime-type>text/plain</mime-type>
+  </mime-mapping>
+  <mime-mapping>
+        <extension>css</extension>
+        <mime-type>text/css</mime-type>
+  </mime-mapping>
+   <session-config>
+        <session-timeout>
+            30
+        </session-timeout>
+        
+    </session-config>
+   
+   <error-page>
+     <exception-type>javax.faces.application.ViewExpiredException</exception-type>
+     <location>/faces/sessionExpired.xhtml</location>
+    </error-page>
+</web-app>

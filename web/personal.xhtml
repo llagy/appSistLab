@@ -1,0 +1,479 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition 
+    xmlns:ui="http://java.sun.com/jsf/facelets" 
+    template="/templates/common/template.xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:a4j="http://richfaces.org/a4j"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:rich="http://richfaces.org/rich"
+    xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+    xmlns="http://www.w3.org/1999/xhtml">
+    <ui:define name="left">
+        <ui:include src="/templates/common/menuacordion.xhtml" />
+    </ui:define> 
+
+    <h:head>
+
+    </h:head>
+
+    <ui:define name="content">    
+        <h:outputScript target="body">
+           
+            document.getElementById("formPers:codPersonal").disabled=true;
+            document.getElementById("formPers:nomPers").disabled=true;
+            document.getElementById("formPers:dniPers").disabled=true;
+            document.getElementById("formPers:apePatPers").disabled=true; 
+            document.getElementById("formPers:apeMatPers").disabled=true; 
+            document.getElementById("formPers:espPers").disabled=true; 
+            document.getElementById("formPers:dirPers").disabled=true; 
+            document.getElementById("formPers:telfPers").disabled=true;
+            document.getElementById("formPers:mailPers").disabled=true;
+            document.getElementById("formPers:estcPers").disabled=true;
+            document.getElementById("formPers:calPers").disabled=true;
+            document.getElementById("formPers:sexPers").disabled=true;
+            document.getElementById("formPers:ocupPers").disabled=true;
+            
+            document.getElementById("formPers:btnGrabar").disabled=true;
+            
+            function activar(){
+            document.getElementById("formPers:codPersonal").disabled=false;
+            document.getElementById("formPers:nomPers").disabled=false;
+            document.getElementById("formPers:dniPers").disabled=false;
+            document.getElementById("formPers:apePatPers").disabled=false; 
+            document.getElementById("formPers:apeMatPers").disabled=false; 
+            document.getElementById("formPers:espPers").disabled=false; 
+            document.getElementById("formPers:dirPers").disabled=false; 
+            document.getElementById("formPers:telfPers").disabled=false;
+            document.getElementById("formPers:mailPers").disabled=false;
+            document.getElementById("formPers:estcPers").disabled=false;
+            document.getElementById("formPers:calPers").disabled=false;
+            document.getElementById("formPers:sexPers").disabled=false;
+            document.getElementById("formPers:ocupPers").disabled=false; 
+            
+            document.getElementById("formPers:btnGrabar").disabled=false;
+            limpiarCampos();
+            }
+
+            function desactivar(){
+            document.getElementById("formPers:codPersonal").disabled=true;
+            document.getElementById("formPers:nomPers").disabled=true;
+            document.getElementById("formPers:dniPers").disabled=true;
+            document.getElementById("formPers:apePatPers").disabled=true; 
+            document.getElementById("formPers:apeMatPers").disabled=true; 
+            document.getElementById("formPers:espPers").disabled=true; 
+            document.getElementById("formPers:dirPers").disabled=true; 
+            document.getElementById("formPers:telfPers").disabled=true;
+            document.getElementById("formPers:mailPers").disabled=true;
+            document.getElementById("formPers:estcPers").disabled=true;
+            document.getElementById("formPers:calPers").disabled=true;
+            document.getElementById("formPers:sexPers").disabled=true;
+            document.getElementById("formPers:ocupPers").disabled=true;
+            
+            document.getElementById("formPers:btnGrabar").disabled=true;
+            }
+            
+            function limpiarCampos(){
+            document.getElementById("formPers:codPersonal").value="";
+            document.getElementById("formPers:nomPers").value="";
+            document.getElementById("formPers:dniPers").value="";
+            document.getElementById("formPers:apePatPers").value="";
+            document.getElementById("formPers:apeMatPers").value=""; 
+            document.getElementById("formPers:espPers").value=""; 
+            document.getElementById("formPers:dirPers").value=""; 
+            document.getElementById("formPers:telfPers").value="";
+            document.getElementById("formPers:mailPers").value="";
+            document.getElementById("formPers:estcPers").value="";
+            document.getElementById("formPers:calPers").value="";
+            document.getElementById("formPers:sexPers").value="";
+            document.getElementById("formPers:ocupPers").value="";
+            }
+            
+            function activarUpdate(){
+            document.getElementById("formPers:btnGrabar").disabled=false;
+            }
+            function Cancelar(){
+            
+            limpiarCampos();
+            document.getElementById("formPers:btnGrabar").disabled=true;
+            }
+            
+            function mensajeConfirmar(){
+               var statusConf=confirm("¿Desea eliminar personal?");
+               if(statusConf==true){
+                document.getElementById("formPers").submit();
+                alert("ingreso aqui");
+                }else
+                {
+                 alert("No se elimina");
+                return false;
+                }
+              
+            }
+            
+
+        </h:outputScript>
+        <h:outputStylesheet>
+        .top {
+        vertical-align: top;
+        }
+ 
+        .info {
+        height: 202px;
+        overflow: auto;
+        }
+    </h:outputStylesheet>
+        <h:body onload="" >
+            <h1>Registro Personal</h1>
+            <h:form id="formPers" > 
+                
+               <rich:panel id="sample2" styleClass="tooltip-text" bodyClass="rich-laguna-panel-no-header">
+                        <table>
+                            <tr>
+                                <td> <h:panelGrid columns="6" cellspacing="10">
+                          
+                            <h:outputText value="Código:" />
+                            
+                            <h:panelGroup>
+                            <h:inputText id="codPersonal" 
+                                         value="#{personalBean.codPersonal}" required="true" 
+                                         requiredMessage="Código personal es requerido."
+                                         >
+                                
+                            </h:inputText>
+                             
+                                <a4j:commandButton id="btnListar" 
+                                                   value=".." 
+                                                   oncomplete="#{rich:component('popupPersonal')}.show()"
+                                                   action="#{personalBean.listPersonalAll()}"  
+                                                   render="popupPersonal"
+                                                   execute="@this"   >
+                                </a4j:commandButton>
+                            </h:panelGroup>
+
+                            <h:outputText value="Nombres: "/>
+                            <h:inputText id="nomPers"
+                                         value="#{personalBean.nombres}" required="true" 
+                                         requiredMessage="Nombre es requerido."
+                                         >
+                            </h:inputText>
+                            <h:outputText value="DNI:" />
+                            <h:inputText id="dniPers" 
+                                         value="#{personalBean.dni}"
+                                         required="true" 
+                                         requiredMessage="DNI es requerido."
+                                         >
+                            </h:inputText>
+                            
+
+                            <h:outputText value="Apellido Paterno:" />
+                            <h:inputText id="apePatPers" 
+                                         value="#{personalBean.apellidoPaterno}"
+                                         required="true" 
+                                         requiredMessage="Apellido Paterno es requerido."
+                                         >
+                            </h:inputText>
+
+                            <h:outputText value="Apellido Materno:" />
+                            <h:inputText id="apeMatPers" 
+                                         value="#{personalBean.apellidoMaterno}"
+                                         required="true" 
+                                         requiredMessage="Apellido Materno es requerido."
+                                         >
+                            </h:inputText>
+                             <h:outputText value="Especialidad:" />
+                              <h:inputText id="espPers" value="#{personalBean.especialidad}">
+                              </h:inputText>
+                            
+                            
+                            <h:outputText value="Direccion: " />
+                            <h:inputText id="dirPers" 
+                                         value="#{personalBean.direccion}"
+                                         >
+                            </h:inputText>
+                            <h:outputText value="Teléfono: " />
+                            <h:inputText id="telfPers" 
+                                         value="#{personalBean.telefono}"
+                                         >
+                            </h:inputText>
+                            <h:outputText value="Email: " />
+                            <h:inputText id="mailPers" 
+                                         value="#{personalBean.mail}"
+                                         >
+                            </h:inputText>
+                            <h:outputText value="Estado Civil: " />
+                            <h:inputText id="estcPers" 
+                                         value="#{personalBean.estadoCivil}"
+                                         >
+                            </h:inputText>
+                            <h:outputText value="Fecha de Nacimiento: " />
+                            <rich:calendar id="calPers"
+                                           value="#{personalBean.fechaNacimiento}"
+                                           locale="#{calendarBean.locale}" required="true"
+                                           requiredMessage="Fecha de Nacimiento es requerido."
+                                           
+                                           >         
+                            </rich:calendar>
+                            <h:panelGroup>
+                            <h:outputText value="Sexo: " />
+                               <h:inputText id="sexPers" 
+                                            value="#{personalBean.sexo}" style="width:30px;">
+                               </h:inputText>
+                               <a4j:commandButton id="btnSexo" 
+                                                   value=".." 
+                                                   oncomplete="#{rich:component('popupSexo')}.show()"
+                                                   action="#{sexoBean.listSexoAll()}"  
+                                                   render="popupSexo"
+                                                   execute="@this"   >
+                                </a4j:commandButton>
+                            
+                            <!--h:outputText id="descSexo" value="#{personalBean.descSexo}"  /-->
+                                
+                            </h:panelGroup>
+                            <h:panelGroup>
+                                <h:outputText value="Ocupación" />
+                            <h:inputText id="ocupPers" 
+                                         value="#{personalBean.idOcupacion}" style="width: 30px;"
+                                         >
+                            </h:inputText>
+                                <a4j:commandButton id="btnOcupacion" 
+                                                   value=".." 
+                                                   oncomplete="#{rich:component('popupOcupacion')}.show()"
+                                                   action="#{ocupacionBean.listOcupacionAll()}"  
+                                                   render="popupOcupacion"
+                                                   execute="@this"   >
+                                </a4j:commandButton>
+                            
+                            <h:outputText id="descOcupacion" value="#{personalBean.descOcupacion}"  />
+                            
+                            </h:panelGroup>
+
+                        </h:panelGrid>
+                                </td> 
+                                                        
+            
+                            </tr>
+                                
+                        </table>
+                       
+                        
+                   
+                    
+                   </rich:panel>          
+
+                    <rich:panel id="sample1" styleClass="tooltip-text" bodyClass="rich-laguna-panel-no-header">
+
+                        <span >
+                            <span >
+                                <a4j:commandButton id="btnNuevo" 
+                                                   value="Nuevo" 
+                                                   onclick="activar()"
+                                                   action="#{personalBean.getOpcNew()}"  
+                                                   render="codPersonal,txtMensaje"
+                                                   execute="@this"   >
+                                </a4j:commandButton>
+                            </span>
+                            <span >
+                                 <a4j:commandButton id="btnEditar" 
+                                                   value="Editar" 
+                                                   onclick="activarUpdate();"
+                                                   action="#{personalBean.getOpcSave()}"  
+                                                   render="codPersonal,txtMensaje"
+                                                   execute="@this"   
+                                                   >
+                                </a4j:commandButton>
+                            </span>
+                            <span >
+                                <h:commandButton id="btnGrabar" 
+                                                 value="Grabar" 
+                                                 action="#{personalBean.agregarPersonal}"
+                                                 />
+                                
+                            </span>
+
+                            <span >
+                                 <h:commandButton id="btnElim" 
+                                                 value="Elimi" 
+                                                 onclick="if (!mensajeConfirmar()) return false;"
+                                                 action="#{personalBean.deletePersonal()}"
+                                                 />
+                                <a4j:commandButton id="btnEliminar" 
+                                                   value="Eliminar" 
+                                                   onclick="if (!mensajeConfirmar()) return false;"
+                                                   action="#{personalBean.deletePersonal()}"  
+                                                   render="codPersonal"
+                                                   execute="@this"   >
+                                </a4j:commandButton>
+                            </span>
+
+                            <span >
+                                <a4j:commandButton id="btnCancelar" 
+                                                   value="Cancelar" 
+                                                   onclick="Cancelar();"
+                                                   execute="@this"   >
+                                </a4j:commandButton>
+                            </span>
+                          
+                        </span>
+                        <br/>
+                        <rich:message for="codPersonal" ajaxRendered="true" />
+                        <rich:message for="nomPers" ajaxRendered="true" />
+                        <rich:message for="dniPers" ajaxRendered="true" />
+                        <rich:message for="apePatPers" ajaxRendered="true" />
+                        <rich:message for="apeMatPers" ajaxRendered="true" />
+                        
+                        
+                        <h:outputText  id="txtMensaje" value="#{personalBean.mensaje}" style="color:#ff0000;"  />
+                   
+                    </rich:panel>
+               
+            </h:form> 
+
+            <rich:popupPanel id="popupPersonal" 
+                             autosized="true" 
+                             onmaskclick="#{rich:component('popupPersonal')}.hide()">
+                <f:facet name="controls">
+                    <h:outputLink value="#" onclick="#{rich:component('popupPersonal')}.hide();
+                            return false;">X</h:outputLink>
+                </f:facet>
+                <h:panelGrid columns="1" id="editGrid">
+                    <rich:dataTable value="#{personalBean.listPersonal}" 
+                                    var="pers" 
+                                    id="tb_Personal" 
+                                    rows="15">
+                        <rich:column>
+                            <f:facet name="header">Codigo</f:facet>
+                            <h:outputText value="#{pers.codPersonal}" />
+                        </rich:column>
+                        <rich:column>
+                            <f:facet name="header">Nombres</f:facet>
+                            <h:outputText value="#{pers.nombres}" />
+                        </rich:column>
+                        <rich:column>
+                            <f:facet name="header">Apellido Paterno</f:facet>
+                            <h:outputText value="#{pers.apPaterno}" />
+                        </rich:column>
+                        <rich:column>
+                            <f:facet name="header">Apellido Materno</f:facet>
+                            <h:outputText value="#{pers.apMaterno}" />
+                        </rich:column>
+                        <rich:column>
+                            <f:facet name="header">Dni</f:facet>
+                            <h:outputText value="#{pers.dni}" />
+                        </rich:column>
+                        <rich:column>
+                            <f:facet name="header">Dirección</f:facet>
+                            <h:outputText value="#{pers.direccion}" />
+                        </rich:column>
+                                            
+                        <rich:column>
+                            <f:facet name="header">Teléfono</f:facet>
+                            <h:outputText value="#{pers.telefono}" />
+                        </rich:column>
+                        <rich:column>
+                            <f:facet name="header">Email</f:facet>
+                            <h:outputText value="#{pers.mail}" />
+                        </rich:column>
+                        <rich:column>
+                            <f:facet name="header">Fecha</f:facet>
+                            <h:outputText value="#{pers.fechaNacimiento}" />
+                        </rich:column>
+
+                        <rich:column>
+                            <a4j:commandLink styleClass="no-decor" 
+                                             render="codPersonal,dniPers,nomPers,telfPers,mailPers,
+                                             apePatPers,apeMatPers,dirPers,calPers
+                                             ,sexPers,espPers,estcPers,ocupPers" 
+                                             execute="@this" action="#{personalBean.pintarFormularioPersonal()}"
+                                              onclick="#{rich:component('popupPersonal')}.hide()">
+                                <h:graphicImage value="/images/icons/edit.gif"/>
+                                <f:setPropertyActionListener target="#{personalBean.codPersonal}" value="#{pers.codPersonal}" />
+                            </a4j:commandLink>
+                        </rich:column>
+
+                        <f:facet name="footer">
+                            <rich:dataScroller page="1" />
+                        </f:facet>
+                    </rich:dataTable>
+                </h:panelGrid>
+            </rich:popupPanel>
+
+            
+            <rich:popupPanel id="popupSexo" 
+                             autosized="true"  
+                             resizeable="false"  moveable="true" >
+                <f:facet name="controls">
+                    <h:outputLink value="#" onclick="#{rich:component('popupSexo')}.hide();
+                            return false;">X</h:outputLink>
+                </f:facet>
+                <h:panelGrid columns="1" id="editGrid2">
+                    <rich:dataTable value="#{sexoBean.listSexo}" 
+                                    var="sex" 
+                                    id="tb_Sexo" 
+                                    rows="15">
+                        <rich:column>
+                            <f:facet name="header">Codigo</f:facet>
+                            <h:outputText value="#{sex.codSexo}" />
+                        </rich:column>
+                        <rich:column>
+                            <f:facet name="header">Descripción</f:facet>
+                            <h:outputText value="#{sex.descripcion}" />
+                        </rich:column>
+                        <rich:column>
+                            <a4j:commandLink styleClass="no-decor" 
+                                             render="sexPers" 
+                                             execute="@this" action="#{personalBean.pintarFormSex()}"
+                                              onclick="#{rich:component('popupSexo')}.hide()">
+                                <h:graphicImage value="/images/icons/edit.gif"/>
+                                <f:setPropertyActionListener target="#{personalBean.sexo}" value="#{sex.codSexo}" />
+                            </a4j:commandLink>
+                        </rich:column>
+
+                        <f:facet name="footer">
+                            <rich:dataScroller page="1" />
+                        </f:facet>
+                    </rich:dataTable>
+                </h:panelGrid>
+            </rich:popupPanel>
+
+            
+            <rich:popupPanel id="popupOcupacion" 
+                             autosized="true" 
+                             >
+                <f:facet name="controls">
+                    <h:outputLink value="#" onclick="#{rich:component('popupOcupacion')}.hide();
+                            return false;">X</h:outputLink>
+                </f:facet>
+                <h:panelGrid columns="1" id="editGrid3">
+                    <rich:dataTable value="#{ocupacionBean.listOcupacion}" 
+                                    var="ocup" 
+                                    id="tb_Ocupacion" 
+                                    rows="15">
+                        <rich:column>
+                            <f:facet name="header">Codigo</f:facet>
+                            <h:outputText value="#{ocup.codOcupacion}" />
+                        </rich:column>
+                        <rich:column>
+                            <f:facet name="header">Descripción</f:facet>
+                            <h:outputText value="#{ocup.descripcion}" />
+                        </rich:column>
+                        <rich:column>
+                            <a4j:commandLink styleClass="no-decor" 
+                                             render="ocupPers,descOcupacion" 
+                                             execute="@this" action="#{personalBean.pintarFormOcup()}"
+                                              onclick="#{rich:component('popupOcupacion')}.hide()">
+                                <h:graphicImage value="/images/icons/edit.gif"/>
+                                <f:setPropertyActionListener target="#{personalBean.idOcupacion}" value="#{ocup.codOcupacion}" />
+                            </a4j:commandLink>
+                        </rich:column>
+
+                        <f:facet name="footer">
+                            <rich:dataScroller page="1" />
+                        </f:facet>
+                    </rich:dataTable>
+                </h:panelGrid>
+            </rich:popupPanel>
+
+        </h:body>
+    </ui:define>
+</ui:composition>

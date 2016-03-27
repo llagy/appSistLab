@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="/templates/common/template.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:a4j="http://richfaces.org/a4j"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+    
+    <ui:define name="left">
+         <ui:include src="/templates/common/menuacordion.xhtml" />
+       
+    </ui:define>
+
+    <ui:define name="content">
+        <a4j:outputPanel ajaxRendered="true" id="mainOutputPanel">   
+          
+        <h:panelGroup id="mainArea"  layout="block" >
+            <!--h:panelGroup styleClass="content_box" layout="block"-->
+            
+            <ui:include src="#{navegationMenu.pageName}" rendered="true" />
+            <!--/h:panelGroup-->
+        </h:panelGroup>
+         
+        </a4j:outputPanel>  
+    </ui:define>
+
+    
+
+</ui:composition>
