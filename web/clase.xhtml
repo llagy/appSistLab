@@ -234,10 +234,13 @@
                         <h:outputText  id="txtMensaje" value="#{personalBean.mensaje}" style="color:#ff0000;"  />
                    
                     </rich:panel>
-               
-            </h:form> 
-
-            <rich:popupPanel id="popupClase" 
+                
+                
+                
+                
+                
+                
+                  <rich:popupPanel id="popupClase" 
                              autosized="true" 
                              onmaskclick="#{rich:component('popupClase')}.hide()">
                 <f:facet name="controls">
@@ -262,15 +265,13 @@
                                              render="codClase,desClase" 
                                              execute="@this" action="#{claseBean.pintarFrmClase()}"
                                               onclick="#{rich:component('popupClase')}.hide()">
-                                <h:graphicImage value="/images/icons/edit.gif"/>
+                                <h:graphicImage value="/images/icons/verify.gif"/>
                                 <f:setPropertyActionListener target="#{claseBean.idClase}" value="#{clase.idClase}" />
                             </a4j:commandLink>
-                              <a4j:commandLink styleClass="no-decor" 
-                                             render="codClase" 
-                                             execute="@this" action="#{claseBean.pintarFrmClase()}"
-                                              onclick="#{rich:component('popupClase')}.hide()">
-                                <h:graphicImage value="/images/icons/delete.gif"/>
-                                <f:setPropertyActionListener target="#{claseBean.idClase}" value="#{clase.idClase}" />
+                             <a4j:commandLink styleClass="no-decor" execute="@this" render="@none"
+                               oncomplete="#{rich:component('confirmPane')}.show()">
+                              <h:graphicImage value="/images/icons/delete.gif" alt="delete" />
+                             <a4j:param value="#{it.index}" assignTo="#{claseBean.currentCarIndex}" />
                             </a4j:commandLink>
                         </rich:column>
 
@@ -280,6 +281,19 @@
                     </rich:dataTable>
                 </h:panelGrid>
             </rich:popupPanel>
+                
+             <a4j:jsFunction name="remove" action="#{carsBean.remove}" render="table" execute="@this"
+               oncomplete="#{rich:component('confirmPane')}.hide();" />
+           
+         <rich:popupPanel id="confirmPane" autosized="true">
+            ¿Estas seguro que quieres eliminar registro?
+            <a4j:commandButton value="Cancelar" onclick="#{rich:component('confirmPane')}.hide(); return false;" />
+            <a4j:commandButton value="Eliminar" onclick="remove(); return false;" />
+        </rich:popupPanel>
+               
+            </h:form> 
+
+          
           
             
 
