@@ -4,12 +4,12 @@
  */
 package com.raitcon.hibernate.backbean;
 
+import static com.raitcon.hibernate.backbean.ClaseBean.log;
 import com.raitcon.hibernate.bean.Clase;
+import com.raitcon.hibernate.bean.TipoPaciente;
 import com.raitcon.hibernate.db.ClaseDB;
-import java.io.Serializable;
-import java.util.HashSet;
+import com.raitcon.hibernate.db.TipoPacienteDB;
 import java.util.List;
-import java.util.logging.Level;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import org.apache.log4j.Logger;
@@ -17,57 +17,50 @@ import org.hibernate.HibernateException;
 
 /**
  *
- * @author Miki 
+ * @author Guillermo Lap
  */
-@ManagedBean(name = "claseBean")
+@ManagedBean(name = "tipoPacienteBean")
 @ViewScoped
-public class ClaseBean implements Serializable{
-    
-    private static final long serialVersionUID = -2377612760546575078L;
-    protected static Logger log = Logger.getLogger(ClaseBean.class); 
-    private Integer idGrupo; 
-    private Integer idClase;
-    private String desClase;
-    private List<Clase> listClase;
+public class TipoPacienteBean {
+     private static final long serialVersionUID = -2377612760546575078L;
+    protected static Logger log = Logger.getLogger(TipoPacienteBean.class); 
+    private int idTipoPaciente;
+    private String descripcion;
+    private List<TipoPaciente> listTipoPaciente;
     private String mensaje;
     private Integer opcionSave;
     
     
-    public ClaseBean(){
+    public TipoPacienteBean(){
       opcionSave=0;  
     }
 
-    public Integer getIdGrupo() {
-        return idGrupo;
+    public int getIdTipoPaciente() {
+        return idTipoPaciente;
     }
 
-    public void setIdGrupo(Integer idGrupo) {
-        this.idGrupo = idGrupo;
+    public void setIdTipoPaciente(int idTipoPaciente) {
+        this.idTipoPaciente = idTipoPaciente;
     }
 
-    public Integer getIdClase() {
-        return idClase;
+    public String getDescripcion() {
+        return descripcion;
     }
 
-    public void setIdClase(Integer idClase) {
-        this.idClase = idClase;
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
 
-    public String getDesClase() {
-        return desClase;
+    public List<TipoPaciente> getListTipoPaciente() {
+        return listTipoPaciente;
     }
 
-    public void setDesClase(String desClase) {
-        this.desClase = desClase;
+    public void setListTipoPaciente(List<TipoPaciente> listTipoPaciente) {
+        this.listTipoPaciente = listTipoPaciente;
     }
 
-    public List<Clase> getListClase() {
-        return listClase;
-    }
-
-    public void setListClase(List<Clase> listClase) {
-        this.listClase = listClase;
-    }
+    
+    
 
     public String getMensaje() {
         return mensaje;
@@ -86,20 +79,20 @@ public class ClaseBean implements Serializable{
     }
     
     //Metodos de Mantenimiento (CRUD)
-    public void listClaseAll() {
-        listClase = null;
-        ClaseDB claseDB = new ClaseDB();
-        listClase = claseDB.getClaseAll();
+    public void listTipoPacienteAll() {
+        this.listTipoPaciente = null;
+        TipoPacienteDB tipoPacienteDB = new TipoPacienteDB();
+        this.listTipoPaciente = tipoPacienteDB.getTipoPacienteAll();
     }
     
-    
-    public void agregarClase() {
+  /*  
+    public void agregarPaciente() {
         int result = 0;
         if (this.opcionSave !=1){
-            Clase clase = new Clase();
-            clase.setIdClase(idClase);
+            Tipaciente clase = new Clase();
+            clase.setIdClase(idTipoPaciente);
             clase.setDesClase(desClase);
-            clase.setCodGrupo(idGrupo);
+            
             
             ClaseDB claseDB = new ClaseDB();
             try {
@@ -131,9 +124,9 @@ public class ClaseBean implements Serializable{
         
       
     }
+    */
     
-    
-    public void updateClase() throws HibernateException, Exception {
+   /* public void updateClase() throws HibernateException, Exception {
             Clase clase = new Clase();
             clase.setIdClase(this.idClase);
             clase.setDesClase(this.getDesClase());
@@ -141,19 +134,19 @@ public class ClaseBean implements Serializable{
             ClaseDB claseDB = new ClaseDB();
             claseDB.updateClase(clase, idClase);
     }
+    */
     
-    
-     public void pintarFrmClase() {
+     public void pintarFrmTipoPaciente() {
 
-        System.out.println("codigo clase: " + idClase);
-        Clase clase = null;
-        ClaseDB claseDB = new ClaseDB();
-        clase = claseDB.getClaseById(idClase);
+        System.out.println("codigo tipopaciente: " + idTipoPaciente);
+        TipoPaciente tipoPaciente = null;
+        TipoPacienteDB tipoPacienteDB = new TipoPacienteDB();
+        tipoPaciente = tipoPacienteDB.getTipoPacienteById(idTipoPaciente);
         
-        if(clase != null){
-            this.idClase = clase.getIdClase();
-            this.desClase = clase.getDesClase();
-            this.idGrupo=clase.getCodGrupo();
+        if(tipoPaciente != null){
+            this.idTipoPaciente = tipoPaciente.getIdTipoPaciente();
+            this.descripcion = tipoPaciente.getDescripcion();
+            
             
             //Activamos opcion para guardar
             getOpcSave();
@@ -171,7 +164,7 @@ public class ClaseBean implements Serializable{
          this.mensaje="";
     }
     
-    public void remove(){
+  /*  public void remove(){
         try {
             System.out.println("Ingreso aqui. codigo de eliminacion "+ idClase);
             ClaseDB  claseDB=new ClaseDB();
@@ -188,8 +181,5 @@ public class ClaseBean implements Serializable{
              mensaje = "* Clase con código "+idClase +", no se pudo eliminar." ;
             log.error("Se generó errores al eliminar clase:"+ ex);
             System.out.println("Se generó errores al eliminar clase:"+ ex);
-        }
-    }
-
-    
+        }*/
 }

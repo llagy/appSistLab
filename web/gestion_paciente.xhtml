@@ -1,0 +1,705 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition 
+    xmlns:ui="http://java.sun.com/jsf/facelets" 
+    template="/templates/common/template.xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:a4j="http://richfaces.org/a4j"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:rich="http://richfaces.org/rich"
+    xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+    xmlns="http://www.w3.org/1999/xhtml">
+    <ui:define name="left">
+        <ui:include src="/templates/common/menuacordion.xhtml" />
+    </ui:define> 
+
+    <h:head>
+
+    </h:head>
+
+    <ui:define name="content">    
+        <h:outputScript target="body">
+           
+            document.getElementById("formPcte:codPersonal").disabled=true;
+            document.getElementById("formPcte:nomPers").disabled=true;
+            document.getElementById("formPcte:dniPers").disabled=true;
+            document.getElementById("formPcte:apePatPers").disabled=true; 
+            document.getElementById("formPcte:apeMatPers").disabled=true; 
+            document.getElementById("formPcte:espPers").disabled=true; 
+            document.getElementById("formPcte:dirPers").disabled=true; 
+            document.getElementById("formPcte:telfPers").disabled=true;
+            document.getElementById("formPcte:mailPers").disabled=true;
+            document.getElementById("formPcte:estcPers").disabled=true;
+            document.getElementById("formPcte:calPers").disabled=true;
+            document.getElementById("formPcte:sexPers").disabled=true;
+            document.getElementById("formPcte:ocupPers").disabled=true;
+            
+            document.getElementById("formPcte:btnGrabar").disabled=true;
+            
+            function activar(){
+            document.getElementById("formPcte:codPersonal").disabled=false;
+            document.getElementById("formPcte:nomPers").disabled=false;
+            document.getElementById("formPcte:dniPers").disabled=false;
+            document.getElementById("formPcte:apePatPers").disabled=false; 
+            document.getElementById("formPcte:apeMatPers").disabled=false; 
+            document.getElementById("formPcte:espPers").disabled=false; 
+            document.getElementById("formPcte:dirPers").disabled=false; 
+            document.getElementById("formPcte:telfPers").disabled=false;
+            document.getElementById("formPcte:mailPers").disabled=false;
+            document.getElementById("formPcte:estcPers").disabled=false;
+            document.getElementById("formPcte:calPers").disabled=false;
+            document.getElementById("formPcte:sexPers").disabled=false;
+            document.getElementById("formPcte:ocupPers").disabled=false; 
+            
+            document.getElementById("formPcte:btnGrabar").disabled=false;
+            limpiarCampos();
+            }
+
+            function desactivar(){
+            document.getElementById("formPcte:codPersonal").disabled=true;
+            document.getElementById("formPcte:nomPers").disabled=true;
+            document.getElementById("formPcte:dniPers").disabled=true;
+            document.getElementById("formPcte:apePatPers").disabled=true; 
+            document.getElementById("formPcte:apeMatPers").disabled=true; 
+            document.getElementById("formPcte:espPers").disabled=true; 
+            document.getElementById("formPcte:dirPers").disabled=true; 
+            document.getElementById("formPcte:telfPers").disabled=true;
+            document.getElementById("formPcte:mailPers").disabled=true;
+            document.getElementById("formPcte:estcPers").disabled=true;
+            document.getElementById("formPcte:calPers").disabled=true;
+            document.getElementById("formPcte:sexPers").disabled=true;
+            document.getElementById("formPcte:ocupPers").disabled=true;
+            
+            document.getElementById("formPcte:btnGrabar").disabled=true;
+            }
+            
+            function limpiarCampos(){
+            document.getElementById("formPcte:codPersonal").value="";
+            document.getElementById("formPcte:nomPers").value="";
+            document.getElementById("formPcte:dniPers").value="";
+            document.getElementById("formPcte:apePatPers").value="";
+            document.getElementById("formPcte:apeMatPers").value=""; 
+            document.getElementById("formPcte:espPers").value=""; 
+            document.getElementById("formPcte:dirPers").value=""; 
+            document.getElementById("formPcte:telfPers").value="";
+            document.getElementById("formPcte:mailPers").value="";
+            document.getElementById("formPcte:estcPers").value="";
+            document.getElementById("formPcte:calPers").value="";
+            document.getElementById("formPcte:sexPers").value="";
+            document.getElementById("formPcte:ocupPers").value="";
+            }
+            
+            function activarUpdate(){
+            document.getElementById("formPcte:btnGrabar").disabled=false;
+            }
+            function Cancelar(){
+            
+            limpiarCampos();
+            document.getElementById("formPcte:btnGrabar").disabled=true;
+            }
+            
+            function mensajeConfirmar(){
+               var statusConf=confirm("¿Desea eliminar personal?");
+               if(statusConf==true){
+                document.getElementById("formPcte").submit();
+                alert("ingreso aqui");
+                }else
+                {
+                 alert("No se elimina");
+                return false;
+                }
+              
+            }
+            
+
+        </h:outputScript>
+        <h:outputStylesheet>
+        .top {
+        vertical-align: top;
+        }
+ 
+        .info {
+        height: 202px;
+        overflow: auto;
+        }
+        
+        
+    </h:outputStylesheet>
+        <h:body onload="" >
+            <h1>Alta de Paciente</h1>
+            <h:form id="formPcte" > 
+                
+               <rich:panel id="sample2" styleClass="tooltip-text" bodyClass="rich-laguna-panel-no-header">
+                        <table>
+                            <tr>
+                                <td> <h:panelGrid columns="6" cellspacing="10">
+                          
+                            <h:outputText value="Código:" />
+                            
+                            <h:panelGroup>
+                                <h:inputText id="codPaciente"  style="width: 125px;"
+                                         value="#{pacienteBean.codPaciente}" required="true" 
+                                         requiredMessage="Código paciente es requerido."
+                                         >
+                                
+                            </h:inputText>
+                             
+                                <a4j:commandButton id="btnListar" 
+                                                   value=".." 
+                                                   oncomplete="#{rich:component('popupPaciente')}.show()"
+                                                   action="#{pacienteBean.listPacienteAll()}"  
+                                                   render="popupPaciente"
+                                                   execute="@this"   >
+                                </a4j:commandButton>
+                            </h:panelGroup>
+
+                            <h:outputText value="Primer nombre: "/>
+                            <h:inputText id="nom1Pcte"
+                                         value="#{pacienteBean.nombre1}" required="true" 
+                                         requiredMessage="Nombre es requerido."
+                                         >
+                            </h:inputText>
+                             <h:outputText value="Segundo nombre: "/>
+                            <h:inputText id="nom2Pcte"
+                                         value="#{pacienteBean.nombre2}"                                          >
+                            </h:inputText>
+                                 
+
+                            <h:outputText value="Apellido Paterno:" />
+                            <h:inputText id="apePatPcte" 
+                                         value="#{pacienteBean.apPaterno}"
+                                         required="true" 
+                                         requiredMessage="Apellido Paterno es requerido."
+                                         >
+                            </h:inputText>
+
+                            <h:outputText value="Apellido Materno:" />
+                            <h:inputText id="apeMatPcte" 
+                                         value="#{pacienteBean.apMaterno}"
+                                         required="true" 
+                                         requiredMessage="Apellido Materno es requerido."
+                                         >
+                            </h:inputText>
+                            <h:outputText value="DNI:" />
+                            <h:inputText id="dniPcte" 
+                                         value="#{pacienteBean.dni}"
+                                         required="true" 
+                                         requiredMessage="DNI es requerido."
+                                         >
+                            </h:inputText>
+                             <h:outputText value="email" />
+                              <h:inputText id="emailPcte" value="#{pacienteBean.email}">
+                              </h:inputText>
+                            
+                            
+                            <h:outputText value="Direccion: " />
+                            <h:inputText id="dirPcte" 
+                                         value="#{pacienteBean.direccion}"
+                                         >
+                            </h:inputText>
+                            <h:outputText value="Teléfono: " />
+                            <h:inputText id="telfPcte" 
+                                         value="#{pacienteBean.telefono}"
+                                         >
+                            </h:inputText>
+                            
+                            <h:outputText value="F.Nacimiento: " />
+                            <rich:calendar id="calNacPcte"
+                                           value="#{pacienteBean.fechaNacimiento}"
+                                           locale="#{calendarBean.locale}" required="true"
+                                           requiredMessage="Fecha de Nacimiento es requerido."
+                                           
+                                           >         
+                            </rich:calendar>
+                            
+                             <h:outputText value="F.Registro:" />
+                            
+                            <rich:calendar id="calRegPcte"
+                                           value="#{pacienteBean.fechaIngreso}" 
+                                           locale="#{calendarBean.locale}" required="true"
+                                           requiredMessage="Fecha de Registro es requerido."
+                                           
+                                           >         
+                            </rich:calendar>
+                            
+                            <h:panelGroup>
+                            <h:outputText value="Tipo Paciente:" />
+                               <h:inputText id="tipPcte" 
+                                            value="#{pacienteBean.idTipoPac}" style="width:30px;">
+                               </h:inputText>
+                               <a4j:commandButton id="btnTipPcte" 
+                                                   value=".." 
+                                                   oncomplete="#{rich:component('popupSexo')}.show()"
+                                                   action="#{tipoPaciente.listTipoPacienteAll()}"  
+                                                   render="popupSexo"
+                                                   execute="@this"   >
+                                </a4j:commandButton>   
+                             </h:panelGroup>
+                             <h:panelGroup>
+                            <h:outputText value="Estado Civil: " />
+                               <h:inputText id="estcPcte" 
+                                            value="#{pacienteBean.codSexo}" style="width:30px;">
+                               </h:inputText>
+                               <a4j:commandButton id="btnEstcPcte" 
+                                                   value=".." 
+                                                   oncomplete="#{rich:component('popupSexo')}.show()"
+                                                   action="#{sexoBean.listSexoAll()}"  
+                                                   render="popupSexo"
+                                                   execute="@this"   >
+                                </a4j:commandButton>
+                            </h:panelGroup>
+                             
+                             <h:panelGroup>
+                            <h:outputText value="Sexo: " />
+                               <h:inputText id="sexPcte" 
+                                            value="#{pacienteBean.codSexo}" style="width:30px;">
+                               </h:inputText>
+                               <a4j:commandButton id="btnSexo" 
+                                                   value=".." 
+                                                   oncomplete="#{rich:component('popupSexo')}.show()"
+                                                   action="#{sexoBean.listSexoAll()}"  
+                                                   render="popupSexo"
+                                                   execute="@this"   >
+                                </a4j:commandButton>
+                            </h:panelGroup>
+                             
+                             <h:panelGroup>
+                            <h:outputText value="Instrucción: " />
+                               <h:inputText id="instPcte" 
+                                            value="#{pacienteBean.idInstruccion}" style="width:30px;">
+                               </h:inputText>
+                               <a4j:commandButton id="btnInst" 
+                                                   value=".." 
+                                                   oncomplete="#{rich:component('popupSexo')}.show()"
+                                                   action="#{sexoBean.listSexoAll()}"  
+                                                   render="popupSexo"
+                                                   execute="@this"   >
+                                </a4j:commandButton>
+                            </h:panelGroup>
+                            <h:panelGroup>
+                                <h:outputText value="Ocupación:" />
+                            <h:inputText id="ocupPcte" 
+                                         value="#{pacienteBean.idOcupacion}" style="width: 30px;"
+                                         >
+                            </h:inputText>
+                                <a4j:commandButton id="btnOcupacion" 
+                                                   value=".." 
+                                                   oncomplete="#{rich:component('popupOcupacion')}.show()"
+                                                   action="#{ocupacionBean.listOcupacionAll()}"  
+                                                   render="popupOcupacion"
+                                                   execute="@this"   >
+                                </a4j:commandButton>
+                            
+                          
+                            
+                            </h:panelGroup>
+                             
+                            <h:panelGroup>
+                            <h:outputText value="Departamento: " />
+                               <h:inputText id="dptoPcte" 
+                                            value="#{pacienteBean.codDpto}" style="width:30px;">
+                               </h:inputText>
+                               <a4j:commandButton id="btnDpto" 
+                                                   value=".." 
+                                                   oncomplete="#{rich:component('popupDpto')}.show()"
+                                                   action="#{departamentoBean.listDptoAll()}"  
+                                                   render="popupDpto"
+                                                   execute="@this"   >
+                                </a4j:commandButton>
+                            </h:panelGroup>
+                             
+                             <h:panelGroup>
+                            <h:outputText value="Provincia: " />
+                               <h:inputText id="provPcte" 
+                                            value="#{pacienteBean.codProv}" style="width:30px;">
+                               </h:inputText>
+                               <a4j:commandButton id="btnProv" 
+                                                   value=".." 
+                                                   oncomplete="#{rich:component('popupProv')}.show()"
+                                                   action="#{provinciaBean.listProvinciaByIdDpto()}"  
+                                                   render="popupProv"
+                                                   execute="@this"   >
+                                   <f:setPropertyActionListener target="#{provinciaBean.idDpto}" value="#{pacienteBean.codDpto}" />
+                                </a4j:commandButton>
+                            </h:panelGroup>
+                              <h:panelGroup>
+                            <h:outputText value="Distrito " />
+                               <h:inputText id="distPcte" 
+                                            value="#{pacienteBean.codDistrito}" style="width:30px;">
+                               </h:inputText>
+                               <a4j:commandButton id="btnDist" 
+                                                   value=".." 
+                                                   oncomplete="#{rich:component('popupDist')}.show()"
+                                                   action="#{distritoBean.listDistritoByIdProv()}"  
+                                                   render="popupDist"
+                                                   execute="@this"   >
+                                   <f:setPropertyActionListener target="#{distritoBean.idProvincia}" value="#{pacienteBean.codProv}" />
+                                </a4j:commandButton>
+                            </h:panelGroup>
+
+                        </h:panelGrid>
+                                </td> 
+                                         
+            
+                            </tr>
+                            <tr>
+                                 
+                                <td>
+             <!--h:panelGrid columns="2" columnClasses="top,top"-->
+            
+            
+            
+            <rich:fileUpload fileUploadListener="#{fileUploadBean.listener}" id="upload" acceptedTypes="jpg, gif, png, bmp"
+                             ontyperejected="alert('Solo acepta formatos JPG, GIF, PNG and BMP');" maxFilesQuantity="1" style="width: 202px; height: 60px;" >
+                <a4j:ajax event="uploadcomplete" execute="@none" render="info"  />
+            </rich:fileUpload>
+              <h:panelGroup id="info" layout="block">
+                <rich:panel bodyClass="info" style="width: 200px; height: 150px;">
+                    <!--<f:facet name="header">
+                        <h:outputText value="Subir foto" />
+                    </f:facet>-->
+                    <h:outputText value="No files currently uploaded" rendered="#{fileUploadBean.size==0}" />
+                    <rich:dataGrid columns="1" value="#{fileUploadBean.files}" var="file" rowKeyVar="row">
+                        <rich:panel bodyClass="rich-laguna-panel-no-header">
+                            <h:panelGrid columns="2">
+                                <a4j:mediaOutput element="img" mimeType="image/jpeg" createContent="#{fileUploadBean.paint}"
+                                    value="#{row}" style="width:20px; height:10px;" cacheable="false">
+                                    <f:param value="#{fileUploadBean.timeStamp}" name="time" />
+                                </a4j:mediaOutput>
+                                <h:panelGrid columns="2">
+                                    <h:outputText value="File Name:" />
+                                    <h:outputText value="#{file.name}" />
+                                    <h:outputText value="File Length(bytes):" />
+                                    <h:outputText value="#{file.length}" />
+                                </h:panelGrid>
+                            </h:panelGrid>
+                        </rich:panel>
+                    </rich:dataGrid>
+                </rich:panel>
+               <a4j:commandButton action="#{fileUploadBean.clearUploadData}" render="info, upload" value="Limpiar foto"
+                    rendered="#{fileUploadBean.size>0}" />
+            </h:panelGroup> 
+            
+        <!--/h:panelGrid-->
+               </td> 
+             </tr>    
+                                
+                  </table>
+                       
+                        
+                   
+                    
+                   </rich:panel>          
+
+                    <rich:panel id="sample1" styleClass="tooltip-text" bodyClass="rich-laguna-panel-no-header">
+
+                        <span >
+                            <span >
+                                <a4j:commandButton id="btnNuevo" 
+                                                   value="Nuevo" 
+                                                   onclick="activar()"
+                                                   action="#{pacienteBean.getOpcNew()}"  
+                                                   render="codPersonal,txtMensaje"
+                                                   execute="@this"   >
+                                </a4j:commandButton>
+                            </span>
+                            <span >
+                                 <a4j:commandButton id="btnEditar" 
+                                                   value="Editar" 
+                                                   onclick="activarUpdate();"
+                                                   action="#{pacienteBean.getOpcSave()}"  
+                                                   render="codPersonal,txtMensaje"
+                                                   execute="@this"   
+                                                   >
+                                </a4j:commandButton>
+                            </span>
+                            <span >
+                                <h:commandButton id="btnGrabar" 
+                                                 value="Grabar" 
+                                                 action="#{pacienteBean.agregarPaciente()}"
+                                                 />
+                                
+                            </span>
+
+                               <span >
+                                <a4j:commandButton id="btnCancelar" 
+                                                   value="Cancelar" 
+                                                   onclick="Cancelar();"
+                                                   execute="@this"   >
+                                </a4j:commandButton>
+                            </span>
+                          
+                        </span>
+                        <br/>
+                        <rich:message for="codPaciente" ajaxRendered="true" />
+                        <rich:message for="nomPcte" ajaxRendered="true" />
+                        <rich:message for="dniPcte" ajaxRendered="true" />
+                        <rich:message for="apePatPcte" ajaxRendered="true" />
+                        <rich:message for="apeMatPcte" ajaxRendered="true" />
+                        
+                        
+                        <h:outputText  id="txtMensaje" value="#{pacienteBean.mensaje}" style="color:#ff0000;"  />
+                   
+                    </rich:panel>
+               
+            </h:form> 
+
+            <rich:popupPanel id="popupPaciente" 
+                             autosized="true" 
+                             onmaskclick="#{rich:component('popupPaciente')}.hide()">
+                <f:facet name="controls">
+                    <h:outputLink value="#" onclick="#{rich:component('popupPaciente')}.hide();
+                            return false;">X</h:outputLink>
+                </f:facet>
+                <h:panelGrid columns="1" id="editGrid">
+                    <rich:dataTable value="#{pacienteBean.listPaciente}" 
+                                    var="paciente" 
+                                    id="tb_Personal" 
+                                    rows="15">
+                        <rich:column>
+                            <f:facet name="header">Codigo</f:facet>
+                            <h:outputText value="#{paciente.codPaciente}" />
+                        </rich:column>
+                        <rich:column>
+                            <f:facet name="header">Nombres</f:facet>
+                            <h:outputText value="#{paciente.nombre1}" />
+                        </rich:column>
+                        <rich:column>
+                            <f:facet name="header">Apellido Paterno</f:facet>
+                            <h:outputText value="#{paciente.apPaterno}" />
+                        </rich:column>
+                        <rich:column>
+                            <f:facet name="header">Apellido Materno</f:facet>
+                            <h:outputText value="#{paciente.apMaterno}" />
+                        </rich:column>
+                        <rich:column>
+                            <f:facet name="header">Dni</f:facet>
+                            <h:outputText value="#{paciente.dni}" />
+                        </rich:column>
+                        <rich:column>
+                            <f:facet name="header">Dirección</f:facet>
+                            <h:outputText value="#{paciente.direccion}" />
+                        </rich:column>
+                                            
+                        <rich:column>
+                            <f:facet name="header">Teléfono</f:facet>
+                            <h:outputText value="#{paciente.telefono}" />
+                        </rich:column>
+                        <rich:column>
+                            <f:facet name="header">Email</f:facet>
+                            <h:outputText value="#{paciente.email}" />
+                        </rich:column>
+                        <rich:column>
+                            <f:facet name="header">Fecha</f:facet>
+                            <h:outputText value="#{paciente.fechaNacimiento}" />
+                        </rich:column>
+
+                        <rich:column>
+                            <a4j:commandLink styleClass="no-decor" 
+                                             render="codPaciente,dniPcte,nom1Pcte,nom2Pcte,telfPcte,emailPcte,
+                                             apePatPcte,apeMatPcte,dirPcte,calNacPcte,calRegPcte
+                                             ,sexPcte,estcPcte,ocupPcte,instPcte,tipPcte" 
+                                             execute="@this" action="#{pacienteBean.pintarFrmPcte()}"
+                                              onclick="#{rich:component('popupPaciente')}.hide()">
+                                <h:graphicImage value="/images/icons/verify.gif"/>
+                                <f:setPropertyActionListener target="#{pacienteBean.codPaciente}" value="#{paciente.codPaciente}" />
+                            </a4j:commandLink>
+                        </rich:column>
+
+                        <f:facet name="footer">
+                            <rich:dataScroller page="1" />
+                        </f:facet>
+                    </rich:dataTable>
+                </h:panelGrid>
+            </rich:popupPanel>
+
+            
+            <rich:popupPanel id="popupSexo" 
+                             autosized="true"  
+                             resizeable="false"  moveable="true" >
+                <f:facet name="controls">
+                    <h:outputLink value="#" onclick="#{rich:component('popupSexo')}.hide();
+                            return false;">X</h:outputLink>
+                </f:facet>
+                <h:panelGrid columns="1" id="editGrid2">
+                    <rich:dataTable value="#{sexoBean.listSexo}" 
+                                    var="sex" 
+                                    id="tb_Sexo" 
+                                    rows="15">
+                        <rich:column>
+                            <f:facet name="header">Codigo</f:facet>
+                            <h:outputText value="#{sex.codSexo}" />
+                        </rich:column>
+                        <rich:column>
+                            <f:facet name="header">Descripción</f:facet>
+                            <h:outputText value="#{sex.descripcion}" />
+                        </rich:column>
+                        <rich:column>
+                            <a4j:commandLink styleClass="no-decor" 
+                                             render="sexPcte" 
+                                             execute="@this" action="#{pacienteBean.pintarFormSex()}"
+                                              onclick="#{rich:component('popupSexo')}.hide()">
+                                <h:graphicImage value="/images/icons/verify.gif"/>
+                                <f:setPropertyActionListener target="#{pacienteBean.codSexo}" value="#{sex.codSexo}" />
+                            </a4j:commandLink>
+                        </rich:column>
+
+                        <f:facet name="footer">
+                            <rich:dataScroller page="1" />
+                        </f:facet>
+                    </rich:dataTable>
+                </h:panelGrid>
+            </rich:popupPanel>
+
+            
+            <rich:popupPanel id="popupOcupacion" 
+                             autosized="true" 
+                             >
+                <f:facet name="controls">
+                    <h:outputLink value="#" onclick="#{rich:component('popupOcupacion')}.hide();
+                            return false;">X</h:outputLink>
+                </f:facet>
+                <h:panelGrid columns="1" id="editGrid3">
+                    <rich:dataTable value="#{ocupacionBean.listOcupacion}" 
+                                    var="ocup" 
+                                    id="tb_Ocupacion" 
+                                    rows="15">
+                        <rich:column>
+                            <f:facet name="header">Codigo</f:facet>
+                            <h:outputText value="#{ocup.codOcupacion}" />
+                        </rich:column>
+                        <rich:column>
+                            <f:facet name="header">Descripción</f:facet>
+                            <h:outputText value="#{ocup.descripcion}" />
+                        </rich:column>
+                        <rich:column>
+                            <a4j:commandLink styleClass="no-decor" 
+                                             render="ocupPers" 
+                                             execute="@this" action="#{pacienteBean.pintarFormOcup()}"
+                                              onclick="#{rich:component('popupOcupacion')}.hide()">
+                                <h:graphicImage value="/images/icons/verify.gif"/>
+                                <f:setPropertyActionListener target="#{pacienteBean.idOcupacion}" value="#{ocup.codOcupacion}" />
+                            </a4j:commandLink>
+                        </rich:column>
+
+                        <f:facet name="footer">
+                            <rich:dataScroller page="1" />
+                        </f:facet>
+                    </rich:dataTable>
+                </h:panelGrid>
+            </rich:popupPanel>
+            
+            
+            <rich:popupPanel id="popupDpto" 
+                             autosized="true"  
+                             resizeable="false"  moveable="true" >
+                <f:facet name="controls">
+                    <h:outputLink value="#" onclick="#{rich:component('popupDpto')}.hide();
+                            return false;">X</h:outputLink>
+                </f:facet>
+                <h:panelGrid columns="1" id="pgridDpto">
+                    <rich:dataTable value="#{departamentoBean.listDpto}" 
+                                    var="dpto" 
+                                    id="tbDpto" 
+                                    rows="15">
+                        <rich:column>
+                            <f:facet name="header">Codigo</f:facet>
+                            <h:outputText value="#{dpto.codDepa}" />
+                        </rich:column>
+                        <rich:column>
+                            <f:facet name="header">Descripción</f:facet>
+                            <h:outputText value="#{dpto.desDepa}" />
+                        </rich:column>
+                        <rich:column>
+                            <a4j:commandLink styleClass="no-decor" 
+                                             render="dptoPcte" 
+                                             execute="@this" action="#{pacienteBean.pintarFrmDpto()}"
+                                              onclick="#{rich:component('popupDpto')}.hide()">
+                                <h:graphicImage value="/images/icons/verify.gif"/>
+                                <f:setPropertyActionListener target="#{pacienteBean.codDpto}" value="#{dpto.codDepa}" />
+                            </a4j:commandLink>
+                        </rich:column>
+
+                        <f:facet name="footer">
+                            <rich:dataScroller page="1" />
+                        </f:facet>
+                    </rich:dataTable>
+                </h:panelGrid>
+            </rich:popupPanel>
+
+            <rich:popupPanel id="popupProv" 
+                             autosized="true"  
+                             resizeable="false"  moveable="true" >
+                <f:facet name="controls">
+                    <h:outputLink value="#" onclick="#{rich:component('popupProv')}.hide();
+                            return false;">X</h:outputLink>
+                </f:facet>
+                <h:panelGrid columns="1" id="pgridProv">
+                    <rich:dataTable value="#{provinciaBean.listProvincia}" 
+                                    var="prov" 
+                                    id="tbProv" 
+                                    rows="15">
+                        <rich:column>
+                            <f:facet name="header">Codigo</f:facet>
+                            <h:outputText value="#{prov.codProvincia}" />
+                        </rich:column>
+                        <rich:column>
+                            <f:facet name="header">Descripción</f:facet>
+                            <h:outputText value="#{prov.desProvincia}" />
+                        </rich:column>
+                        <rich:column>
+                            <a4j:commandLink styleClass="no-decor" 
+                                             render="provPcte" 
+                                             execute="@this" action="#{pacienteBean.pintarFrmProv()}"
+                                              onclick="#{rich:component('popupProv')}.hide()">
+                                <h:graphicImage value="/images/icons/verify.gif"/>
+                                <f:setPropertyActionListener target="#{pacienteBean.codProv}" value="#{prov.codProvincia}" />
+                            </a4j:commandLink>
+                        </rich:column>
+
+                        <f:facet name="footer">
+                            <rich:dataScroller page="1" />
+                        </f:facet>
+                    </rich:dataTable>
+                </h:panelGrid>
+            </rich:popupPanel>
+            
+            <rich:popupPanel id="popupDist" 
+                             autosized="true"  
+                             resizeable="false"  moveable="true" >
+                <f:facet name="controls">
+                    <h:outputLink value="#" onclick="#{rich:component('popupDist')}.hide();
+                            return false;">X</h:outputLink>
+                </f:facet>
+                <h:panelGrid columns="1" id="pgridDist">
+                    <rich:dataTable value="#{distritoBean.listDistrito}" 
+                                    var="dist" 
+                                    id="tbDist" 
+                                    rows="15">
+                        <rich:column>
+                            <f:facet name="header">Codigo</f:facet>
+                            <h:outputText value="#{dist.codDistrito}" />
+                        </rich:column>
+                        <rich:column>
+                            <f:facet name="header">Descripción</f:facet>
+                            <h:outputText value="#{dist.desDistrito}" />
+                        </rich:column>
+                        <rich:column>
+                            <a4j:commandLink styleClass="no-decor" 
+                                             render="distPcte" 
+                                             execute="@this" action="#{pacienteBean.pintarFrmDistrito()}"
+                                              onclick="#{rich:component('popupDist')}.hide()">
+                                <h:graphicImage value="/images/icons/verify.gif"/>
+                                <f:setPropertyActionListener target="#{pacienteBean.codDistrito}" value="#{dist.codDistrito}" />
+                            </a4j:commandLink>
+                        </rich:column>
+
+                        <f:facet name="footer">
+                            <rich:dataScroller page="1" />
+                        </f:facet>
+                    </rich:dataTable>
+                </h:panelGrid>
+            </rich:popupPanel>
+        </h:body>
+    </ui:define>
+</ui:composition>

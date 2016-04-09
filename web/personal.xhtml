@@ -217,7 +217,7 @@
                             <h:panelGroup>
                             <h:outputText value="Sexo: " />
                                <h:inputText id="sexPers" 
-                                            value="#{personalBean.sexo}" style="width:30px;">
+                                            value="#{personalBean.codSexo}" style="width:30px;">
                                </h:inputText>
                                <a4j:commandButton id="btnSexo" 
                                                    value=".." 
@@ -291,22 +291,7 @@
                                 
                             </span>
 
-                            <span >
-                                 <h:commandButton id="btnElim" 
-                                                 value="Elimi" 
-                                                 onclick="if (!mensajeConfirmar()) return false;"
-                                                 action="#{personalBean.deletePersonal()}"
-                                                 />
-                                <a4j:commandButton id="btnEliminar" 
-                                                   value="Eliminar" 
-                                                   onclick="if (!mensajeConfirmar()) return false;"
-                                                   action="#{personalBean.deletePersonal()}"  
-                                                   render="codPersonal"
-                                                   execute="@this"   >
-                                </a4j:commandButton>
-                            </span>
-
-                            <span >
+                               <span >
                                 <a4j:commandButton id="btnCancelar" 
                                                    value="Cancelar" 
                                                    onclick="Cancelar();"
@@ -380,14 +365,15 @@
                         </rich:column>
 
                         <rich:column>
-                            <a4j:commandLink styleClass="no-decor" 
+                             <a4j:commandLink styleClass="no-decor" 
                                              render="codPersonal,dniPers,nomPers,telfPers,mailPers,
                                              apePatPers,apeMatPers,dirPers,calPers
-                                             ,sexPers,espPers,estcPers,ocupPers" 
+                                             ,sexPers,espPers,estcPers,ocupPers,descOcupacion" 
                                              execute="@this" action="#{personalBean.pintarFormularioPersonal()}"
                                               onclick="#{rich:component('popupPersonal')}.hide()">
-                                <h:graphicImage value="/images/icons/edit.gif"/>
-                                <f:setPropertyActionListener target="#{personalBean.codPersonal}" value="#{pers.codPersonal}" />
+                                <h:graphicImage value="/images/icons/verify.gif"/>
+                                <f:setPropertyActionListener target="#{personalBean.codPersonal}"
+                                                             value="#{pers.codPersonal}" />
                             </a4j:commandLink>
                         </rich:column>
 
@@ -424,8 +410,8 @@
                                              render="sexPers" 
                                              execute="@this" action="#{personalBean.pintarFormSex()}"
                                               onclick="#{rich:component('popupSexo')}.hide()">
-                                <h:graphicImage value="/images/icons/edit.gif"/>
-                                <f:setPropertyActionListener target="#{personalBean.sexo}" value="#{sex.codSexo}" />
+                                <h:graphicImage value="/images/icons/verify.gif"/>
+                                <f:setPropertyActionListener target="#{personalBean.codSexo}" value="#{sex.codSexo}" />
                             </a4j:commandLink>
                         </rich:column>
 
@@ -462,7 +448,7 @@
                                              render="ocupPers,descOcupacion" 
                                              execute="@this" action="#{personalBean.pintarFormOcup()}"
                                               onclick="#{rich:component('popupOcupacion')}.hide()">
-                                <h:graphicImage value="/images/icons/edit.gif"/>
+                                <h:graphicImage value="/images/icons/verify.gif"/>
                                 <f:setPropertyActionListener target="#{personalBean.idOcupacion}" value="#{ocup.codOcupacion}" />
                             </a4j:commandLink>
                         </rich:column>

@@ -4,7 +4,7 @@
  */
 package com.raitcon.hibernate.db;
 
-import com.raitcon.hibernate.bean.Clase;
+import com.raitcon.hibernate.bean.Instruccion;
 import com.raitcon.hibernate.factory.HibernateSessionFactory;
 import com.raitcon.hibernate.factory.HibernateUtil;
 import java.util.List;
@@ -16,35 +16,37 @@ import org.hibernate.Transaction;
 
 /**
  *
- * @author Miki
+ * @author Miki Lap
  */
-public class ClaseDB {
+public class InstruccionDB {
     
-    protected static Logger log = Logger.getLogger(ClaseDB.class);
+    
+    protected static Logger log = Logger.getLogger(InstruccionDB.class);
     private Session session = null;
     
     
-    public ClaseDB(){
+    public InstruccionDB(){
         
         this.session = HibernateUtil.getSessionFactory().getCurrentSession();
     }
     
     
     
-    public List<Clase> getClaseAll() {
-        List<Clase> claseList = null;
+    public List<Instruccion> getInstruccionAll() {
+        List<Instruccion> instruccionList = null;
         try {
-            System.out.println("metodo getClaseAll");
+            System.out.println("metodo getInstruccionAll");
             session = HibernateSessionFactory.getSession();
-            Query q = session.createQuery("from Clase as clase");
-            claseList = (List<Clase>) q.list();
+            Query q = session.createQuery("from Instruccion as instruccion");
+            instruccionList = (List<Instruccion>) q.list();
         } catch (Exception e) {
+            log.error("Se generó errores al consultar a la tabla instrucción");
             e.printStackTrace();
         }
-        return claseList;
+        return instruccionList;
     }
     
-    public Integer insertClases(Clase clase) throws HibernateException, Exception {
+    public Integer insertInstruccion(Instruccion instruccion) throws HibernateException, Exception {
         try {
             System.out.println("metodo insert");
             session = HibernateSessionFactory.getSession();
@@ -52,10 +54,10 @@ public class ClaseDB {
             System.out.println("Try");
             Transaction ts = session.beginTransaction();
             System.out.println("Transaction");
-            session.save(clase);
+            session.save(instruccion);
             System.out.println("Save");
             ts.commit();
-            System.out.println("Se inserto clase correctamente");
+            System.out.println("Se inserto instruccion correctamente");
             return 1;
         } catch (HibernateException ex1) {
             System.out.println("HibernateException : " + ex1);
@@ -68,24 +70,24 @@ public class ClaseDB {
     }
     
     
-     public void updateClase(Clase clase, Integer code) throws HibernateException, Exception {
+     public void updateInstruccion(Instruccion instruccion, Integer code) throws HibernateException, Exception {
 
         try {
-            System.out.println("metodo update clase");
+            System.out.println("metodo update instruccion");
             session = HibernateSessionFactory.getSession();
             System.out.println("try");
             Transaction ts = session.beginTransaction();
             System.out.println("Transaction");
-            Clase clasUpdate = (Clase) session.get(Clase.class, code);
+            Instruccion instruccionUpdate = (Instruccion) session.get(Instruccion.class, code);
             
-            clasUpdate.setIdClase(clase.getIdClase());
-            clasUpdate.setDesClase(clase.getDesClase());
+            instruccionUpdate.setCodInstruccion(instruccion.getCodInstruccion());
+            instruccionUpdate.setDescripcion(instruccion.getDescripcion());
          
-            session.update(clasUpdate);
+            session.update(instruccionUpdate);
             
-            System.out.println("Update clase");
+            System.out.println("Update Instruccion");
             ts.commit();
-            System.out.println("Se modificó correctamente clase ");
+            System.out.println("Se modificó correctamente instruccion ");
         } catch (HibernateException ex1) {
             throw ex1;
         } catch (Exception ex2) {
@@ -97,15 +99,15 @@ public class ClaseDB {
      }
      
      
-     public Clase getClaseById(Integer idClase) {
+     public Instruccion getInstrucionById(Integer idInstruccion) {
        
         try {
             Transaction tx = session.beginTransaction();
-            Query q = session.createQuery("from Clase WHERE IdClase =" + idClase);
+            Query q = session.createQuery("from Instruccion WHERE cod_instruccion =" + idInstruccion);
             System.out.println("Query: " + q.toString());
-            Clase clase=(Clase) q.uniqueResult();
+            Instruccion instruccion=(Instruccion) q.uniqueResult();
             tx.commit();
-            return clase;
+            return instruccion;
             
         } catch (Exception e) {
             log.debug("Error:" + e.getMessage());
@@ -115,14 +117,14 @@ public class ClaseDB {
     }
      
      
-     public void deleteClase(Integer id) throws HibernateException, Exception {
+     public void deleteInstruccion(Integer id) throws HibernateException, Exception {
         session = HibernateSessionFactory.getSession();
         try {
             Transaction ts = session.beginTransaction();
-            Clase clasUpdate = (Clase) session.get(Clase.class, id);
-            session.delete(clasUpdate);
+            Instruccion instUpdate = (Instruccion) session.get(Instruccion.class, id);
+            session.delete(instUpdate);
             ts.commit();
-            System.out.println(" Clase ee eliminó correctamente");
+            System.out.println(" Instruccion se eliminó correctamente");
         } catch (HibernateException ex1) {
             throw ex1;
         } catch (Exception ex2) {
@@ -131,6 +133,5 @@ public class ClaseDB {
             session.close();
         }
      }
-    
     
 }

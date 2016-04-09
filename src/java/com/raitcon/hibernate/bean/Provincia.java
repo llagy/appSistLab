@@ -1,5 +1,5 @@
 package com.raitcon.hibernate.bean;
-// Generated 25/03/2016 09:53:11 PM by Hibernate Tools 3.2.1.GA
+// Generated 08/04/2016 10:38:47 PM by Hibernate Tools 3.2.1.GA
 
 
 import java.util.HashSet;
@@ -9,6 +9,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -23,24 +25,26 @@ public class Provincia  implements java.io.Serializable {
 
 
      private int codProvincia;
-     private int codDepa;
+     private Departamento departamento;
      private String desProvincia;
      private Set<Distrito> distritos = new HashSet<Distrito>(0);
+     
 
     public Provincia() {
     }
 
 	
-    public Provincia(int codProvincia, int codDepa, String desProvincia) {
+    public Provincia(int codProvincia, Departamento departamento, String desProvincia) {
         this.codProvincia = codProvincia;
-        this.codDepa = codDepa;
+        this.departamento = departamento;
         this.desProvincia = desProvincia;
     }
-    public Provincia(int codProvincia, int codDepa, String desProvincia, Set<Distrito> distritos) {
+    public Provincia(int codProvincia, Departamento departamento, String desProvincia, Set<Distrito> distritos) {
        this.codProvincia = codProvincia;
-       this.codDepa = codDepa;
+       this.departamento = departamento;
        this.desProvincia = desProvincia;
        this.distritos = distritos;
+       
     }
    
      @Id 
@@ -53,14 +57,14 @@ public class Provincia  implements java.io.Serializable {
     public void setCodProvincia(int codProvincia) {
         this.codProvincia = codProvincia;
     }
-    
-    @Column(name="cod_depa", nullable=false)
-    public int getCodDepa() {
-        return this.codDepa;
+@ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="cod_depa", nullable=false)
+    public Departamento getDepartamento() {
+        return this.departamento;
     }
     
-    public void setCodDepa(int codDepa) {
-        this.codDepa = codDepa;
+    public void setDepartamento(Departamento departamento) {
+        this.departamento = departamento;
     }
     
     @Column(name="des_provincia", nullable=false, length=100)

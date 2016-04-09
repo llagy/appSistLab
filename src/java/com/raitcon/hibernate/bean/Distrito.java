@@ -1,13 +1,17 @@
 package com.raitcon.hibernate.bean;
-// Generated 25/03/2016 09:53:11 PM by Hibernate Tools 3.2.1.GA
+// Generated 08/04/2016 10:38:47 PM by Hibernate Tools 3.2.1.GA
 
 
+import java.util.HashSet;
+import java.util.Set;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -23,14 +27,22 @@ public class Distrito  implements java.io.Serializable {
      private int codDistrito;
      private Provincia provincia;
      private String desDistrito;
+     private Set<Paciente> pacientes = new HashSet<Paciente>(0);
 
     public Distrito() {
     }
 
+	
     public Distrito(int codDistrito, Provincia provincia, String desDistrito) {
+        this.codDistrito = codDistrito;
+        this.provincia = provincia;
+        this.desDistrito = desDistrito;
+    }
+    public Distrito(int codDistrito, Provincia provincia, String desDistrito, Set<Paciente> pacientes) {
        this.codDistrito = codDistrito;
        this.provincia = provincia;
        this.desDistrito = desDistrito;
+       this.pacientes = pacientes;
     }
    
      @Id 
@@ -60,6 +72,14 @@ public class Distrito  implements java.io.Serializable {
     
     public void setDesDistrito(String desDistrito) {
         this.desDistrito = desDistrito;
+    }
+@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY, mappedBy="distrito")
+    public Set<Paciente> getPacientes() {
+        return this.pacientes;
+    }
+    
+    public void setPacientes(Set<Paciente> pacientes) {
+        this.pacientes = pacientes;
     }
 
 

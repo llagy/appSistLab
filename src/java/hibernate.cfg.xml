@@ -16,8 +16,8 @@
     <property name="hibernate.query.factory_class">org.hibernate.hql.classic.ClassicQueryTranslatorFactory</property>
     <mapping class="com.raitcon.hibernate.factory.HibernateSessionFactory"/>
     <mapping class="com.raitcon.hibernate.bean.DetalleExamen"/>
-    <mapping class="com.raitcon.hibernate.bean.Instruccion"/>
     <mapping class="com.raitcon.hibernate.bean.Departamento"/>
+    <mapping class="com.raitcon.hibernate.bean.Instruccion"/>
     <mapping class="com.raitcon.hibernate.bean.Menu"/>
     <mapping class="com.raitcon.hibernate.bean.SubMenu"/>
     <mapping class="com.raitcon.hibernate.bean.SubDetExamen"/>
@@ -32,10 +32,11 @@
     <mapping class="com.raitcon.hibernate.bean.ValoresNormales"/>
     <mapping class="com.raitcon.hibernate.bean.Personal"/>
     <mapping class="com.raitcon.hibernate.bean.Rol"/>
+    <mapping class="com.raitcon.hibernate.bean.Paciente"/>
     <mapping class="com.raitcon.hibernate.bean.Cliente"/>
+    <mapping class="com.raitcon.hibernate.bean.TipoPaciente"/>
+    <mapping class="com.raitcon.hibernate.bean.Sexo"/>
     <mapping class="com.raitcon.hibernate.bean.Accion"/>
     <mapping class="com.raitcon.hibernate.bean.Examen"/>
-    <mapping class="com.raitcon.hibernate.bean.Sexo"/>
-    
   </session-factory>
 </hibernate-configuration>

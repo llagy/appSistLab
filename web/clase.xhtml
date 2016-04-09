@@ -202,21 +202,7 @@
                                                  />
                                 
                             </span>
-
-                            <span >
-                                 <h:commandButton id="btnElim" 
-                                                 value="Elimi" 
-                                                 onclick="if (!mensajeConfirmar()) return false;"
-                                                 action="#{personalBean.deletePersonal()}"
-                                                 />
-                                <a4j:commandButton id="btnEliminar" 
-                                                   value="Eliminar" 
-                                                   onclick="if (!mensajeConfirmar()) return false;"
-                                                   action="#{personalBean.deletePersonal()}"  
-                                                   render="codPersonal"
-                                                   execute="@this"   >
-                                </a4j:commandButton>
-                            </span>
+                           
 
                             <span >
                                 <a4j:commandButton id="btnCancelar" 
@@ -228,10 +214,10 @@
                           
                         </span>
                         <br/>
-                        <rich:message for="codPersonal" ajaxRendered="true" />
-                        <rich:message for="nomPers" ajaxRendered="true" />
+                        <rich:message for="codClase" ajaxRendered="true" />
+                        <rich:message for="desClase" ajaxRendered="true" />
                                            
-                        <h:outputText  id="txtMensaje" value="#{personalBean.mensaje}" style="color:#ff0000;"  />
+                        <h:outputText  id="txtMensaje" value="#{claseBean.mensaje}" style="color:#ff0000;"  />
                    
                     </rich:panel>
                 
@@ -249,16 +235,16 @@
                 </f:facet>
                 <h:panelGrid columns="1" id="editGrid">
                     <rich:dataTable value="#{claseBean.listClase}" 
-                                    var="clase" 
-                                    id="tb_Clase" 
+                                    var="it" 
+                                    id="tbClase" 
                                     rows="15">
                         <rich:column>
                             <f:facet name="header">Codigo</f:facet>
-                            <h:outputText value="#{clase.idClase}" />
+                            <h:outputText value="#{it.idClase}" />
                         </rich:column>
                         <rich:column>
                             <f:facet name="header">Descripción</f:facet>
-                            <h:outputText value="#{clase.desClase}" />
+                            <h:outputText value="#{it.desClase}" />
                         </rich:column>
                          <rich:column>
                             <a4j:commandLink styleClass="no-decor" 
@@ -266,12 +252,12 @@
                                              execute="@this" action="#{claseBean.pintarFrmClase()}"
                                               onclick="#{rich:component('popupClase')}.hide()">
                                 <h:graphicImage value="/images/icons/verify.gif"/>
-                                <f:setPropertyActionListener target="#{claseBean.idClase}" value="#{clase.idClase}" />
+                                <f:setPropertyActionListener target="#{claseBean.idClase}" value="#{it.idClase}" />
                             </a4j:commandLink>
                              <a4j:commandLink styleClass="no-decor" execute="@this" render="@none"
                                oncomplete="#{rich:component('confirmPane')}.show()">
                               <h:graphicImage value="/images/icons/delete.gif" alt="delete" />
-                             <a4j:param value="#{it.index}" assignTo="#{claseBean.currentCarIndex}" />
+                             <a4j:param value="#{it.idClase}" assignTo="#{claseBean.idClase}" />
                             </a4j:commandLink>
                         </rich:column>
 
@@ -282,7 +268,7 @@
                 </h:panelGrid>
             </rich:popupPanel>
                 
-             <a4j:jsFunction name="remove" action="#{carsBean.remove}" render="table" execute="@this"
+             <a4j:jsFunction name="remove" action="#{claseBean.remove}" render="tbClase" execute="@this"
                oncomplete="#{rich:component('confirmPane')}.hide();" />
            
          <rich:popupPanel id="confirmPane" autosized="true">

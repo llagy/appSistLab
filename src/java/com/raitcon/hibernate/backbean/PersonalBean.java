@@ -15,7 +15,6 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
-import java.util.logging.Level;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.ExternalContext;
@@ -37,8 +36,9 @@ public class PersonalBean implements Serializable {
     private String apellidoPaterno;
     private String apellidoMaterno;
     private Date fechaNacimiento;
-    private Character sexo;
+    private Character codSexo;
     private String descSexo;
+    private Sexo sexo;
     private String estadoCivil;
     private String especialidad;
     private Ocupacion ocupacion;
@@ -147,11 +147,11 @@ public class PersonalBean implements Serializable {
         this.fechaNacimiento = fechaNacimiento;
     }
 
-    public Character getSexo() {
+    public Sexo getSexo() {
         return sexo;
     }
 
-    public void setSexo(Character sexo) {
+    public void setSexo(Sexo sexo) {
         this.sexo = sexo;
     }
 
@@ -220,6 +220,14 @@ public class PersonalBean implements Serializable {
     public void setOpcionSave(Integer opcionSave) {
         this.opcionSave = opcionSave;
     }
+    
+     public Character getCodSexo() {
+        return codSexo;
+    }
+
+    public void setCodSexo(Character codSexo) {
+        this.codSexo = codSexo;
+    }
 
     //Metodos de Mantenimiento (CRUD)
     public void listPersonalAll() {
@@ -250,30 +258,33 @@ public class PersonalBean implements Serializable {
     public void agregarPersonal() {
         int result = 0;
         if (this.opcionSave !=1){
-            Personal personal = new Personal();
-            personal.setCodPersonal(codPersonal);
-            personal.setNombres(nombres);
-            personal.setApPaterno(apellidoPaterno);
-            personal.setApMaterno(apellidoMaterno);
-            personal.setFechaNacimiento(fechaNacimiento);
-            personal.setEspecialidad(especialidad);
-            personal.setDni(dni);
-            personal.setTelefono(telefono);
-            personal.setDireccion(direccion);
-            personal.setSexo(sexo);
-            personal.setEstadoCivil(estadoCivil);
-            personal.setEstado('1');
-            personal.setMail(mail);
-            ocupacion =new Ocupacion();
-            ocupacion.setCodOcupacion(this.idOcupacion);
-            ocupacion.setDescripcion(descOcupacion);
-            personal.setOcupacion(ocupacion);
-            PersonalDB personaDB = new PersonalDB();
             try {
-                result = personaDB.insertPersonal(personal);
-                if (result==1){
-                 mensaje = "* Personal con código "+codPersonal +", se registró satisfactoriamente." ;
-                }
+                
+                Personal personal = new Personal();
+                personal.setCodPersonal(codPersonal);
+                personal.setNombres(nombres);
+                personal.setApPaterno(apellidoPaterno);
+                personal.setApMaterno(apellidoMaterno);
+                personal.setFechaNacimiento(fechaNacimiento);
+                personal.setEspecialidad(especialidad);
+                personal.setDni(dni);
+                personal.setTelefono(telefono);
+                personal.setDireccion(direccion);
+                sexo=new Sexo(codSexo, descSexo);
+                personal.setSexo(sexo);
+                personal.setEstadoCivil(estadoCivil);
+                personal.setEstado('1');
+                personal.setMail(mail);
+                ocupacion =new Ocupacion();
+                ocupacion.setCodOcupacion(this.idOcupacion);
+                ocupacion.setDescripcion(descOcupacion);
+                personal.setOcupacion(ocupacion);
+                PersonalDB personaDB = new PersonalDB();
+
+                    result = personaDB.insertPersonal(personal);
+                    if (result==1){
+                     mensaje = "* Personal con código "+codPersonal +", se registró satisfactoriamente." ;
+                    }
             } catch (HibernateException ex) {
                  mensaje = "* Personal con código "+codPersonal +", no se pudo registrar." ;
                 log.error("Se generó errores al ingresar personal:"+ ex);
@@ -314,7 +325,10 @@ public class PersonalBean implements Serializable {
             personal.setDni(dni);
             personal.setTelefono(telefono);
             personal.setDireccion(direccion);
-            personal.setSexo(sexo);
+            Sexo sex=new Sexo();
+            sex.setCodSexo(codSexo);
+            sex.setDescripcion(descSexo);
+            personal.setSexo(sex);
             personal.setEstadoCivil(estadoCivil);
             personal.setMail(mail);
             ocupacion =new Ocupacion();
@@ -376,8 +390,9 @@ public class PersonalBean implements Serializable {
             this.especialidad=pers.getEspecialidad();
             this.ocupacion=pers.getOcupacion();
             this.sexo = pers.getSexo();
+            this.codSexo=pers.getSexo().getCodSexo();
             this.idOcupacion=pers.getOcupacion().getCodOcupacion();
-            
+            this.descOcupacion=pers.getOcupacion().getDescripcion();
             //Activamos opcion para guardar
             getOpcSave();
         }
@@ -388,16 +403,16 @@ public class PersonalBean implements Serializable {
     
     public void pintarFormSex() {
 
-        System.out.println("codigo sexo: " + sexo);
+        System.out.println("codigo idSexo: " + codSexo);
         Sexo sex = null;
         List<Sexo> listSexo;
         SexoDB sexoDB = new SexoDB();
-        listSexo = sexoDB.getSexoByCod(sexo);
+        listSexo = sexoDB.getSexoByCod(codSexo);
         for (Sexo o : listSexo) {
             sex = o;
         }
         if(sex != null){
-        this.sexo = sex.getCodSexo();
+        this.codSexo = sex.getCodSexo();
         this.descSexo = sex.getDescripcion();
         }
     }

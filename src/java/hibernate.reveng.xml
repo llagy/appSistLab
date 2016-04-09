@@ -3,6 +3,14 @@
 <hibernate-reverse-engineering>
   <schema-selection match-catalog="db_laboratorio"/>
   
-   <table-filter match-name="provincia"/>
-    <table-filter match-name="distrito"/>
+  <table-filter match-name="sexo"/>
+    <table-filter match-name="paciente"/>
+    <table-filter match-name="ocupacion"/>
+    <table-filter match-name="estacivil"/>
+    <table-filter match-name="tipo_paciente"/>
+    <table-filter match-name="instruccion"/>
+     <table-filter match-name="distrito"/>
+     <table-filter match-name="provincia"/>
+     <table-filter match-name="departamento"/>
+     
   </hibernate-reverse-engineering>

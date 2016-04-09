@@ -1,10 +1,15 @@
 package com.raitcon.hibernate.bean;
-// Generated 25/03/2016 09:41:30 AM by Hibernate Tools 3.2.1.GA
+// Generated 08/04/2016 10:38:47 PM by Hibernate Tools 3.2.1.GA
 
 
+import java.util.HashSet;
+import java.util.Set;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -22,16 +27,26 @@ public class Departamento  implements java.io.Serializable {
      private String codSup;
      private float latitud;
      private float longitud;
+     private Set<Provincia> provincias = new HashSet<Provincia>(0);
 
     public Departamento() {
     }
 
+	
     public Departamento(int codDepa, String desDepa, String codSup, float latitud, float longitud) {
+        this.codDepa = codDepa;
+        this.desDepa = desDepa;
+        this.codSup = codSup;
+        this.latitud = latitud;
+        this.longitud = longitud;
+    }
+    public Departamento(int codDepa, String desDepa, String codSup, float latitud, float longitud, Set<Provincia> provincias) {
        this.codDepa = codDepa;
        this.desDepa = desDepa;
        this.codSup = codSup;
        this.latitud = latitud;
        this.longitud = longitud;
+       this.provincias = provincias;
     }
    
      @Id 
@@ -79,6 +94,14 @@ public class Departamento  implements java.io.Serializable {
     
     public void setLongitud(float longitud) {
         this.longitud = longitud;
+    }
+@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY, mappedBy="departamento")
+    public Set<Provincia> getProvincias() {
+        return this.provincias;
+    }
+    
+    public void setProvincias(Set<Provincia> provincias) {
+        this.provincias = provincias;
     }
 
 

@@ -1,5 +1,5 @@
 package com.raitcon.hibernate.bean;
-// Generated 25/03/2016 09:41:30 AM by Hibernate Tools 3.2.1.GA
+// Generated 08/04/2016 09:59:28 PM by Hibernate Tools 3.2.1.GA
 
 
 import java.util.Date;
@@ -24,38 +24,53 @@ public class Personal  implements java.io.Serializable {
 
 
      private String codPersonal;
+     private Sexo sexo;
      private Ocupacion ocupacion;
      private String apPaterno;
      private String apMaterno;
      private String nombres;
      private Date fechaNacimiento;
-     private Character sexo;
      private String estadoCivil;
      private String especialidad;
      private String mail;
      private String telefono;
      private String direccion;
      private String dni;
-     private Character estado;
+     private char estado;
 
     public Personal() {
     }
 
-    public Personal(String codPersonal, Ocupacion ocupacion, String apPaterno, String apMaterno, String nombres, Date fechaNacimiento, Character sexo, String estadoCivil, String especialidad, String mail, String telefono, String direccion, String dni,Character state) {
+	
+    public Personal(String codPersonal, Sexo sexo, Ocupacion ocupacion, String apPaterno, String apMaterno, String nombres, Date fechaNacimiento, String estadoCivil, String mail, String direccion, String dni, char estado) {
+        this.codPersonal = codPersonal;
+        this.sexo = sexo;
+        this.ocupacion = ocupacion;
+        this.apPaterno = apPaterno;
+        this.apMaterno = apMaterno;
+        this.nombres = nombres;
+        this.fechaNacimiento = fechaNacimiento;
+        this.estadoCivil = estadoCivil;
+        this.mail = mail;
+        this.direccion = direccion;
+        this.dni = dni;
+        this.estado = estado;
+    }
+    public Personal(String codPersonal, Sexo sexo, Ocupacion ocupacion, String apPaterno, String apMaterno, String nombres, Date fechaNacimiento, String estadoCivil, String especialidad, String mail, String telefono, String direccion, String dni, char estado) {
        this.codPersonal = codPersonal;
+       this.sexo = sexo;
        this.ocupacion = ocupacion;
        this.apPaterno = apPaterno;
        this.apMaterno = apMaterno;
        this.nombres = nombres;
        this.fechaNacimiento = fechaNacimiento;
-       this.sexo = sexo;
        this.estadoCivil = estadoCivil;
        this.especialidad = especialidad;
        this.mail = mail;
        this.telefono = telefono;
        this.direccion = direccion;
        this.dni = dni;
-       this.estado=state;
+       this.estado = estado;
     }
    
      @Id 
@@ -67,6 +82,15 @@ public class Personal  implements java.io.Serializable {
     
     public void setCodPersonal(String codPersonal) {
         this.codPersonal = codPersonal;
+    }
+@ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="cod_sexo", nullable=false)
+    public Sexo getSexo() {
+        return this.sexo;
+    }
+    
+    public void setSexo(Sexo sexo) {
+        this.sexo = sexo;
     }
 @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="cod_ocupacion", nullable=false)
@@ -114,15 +138,6 @@ public class Personal  implements java.io.Serializable {
         this.fechaNacimiento = fechaNacimiento;
     }
     
-    @Column(name="sexo", nullable=false, length=1)
-    public Character getSexo() {
-        return this.sexo;
-    }
-    
-    public void setSexo(Character sexo) {
-        this.sexo = sexo;
-    }
-    
     @Column(name="estado_civil", nullable=false, length=45)
     public String getEstadoCivil() {
         return this.estadoCivil;
@@ -132,7 +147,7 @@ public class Personal  implements java.io.Serializable {
         this.estadoCivil = estadoCivil;
     }
     
-    @Column(name="especialidad", nullable=true, length=45)
+    @Column(name="especialidad", length=45)
     public String getEspecialidad() {
         return this.especialidad;
     }
@@ -150,7 +165,7 @@ public class Personal  implements java.io.Serializable {
         this.mail = mail;
     }
     
-    @Column(name="telefono", nullable=true, length=15)
+    @Column(name="telefono", length=15)
     public String getTelefono() {
         return this.telefono;
     }
@@ -177,14 +192,13 @@ public class Personal  implements java.io.Serializable {
         this.dni = dni;
     }
     
-    
     @Column(name="estado", nullable=false, length=1)
-    public Character getEstado() {
+    public char getEstado() {
         return this.estado;
     }
     
-    public void setEstado(Character state) {
-        this.estado = state;
+    public void setEstado(char estado) {
+        this.estado = estado;
     }
 
 
