@@ -612,7 +612,7 @@
                         </rich:column>
                         <rich:column>
                             <a4j:commandLink styleClass="no-decor" 
-                                             render="dptoPcte" 
+                                             render="dptoPcte,provPcte,distPcte" 
                                              execute="@this" action="#{pacienteBean.pintarFrmDpto()}"
                                               onclick="#{rich:component('popupDpto')}.hide()">
                                 <h:graphicImage value="/images/icons/verify.gif"/>
