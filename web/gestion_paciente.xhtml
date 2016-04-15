@@ -360,7 +360,76 @@
                         
                         <h:outputText  id="txtMensaje" value="#{pacienteBean.mensaje}" style="color:#ff0000;"  />
                    
+                       <h:panelGrid columns="1" id="gridPaciente">
+                    <rich:dataTable value="#{pacienteBean.listPaciente}" 
+                                    var="pcte" 
+                                    id="tbpaciente" 
+                                    rows="15">
+                        <rich:column>
+                            <f:facet name="header">Codigo</f:facet>
+                            <h:outputText value="#{pcte.codPaciente}" />
+                        </rich:column>
+                        <rich:column>
+                            <f:facet name="header">Nombres</f:facet>
+                            <h:outputText value="#{pcte.nombre1}" />
+                        </rich:column>
+                        <rich:column>
+                            <f:facet name="header">Apellido Paterno</f:facet>
+                            <h:outputText value="#{pcte.apPaterno}" />
+                        </rich:column>
+                        <rich:column>
+                            <f:facet name="header">Apellido Materno</f:facet>
+                            <h:outputText value="#{pcte.apMaterno}" />
+                        </rich:column>
+                        <rich:column>
+                            <f:facet name="header">Dni</f:facet>
+                            <h:outputText value="#{pcte.dni}" />
+                        </rich:column>
+                        <rich:column>
+                            <f:facet name="header">Dirección</f:facet>
+                            <h:outputText value="#{pcte.direccion}" />
+                        </rich:column>
+                                            
+                        <rich:column>
+                            <f:facet name="header">Teléfono</f:facet>
+                            <h:outputText value="#{pcte.telefono}" />
+                        </rich:column>
+                        <rich:column>
+                            <f:facet name="header">Email</f:facet>
+                            <h:outputText value="#{pcte.email}" />
+                        </rich:column>
+                        <rich:column>
+                            <f:facet name="header">Fecha</f:facet>
+                            <h:outputText value="#{pcte.fechaNacimiento}" />
+                        </rich:column>
+
+                        <rich:column>
+                            <a4j:commandLink styleClass="no-decor" 
+                                             render="codPaciente,dniPcte,nom1Pcte,nom2Pcte,telfPcte,emailPcte,
+                                             apePatPcte,apeMatPcte,dirPcte,calNacPcte,calRegPcte
+                                             ,sexPcte,estcPcte,ocupPcte,instPcte,tipPcte" 
+                                             execute="@this" action="#{pacienteBean.pintarFrmPcte()}"
+                                              onclick="#{rich:component('popupPaciente')}.hide();">
+                                <h:graphicImage value="/images/icons/verify.gif"/>
+                                <f:setPropertyActionListener target="#{pacienteBean.codPaciente}" value="#{paciente.codPaciente}" />
+                            </a4j:commandLink>
+                            <a4j:commandLink styleClass="no-decor" render="editGrid, vin, mage, price" execute="@this"
+                                oncomplete="#{rich:component('editPane')}.show()" actionListener="#{carsBean.resetValues()}">
+                                <h:graphicImage value="/images/icons/edit.gif" alt="edit" />
+                                <a4j:param value="#{it.index}" assignTo="#{carsBean.currentCarIndex}" />
+                                <f:setPropertyActionListener target="#{carsBean.editedCar}" value="#{car}" />
+                            </a4j:commandLink>
+                        </rich:column>
+
+                        <f:facet name="footer">
+                            <rich:dataScroller page="1" />
+                        </f:facet>
+                    </rich:dataTable>
+                </h:panelGrid> 
+                        
                     </rich:panel>
+                
+                
                
             </h:form> 
             <h:form enctype="multipart/form-data">
@@ -384,9 +453,9 @@
                     <h:outputText value="#{fileUploadFormBean.fileUpload.size}" />
                 </h:panelGrid>
                </rich:panel>     
-Tiempo que ha tardado la página en cargarse: <span id="tmp">Calculando...</span> segundos.
-        </h:form>
 
+        </h:form>
+  
             
             <rich:popupPanel id="popupPaciente" 
                              autosized="true" 

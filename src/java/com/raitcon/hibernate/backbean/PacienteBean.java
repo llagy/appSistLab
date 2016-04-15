@@ -80,7 +80,8 @@ public class PacienteBean implements Serializable {
     
     
     public PacienteBean(){
-        opcionSave=0;
+        this.opcionSave=0;
+        this.listPacienteAll();
     }
 
     public Integer getIdTipoPac() {
@@ -416,6 +417,10 @@ public class PacienteBean implements Serializable {
                 paciente.setEstacivil(estaCivil);
                 Instruccion instruccion=new Instruccion();
                 instruccion.setCodInstruccion(idInstruccion);
+                paciente.setInstruccion(instruccion);
+                Distrito distrito=new Distrito();
+                distrito.setCodDistrito(this.codDistrito);
+                paciente.setDistrito(distrito);
                 PacienteDB pacienteDB = new PacienteDB();
 
                     result = pacienteDB.insertPaciente(paciente);
@@ -443,6 +448,7 @@ public class PacienteBean implements Serializable {
                 log.error("Se generó errores al actualizar paciente:"+ ex);
             }
         }
+        this.listPacienteAll();
         
         
     }
@@ -475,6 +481,10 @@ public class PacienteBean implements Serializable {
             paciente.setEstacivil(estaCivil);
             Instruccion instruccion=new Instruccion();
             instruccion.setCodInstruccion(idInstruccion);
+            paciente.setInstruccion(instruccion);
+            Distrito distrito =new Distrito();
+            distrito.setCodDistrito(codDistrito);
+            paciente.setDistrito(distrito);
             PacienteDB pacienteDB = new PacienteDB();
         
         pacienteDB.updatePaciente(paciente, codPaciente);
@@ -636,6 +646,7 @@ public class PacienteBean implements Serializable {
     
     public void getOpcNew(){
          this.opcionSave=0;
+         System.out.println("opcionSave:"+opcionSave);
          this.mensaje="";
     }
     
