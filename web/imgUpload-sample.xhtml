@@ -47,6 +47,17 @@
                 <a4j:commandButton action="#{fileUploadBean.clearUploadData}" render="info, upload" value="Clear Uploaded Data"
                     rendered="#{fileUploadBean.size>0}" />
             </h:panelGroup>
+            <h:panelGrid rendered="#{not empty(fileUploadFormBean.fileUpload)}" columns="2"  >
+                
+                <h:outputText value="fileName:" />
+                <h:outputText value="#{fileUploadFormBean.fileUpload.submittedFileName}" />
+                
+                <h:outputText value="contentType:" />
+                <h:outputText value="#{fileUploadFormBean.fileUpload.contentType}" />
+                
+                <h:outputText value="size:" />
+                <h:outputText value="#{fileUploadFormBean.fileUpload.size}" />
+            </h:panelGrid>
         </h:panelGrid>
     </h:form>
 </ui:composition>

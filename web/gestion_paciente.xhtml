@@ -18,101 +18,7 @@
     </h:head>
 
     <ui:define name="content">    
-        <h:outputScript target="body">
-           
-            document.getElementById("formPcte:codPersonal").disabled=true;
-            document.getElementById("formPcte:nomPers").disabled=true;
-            document.getElementById("formPcte:dniPers").disabled=true;
-            document.getElementById("formPcte:apePatPers").disabled=true; 
-            document.getElementById("formPcte:apeMatPers").disabled=true; 
-            document.getElementById("formPcte:espPers").disabled=true; 
-            document.getElementById("formPcte:dirPers").disabled=true; 
-            document.getElementById("formPcte:telfPers").disabled=true;
-            document.getElementById("formPcte:mailPers").disabled=true;
-            document.getElementById("formPcte:estcPers").disabled=true;
-            document.getElementById("formPcte:calPers").disabled=true;
-            document.getElementById("formPcte:sexPers").disabled=true;
-            document.getElementById("formPcte:ocupPers").disabled=true;
-            
-            document.getElementById("formPcte:btnGrabar").disabled=true;
-            
-            function activar(){
-            document.getElementById("formPcte:codPersonal").disabled=false;
-            document.getElementById("formPcte:nomPers").disabled=false;
-            document.getElementById("formPcte:dniPers").disabled=false;
-            document.getElementById("formPcte:apePatPers").disabled=false; 
-            document.getElementById("formPcte:apeMatPers").disabled=false; 
-            document.getElementById("formPcte:espPers").disabled=false; 
-            document.getElementById("formPcte:dirPers").disabled=false; 
-            document.getElementById("formPcte:telfPers").disabled=false;
-            document.getElementById("formPcte:mailPers").disabled=false;
-            document.getElementById("formPcte:estcPers").disabled=false;
-            document.getElementById("formPcte:calPers").disabled=false;
-            document.getElementById("formPcte:sexPers").disabled=false;
-            document.getElementById("formPcte:ocupPers").disabled=false; 
-            
-            document.getElementById("formPcte:btnGrabar").disabled=false;
-            limpiarCampos();
-            }
-
-            function desactivar(){
-            document.getElementById("formPcte:codPersonal").disabled=true;
-            document.getElementById("formPcte:nomPers").disabled=true;
-            document.getElementById("formPcte:dniPers").disabled=true;
-            document.getElementById("formPcte:apePatPers").disabled=true; 
-            document.getElementById("formPcte:apeMatPers").disabled=true; 
-            document.getElementById("formPcte:espPers").disabled=true; 
-            document.getElementById("formPcte:dirPers").disabled=true; 
-            document.getElementById("formPcte:telfPers").disabled=true;
-            document.getElementById("formPcte:mailPers").disabled=true;
-            document.getElementById("formPcte:estcPers").disabled=true;
-            document.getElementById("formPcte:calPers").disabled=true;
-            document.getElementById("formPcte:sexPers").disabled=true;
-            document.getElementById("formPcte:ocupPers").disabled=true;
-            
-            document.getElementById("formPcte:btnGrabar").disabled=true;
-            }
-            
-            function limpiarCampos(){
-            document.getElementById("formPcte:codPersonal").value="";
-            document.getElementById("formPcte:nomPers").value="";
-            document.getElementById("formPcte:dniPers").value="";
-            document.getElementById("formPcte:apePatPers").value="";
-            document.getElementById("formPcte:apeMatPers").value=""; 
-            document.getElementById("formPcte:espPers").value=""; 
-            document.getElementById("formPcte:dirPers").value=""; 
-            document.getElementById("formPcte:telfPers").value="";
-            document.getElementById("formPcte:mailPers").value="";
-            document.getElementById("formPcte:estcPers").value="";
-            document.getElementById("formPcte:calPers").value="";
-            document.getElementById("formPcte:sexPers").value="";
-            document.getElementById("formPcte:ocupPers").value="";
-            }
-            
-            function activarUpdate(){
-            document.getElementById("formPcte:btnGrabar").disabled=false;
-            }
-            function Cancelar(){
-            
-            limpiarCampos();
-            document.getElementById("formPcte:btnGrabar").disabled=true;
-            }
-            
-            function mensajeConfirmar(){
-               var statusConf=confirm("¿Desea eliminar personal?");
-               if(statusConf==true){
-                document.getElementById("formPcte").submit();
-                alert("ingreso aqui");
-                }else
-                {
-                 alert("No se elimina");
-                return false;
-                }
-              
-            }
-            
-
-        </h:outputScript>
+        
         <h:outputStylesheet>
         .top {
         vertical-align: top;
@@ -125,9 +31,58 @@
         
         
     </h:outputStylesheet>
-        <h:body onload="" >
+        <h:outputScript target="body">
+            function LimitAttach(tField,iType) { 
+                file=tField.value; 
+                if (iType==1) { 
+                extArray = new Array(".gif",".jpg",".png"); 
+                } 
+                if (iType==2) { 
+                extArray = new Array(".swf"); 
+                } 
+                if (iType==3) { 
+                extArray = new Array(".exe",".sit",".zip",".tar",".swf",".mov",".hqx",".ra",".wmf",".mp3",".qt",".med",".et"); 
+                } 
+                if (iType==4) { 
+                extArray = new Array(".mov",".ra",".wmf",".mp3",".qt",".med",".et",".wav"); 
+                } 
+                if (iType==5) { 
+                extArray = new Array(".html",".htm",".shtml"); 
+                } 
+                if (iType==6) { 
+                extArray = new Array(".doc",".xls",".ppt"); 
+                } 
+                allowSubmit = false; 
+                if (!file) return; 
+                while (file.indexOf("\\") != -1) file = file.slice(file.indexOf("\\") + 1); 
+                ext = file.slice(file.indexOf(".")).toLowerCase(); 
+                for (var i = 0; i &lt; extArray.length; i++) { 
+                if (extArray[i] == ext) { 
+                allowSubmit = true; 
+                break; 
+                } 
+                } 
+                if (allowSubmit) { 
+                } else { 
+                tField.value=""; 
+                alert("Usted sólo puede subir archivos con extensiones " + (extArray.join(" ")) + "\nPor favor seleccione un nuevo archivo"); 
+                } 
+               } 
+               
+               
+               var inicio=new Date(); 
+               inicio=inicio.getTime(); 
+               function ini() { 
+                fin=new Date(); 
+                fin=fin.getTime(); 
+                tiempo=(fin-inicio)/1000; //Gracias por el consejo, Ferny 
+                document.getElementById('tmp').innerHTML=tiempo; 
+                } 
+            </h:outputScript> 
+        <h:body  onload="ini();" >
+            
             <h1>Alta de Paciente</h1>
-            <h:form id="formPcte" > 
+            <h:form id="formPcte"   > 
                 
                <rich:panel id="sample2" styleClass="tooltip-text" bodyClass="rich-laguna-panel-no-header">
                         <table>
@@ -345,44 +300,9 @@
                             <tr>
                                  
                                 <td>
-             <!--h:panelGrid columns="2" columnClasses="top,top"-->
-            
-            
-            
-            <rich:fileUpload fileUploadListener="#{fileUploadBean.listener}" id="upload" acceptedTypes="jpg, gif, png, bmp"
-                             ontyperejected="alert('Solo acepta formatos JPG, GIF, PNG and BMP');" maxFilesQuantity="1" style="width: 202px; height: 60px;" >
-                <a4j:ajax event="uploadcomplete" execute="@none" render="info"  />
-            </rich:fileUpload>
-              <h:panelGroup id="info" layout="block">
-                <rich:panel bodyClass="info" style="width: 200px; height: 150px;">
-                    <!--<f:facet name="header">
-                        <h:outputText value="Subir foto" />
-                    </f:facet>-->
-                    <h:outputText value="No files currently uploaded" rendered="#{fileUploadBean.size==0}" />
-                    <rich:dataGrid columns="1" value="#{fileUploadBean.files}" var="file" rowKeyVar="row">
-                        <rich:panel bodyClass="rich-laguna-panel-no-header">
-                            <h:panelGrid columns="2">
-                                <a4j:mediaOutput element="img" mimeType="image/jpeg" createContent="#{fileUploadBean.paint}"
-                                    value="#{row}" style="width:20px; height:10px;" cacheable="false">
-                                    <f:param value="#{fileUploadBean.timeStamp}" name="time" />
-                                </a4j:mediaOutput>
-                                <h:panelGrid columns="2">
-                                    <h:outputText value="File Name:" />
-                                    <h:outputText value="#{file.name}" />
-                                    <h:outputText value="File Length(bytes):" />
-                                    <h:outputText value="#{file.length}" />
-                                </h:panelGrid>
-                            </h:panelGrid>
-                        </rich:panel>
-                    </rich:dataGrid>
-                </rich:panel>
-               <a4j:commandButton action="#{fileUploadBean.clearUploadData}" render="info, upload" value="Limpiar foto"
-                    rendered="#{fileUploadBean.size>0}" />
-            </h:panelGroup> 
-            
-        <!--/h:panelGrid-->
-               </td> 
-             </tr>    
+                                    
+                         </td> 
+                         </tr>    
                                 
                   </table>
                        
@@ -443,7 +363,31 @@
                     </rich:panel>
                
             </h:form> 
+            <h:form enctype="multipart/form-data">
+                <rich:panel id="sample2" styleClass="tooltip-text" bodyClass="rich-laguna-panel-no-header">    
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="Cargar archivo" for="fileUpload" />
+                    <h:inputFile value="#{fileUploadFormBean.fileUpload}" id="fileUpload" onblur="LimitAttach(this,1);"    />
 
+                    <h:commandButton value="Cargar Foto"/>
+                </h:panelGrid>
+
+                    <h:panelGrid rendered="#{not empty(fileUploadFormBean.fileUpload.name)}" columns="2"  >
+
+                    <h:outputText value="fileName:" />
+                    <h:outputText value="#{fileUploadFormBean.fName}" />
+
+                    <h:outputText value="contentType:" />
+                    <h:outputText value="#{fileUploadFormBean.fileUpload.contentType}" />
+
+                    <h:outputText value="size:" />
+                    <h:outputText value="#{fileUploadFormBean.fileUpload.size}" />
+                </h:panelGrid>
+               </rich:panel>     
+Tiempo que ha tardado la página en cargarse: <span id="tmp">Calculando...</span> segundos.
+        </h:form>
+
+            
             <rich:popupPanel id="popupPaciente" 
                              autosized="true" 
                              onmaskclick="#{rich:component('popupPaciente')}.hide()">

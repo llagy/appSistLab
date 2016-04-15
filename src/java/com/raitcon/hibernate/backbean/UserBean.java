@@ -27,7 +27,7 @@ import javax.validation.constraints.Size;
  * @author Mike
  */
 @ManagedBean(name="userBean")
- @SessionScoped
+@SessionScoped
 public class UserBean implements Serializable {
 
    /* public List<String> autocomplete(String prefix) {

@@ -16,3 +16,4 @@ nbproject/
 *.war
 *.ear
 /dist/
+/build/
