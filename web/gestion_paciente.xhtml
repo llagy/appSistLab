@@ -82,7 +82,7 @@
         <h:body  onload="" >
             
             <h1>Alta de Paciente</h1>
-            <h:form id="formPcte"   > 
+            <h:form id="formPcte"    > 
                 
                <rich:panel id="sample2" styleClass="tooltip-text" bodyClass="rich-laguna-panel-no-header">
                         <table>
@@ -342,7 +342,7 @@
                      
                     </rich:panel>
                     <rich:panel id="sample3" styleClass="tooltip-text" bodyClass="rich-laguna-panel-no-header">    
-                <span>
+                     <span>
                                 <h:panelGroup>
                                 <h:outputText value="Código:" />
                             <h:inputText id="codPcte" 
@@ -405,15 +405,19 @@
                         </rich:column>
 
                         <rich:column>
-                               <a4j:commandLink styleClass="no-decor" render="formPcte" execute="@form"
+                               <a4j:commandLink styleClass="no-decor" render="codPaciente,dniPcte,nom1Pcte,nom2Pcte,telfPcte,emailPcte,
+                                             apePatPcte,apeMatPcte,dirPcte,calNacPcte,calRegPcte
+                                             ,sexPcte,estcPcte,ocupPcte,instPcte,tipPcte,dptoPcte,provPcte,distPcte" execute="@this"
                                   action="#{pacienteBean.pintarFrmPcte()}">
                                  <h:graphicImage value="/images/icons/edit.gif" alt="edit" />
                                  <f:setPropertyActionListener target="#{pacienteBean.editPaciente}" value="#{pcte}" />
                             </a4j:commandLink>
                             
                             
-                             <a4j:commandLink styleClass="no-decor" render="formPcte" execute="@this"
-                                              action="#{pacienteBean.clearFrmPaciente()}">
+                             <a4j:commandLink styleClass="no-decor" render="codPaciente,dniPcte,nom1Pcte,nom2Pcte,telfPcte,emailPcte,
+                                             apePatPcte,apeMatPcte,dirPcte,calNacPcte,calRegPcte
+                                             ,sexPcte,estcPcte,ocupPcte,instPcte,tipPcte,dptoPcte,provPcte,distPcte" execute="@this"
+                                              action="#{pacienteBean.getOpcNew()}">
                                 <h:graphicImage value="/images/icons/new.gif" alt="new" />
                                                          
                             </a4j:commandLink>

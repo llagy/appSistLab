@@ -489,7 +489,7 @@ public class PacienteBean implements Serializable {
 
     public void updatePaciente() throws HibernateException, Exception {
             Paciente paciente = new Paciente();
-            
+            System.out.println("codPaciente::"+codPaciente);
             paciente.setCodPaciente(codPaciente);
             paciente.setNombre1(nombre1);
             paciente.setNombre2(nombre2);
@@ -678,6 +678,7 @@ public class PacienteBean implements Serializable {
     
     public void getOpcSave(){
          this.opcionSave=1;
+         System.out.println("opcionSave:"+opcionSave);
          this.mensaje="";
     }
     
@@ -721,6 +722,7 @@ public class PacienteBean implements Serializable {
         this.ocupacion=null;
         this.sexo=null;
         this.telefono=null;
+       
     }
     
 }
