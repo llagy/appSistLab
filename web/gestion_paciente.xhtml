@@ -72,14 +72,14 @@
                
                var inicio=new Date(); 
                inicio=inicio.getTime(); 
-               function ini() { 
+               /*function ini() { 
                 fin=new Date(); 
                 fin=fin.getTime(); 
                 tiempo=(fin-inicio)/1000; //Gracias por el consejo, Ferny 
                 document.getElementById('tmp').innerHTML=tiempo; 
-                } 
+                } */
             </h:outputScript> 
-        <h:body  onload="ini();" >
+        <h:body  onload="" >
             
             <h1>Alta de Paciente</h1>
             <h:form id="formPcte"   > 
@@ -93,8 +93,7 @@
                             
                             <h:panelGroup>
                                 <h:inputText id="codPaciente"  style="width: 125px;"
-                                         value="#{pacienteBean.codPaciente}" required="true" 
-                                         requiredMessage="Código paciente es requerido."
+                                         value="#{pacienteBean.codPaciente}" 
                                          >
                                 
                             </h:inputText>
@@ -110,8 +109,7 @@
 
                             <h:outputText value="Primer nombre: "/>
                             <h:inputText id="nom1Pcte"
-                                         value="#{pacienteBean.nombre1}" required="true" 
-                                         requiredMessage="Nombre es requerido."
+                                         value="#{pacienteBean.nombre1}" 
                                          >
                             </h:inputText>
                              <h:outputText value="Segundo nombre: "/>
@@ -123,23 +121,20 @@
                             <h:outputText value="Apellido Paterno:" />
                             <h:inputText id="apePatPcte" 
                                          value="#{pacienteBean.apPaterno}"
-                                         required="true" 
-                                         requiredMessage="Apellido Paterno es requerido."
+                                        
                                          >
                             </h:inputText>
 
                             <h:outputText value="Apellido Materno:" />
                             <h:inputText id="apeMatPcte" 
                                          value="#{pacienteBean.apMaterno}"
-                                         required="true" 
-                                         requiredMessage="Apellido Materno es requerido."
+                                        
                                          >
                             </h:inputText>
                             <h:outputText value="DNI:" />
                             <h:inputText id="dniPcte" 
                                          value="#{pacienteBean.dni}"
-                                         required="true" 
-                                         requiredMessage="DNI es requerido."
+                                         
                                          >
                             </h:inputText>
                              <h:outputText value="email" />
@@ -161,8 +156,7 @@
                             <h:outputText value="F.Nacimiento: " />
                             <rich:calendar id="calNacPcte"
                                            value="#{pacienteBean.fechaNacimiento}"
-                                           locale="#{calendarBean.locale}" required="true"
-                                           requiredMessage="Fecha de Nacimiento es requerido."
+                                           locale="#{calendarBean.locale}" 
                                            
                                            >         
                             </rich:calendar>
@@ -171,8 +165,7 @@
                             
                             <rich:calendar id="calRegPcte"
                                            value="#{pacienteBean.fechaIngreso}" 
-                                           locale="#{calendarBean.locale}" required="true"
-                                           requiredMessage="Fecha de Registro es requerido."
+                                           locale="#{calendarBean.locale}" 
                                            
                                            >         
                             </rich:calendar>
@@ -314,30 +307,20 @@
                     <rich:panel id="sample1" styleClass="tooltip-text" bodyClass="rich-laguna-panel-no-header">
 
                         <span >
-                            <span >
-                                <a4j:commandButton id="btnNuevo" 
-                                                   value="Nuevo" 
-                                                   onclick="activar()"
-                                                   action="#{pacienteBean.getOpcNew()}"  
-                                                   render="codPersonal,txtMensaje"
-                                                   execute="@this"   >
-                                </a4j:commandButton>
-                            </span>
-                            <span >
-                                 <a4j:commandButton id="btnEditar" 
-                                                   value="Editar" 
-                                                   onclick="activarUpdate();"
-                                                   action="#{pacienteBean.getOpcSave()}"  
-                                                   render="codPersonal,txtMensaje"
-                                                   execute="@this"   
-                                                   >
-                                </a4j:commandButton>
-                            </span>
+                           
+                          
                             <span >
                                 <h:commandButton id="btnGrabar" 
                                                  value="Grabar" 
-                                                 action="#{pacienteBean.agregarPaciente()}"
-                                                 />
+                                                 action="#{pacienteBean.agregarPaciente()}" 
+                                                  />
+                                
+                                
+                                <a4j:commandButton id="btnGrabar1" 
+                                                 value="Grabar11" 
+                                                 action="#{pacienteBean.agregarPaciente()}"  execute="@form" render="tbpaciente"
+                                                  />
+                                
                                 
                             </span>
 
@@ -348,25 +331,43 @@
                                                    execute="@this"   >
                                 </a4j:commandButton>
                             </span>
+                            
                           
                         </span>
                         <br/>
-                        <rich:message for="codPaciente" ajaxRendered="true" />
-                        <rich:message for="nomPcte" ajaxRendered="true" />
-                        <rich:message for="dniPcte" ajaxRendered="true" />
-                        <rich:message for="apePatPcte" ajaxRendered="true" />
-                        <rich:message for="apeMatPcte" ajaxRendered="true" />
-                        
+                                              
                         
                         <h:outputText  id="txtMensaje" value="#{pacienteBean.mensaje}" style="color:#ff0000;"  />
                    
-                       <h:panelGrid columns="1" id="gridPaciente">
+                     
+                    </rich:panel>
+                    <rich:panel id="sample3" styleClass="tooltip-text" bodyClass="rich-laguna-panel-no-header">    
+                <span>
+                                <h:panelGroup>
+                                <h:outputText value="Código:" />
+                            <h:inputText id="codPcte" 
+                                         value="#{pacienteBean.codPcteFind}" style="width: 150px;"
+                                         >
+                            </h:inputText>
+                                <a4j:commandButton id="btnBuscar" 
+                                                   value="Buscar" 
+                                                   action="#{pacienteBean.listPacienteById()}"  
+                                                   render="tbpaciente"
+                                                   execute="@form"   >
+                                </a4j:commandButton>
+                            
+                          
+                            
+                            </h:panelGroup>
+                                
+                            </span>
+                  <h:panelGrid columns="1" id="gridPaciente">
                     <rich:dataTable value="#{pacienteBean.listPaciente}" 
                                     var="pcte" 
                                     id="tbpaciente" 
                                     rows="15">
                         <rich:column>
-                            <f:facet name="header">Codigo</f:facet>
+                            <f:facet name="header">Código</f:facet>
                             <h:outputText value="#{pcte.codPaciente}" />
                         </rich:column>
                         <rich:column>
@@ -404,20 +405,17 @@
                         </rich:column>
 
                         <rich:column>
-                            <a4j:commandLink styleClass="no-decor" 
-                                             render="codPaciente,dniPcte,nom1Pcte,nom2Pcte,telfPcte,emailPcte,
-                                             apePatPcte,apeMatPcte,dirPcte,calNacPcte,calRegPcte
-                                             ,sexPcte,estcPcte,ocupPcte,instPcte,tipPcte" 
-                                             execute="@this" action="#{pacienteBean.pintarFrmPcte()}"
-                                              onclick="#{rich:component('popupPaciente')}.hide();">
-                                <h:graphicImage value="/images/icons/verify.gif"/>
-                                <f:setPropertyActionListener target="#{pacienteBean.codPaciente}" value="#{paciente.codPaciente}" />
+                               <a4j:commandLink styleClass="no-decor" render="formPcte" execute="@form"
+                                  action="#{pacienteBean.pintarFrmPcte()}">
+                                 <h:graphicImage value="/images/icons/edit.gif" alt="edit" />
+                                 <f:setPropertyActionListener target="#{pacienteBean.editPaciente}" value="#{pcte}" />
                             </a4j:commandLink>
-                            <a4j:commandLink styleClass="no-decor" render="editGrid, vin, mage, price" execute="@this"
-                                oncomplete="#{rich:component('editPane')}.show()" actionListener="#{carsBean.resetValues()}">
-                                <h:graphicImage value="/images/icons/edit.gif" alt="edit" />
-                                <a4j:param value="#{it.index}" assignTo="#{carsBean.currentCarIndex}" />
-                                <f:setPropertyActionListener target="#{carsBean.editedCar}" value="#{car}" />
+                            
+                            
+                             <a4j:commandLink styleClass="no-decor" render="formPcte" execute="@this"
+                                              action="#{pacienteBean.clearFrmPaciente()}">
+                                <h:graphicImage value="/images/icons/new.gif" alt="new" />
+                                                         
                             </a4j:commandLink>
                         </rich:column>
 
@@ -426,14 +424,12 @@
                         </f:facet>
                     </rich:dataTable>
                 </h:panelGrid> 
-                        
-                    </rich:panel>
-                
+                 </rich:panel>  
                 
                
             </h:form> 
-            <h:form enctype="multipart/form-data">
-                <rich:panel id="sample2" styleClass="tooltip-text" bodyClass="rich-laguna-panel-no-header">    
+             <h:form enctype="multipart/form-data">
+                <rich:panel id="sample4" styleClass="tooltip-text" bodyClass="rich-laguna-panel-no-header">    
                 <h:panelGrid columns="2">
                     <h:outputLabel value="Cargar archivo" for="fileUpload" />
                     <h:inputFile value="#{fileUploadFormBean.fileUpload}" id="fileUpload" onblur="LimitAttach(this,1);"    />
@@ -455,6 +451,10 @@
                </rich:panel>     
 
         </h:form>
+            <h:form>
+                      
+            </h:form>
+           
   
             
             <rich:popupPanel id="popupPaciente" 
@@ -511,11 +511,11 @@
                             <a4j:commandLink styleClass="no-decor" 
                                              render="codPaciente,dniPcte,nom1Pcte,nom2Pcte,telfPcte,emailPcte,
                                              apePatPcte,apeMatPcte,dirPcte,calNacPcte,calRegPcte
-                                             ,sexPcte,estcPcte,ocupPcte,instPcte,tipPcte" 
+                                             ,sexPcte,estcPcte,ocupPcte,instPcte,tipPcte,dptoPcte,provPcte,distPcte" 
                                              execute="@this" action="#{pacienteBean.pintarFrmPcte()}"
-                                              onclick="#{rich:component('popupPaciente')}.hide()">
+                                              onclick="#{rich:component('popupPaciente')}.hide();">
                                 <h:graphicImage value="/images/icons/verify.gif"/>
-                                <f:setPropertyActionListener target="#{pacienteBean.codPaciente}" value="#{paciente.codPaciente}" />
+                                <f:setPropertyActionListener target="#{pacienteBean.editPaciente}" value="#{paciente}" />
                             </a4j:commandLink>
                         </rich:column>
 

@@ -21,6 +21,7 @@ import com.raitcon.hibernate.db.PacienteDB;
 import com.raitcon.hibernate.db.ProvinciaDB;
 import com.raitcon.hibernate.db.SexoDB;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -42,6 +43,7 @@ public class PacienteBean implements Serializable {
      private static final long serialVersionUID = -2377612760546575078L;
     protected static Logger log = Logger.getLogger(PacienteBean.class); 
     private String codPaciente;
+    private String codPcteFind;
     private Integer idTipoPac;
     private String descTipPac;
     private Character codSexo;
@@ -76,11 +78,12 @@ public class PacienteBean implements Serializable {
     private String descProv;
     private Integer codDistrito;
     private String descDistrito;
-    
+    Paciente editPaciente;
     
     
     public PacienteBean(){
-        this.opcionSave=0;
+       // this.opcionSave=0;
+        System.out.println("Se instancia constructor");
         this.listPacienteAll();
     }
 
@@ -375,17 +378,46 @@ public class PacienteBean implements Serializable {
         this.codSexo = codSexo;
     }
 
+    public Paciente getEditPaciente() {
+        return editPaciente;
+    }
+
+    public void setEditPaciente(Paciente editPaciente) {
+        this.editPaciente = editPaciente;
+    }
+
+    public String getCodPcteFind() {
+        return codPcteFind;
+    }
+
+    public void setCodPcteFind(String codPcteFind) {
+        this.codPcteFind = codPcteFind;
+    }
+    
+    
+
     //Metodos de Mantenimiento (CRUD)
     public void listPacienteAll() {
         listPaciente = null;
         PacienteDB pacienteDB = new PacienteDB();
         listPaciente = pacienteDB.getPacienteAll();
     }
+    
+     public void listPacienteById() {
+        listPaciente = null;
+                PacienteDB pacienteDB = new PacienteDB();
+        Paciente pcte= pacienteDB.getPacienteByCod(this.codPcteFind);
+        if (pcte!=null){
+         listPaciente= new ArrayList<Paciente>();
+        listPaciente.add(pcte);
+        }
+    }
 
   
     
   
     public void agregarPaciente() {
+        System.out.println("Llegoo aquii 111");
         int result = 0;
         if (this.opcionSave !=1){
             try {
@@ -439,12 +471,14 @@ public class PacienteBean implements Serializable {
             try {
                 updatePaciente();
                 result=1;
-                 mensaje = "* Paciente con código "+codPaciente +", se actulizó satisfactoriamente." ;
+                 mensaje = "* Paciente con código "+codPaciente +", se actualizó satisfactoriamente." ;
             } catch (HibernateException ex) {
                 mensaje = "* Paciente con código "+codPaciente +", no se pudo actualizar." ;
+                System.out.println("Se generó errores al actualizar paciente:"+ ex);
                 log.error("Se generó errores al actualizar paciente:"+ ex);
             } catch (Exception ex) {
                 mensaje = "* Paciente con código "+codPaciente +", no se pudo actualizar." ;
+                System.out.println("Se generó errores al actualizar paciente:"+ ex);
                 log.error("Se generó errores al actualizar paciente:"+ ex);
             }
         }
@@ -455,6 +489,7 @@ public class PacienteBean implements Serializable {
 
     public void updatePaciente() throws HibernateException, Exception {
             Paciente paciente = new Paciente();
+            
             paciente.setCodPaciente(codPaciente);
             paciente.setNombre1(nombre1);
             paciente.setNombre2(nombre2);
@@ -521,33 +556,35 @@ public class PacienteBean implements Serializable {
 
     public void pintarFrmPcte() {
 
-        System.out.println("codigo personal: " + codPaciente);
-        Paciente pcte = null;
-        PacienteDB persDB = new PacienteDB();
-        pcte = persDB.getPacienteByCod(codPaciente);
-        
-        if(pcte != null){
-            this.codPaciente = pcte.getCodPaciente();
-            this.dni = pcte.getDni();
-            this.nombre1 = pcte.getNombre1();
-            this.nombre2=pcte.getNombre2();
-            this.apPaterno = pcte.getApPaterno();
-            this.apMaterno = pcte.getApMaterno();
-            this.direccion = pcte.getDireccion();
-            this.fechaNacimiento = pcte.getFechaNacimiento();
-            this.fechaIngreso=pcte.getFechaIngreso();
-            this.telefono=pcte.getTelefono();
-            this.email=pcte.getEmail();
+        System.out.println("codigo personal: " +this.editPaciente.getCodPaciente());
+       // Paciente pcte = null;
+        //PacienteDB persDB = new PacienteDB();
+        //pcte = persDB.getPacienteByCod(codPaciente);
+        // if(pcte != null){
+        if(this.editPaciente != null){
+            this.codPaciente = editPaciente.getCodPaciente();
+            this.dni = editPaciente.getDni();
+            this.nombre1 = editPaciente.getNombre1();
+            this.nombre2=editPaciente.getNombre2();
+            this.apPaterno = editPaciente.getApPaterno();
+            this.apMaterno = editPaciente.getApMaterno();
+            this.direccion = editPaciente.getDireccion();
+            this.fechaNacimiento = editPaciente.getFechaNacimiento();
+            this.fechaIngreso=editPaciente.getFechaIngreso();
+            this.telefono=editPaciente.getTelefono();
+            this.email=editPaciente.getEmail();
            
-            this.ocupacion=pcte.getOcupacion();
-            this.sexo = pcte.getSexo();
-            this.codSexo=pcte.getSexo().getCodSexo();
-            this.idOcupacion=pcte.getOcupacion().getCodOcupacion();
-            this.descOcupacion=pcte.getOcupacion().getDescripcion();
-            this.idEstaCivil=pcte.getEstacivil().getCodEstacivil();
-            this.idInstruccion=pcte.getInstruccion().getCodInstruccion();
-            this.idTipoPac=pcte.getTipoPaciente().getIdTipoPaciente();
-           
+            this.ocupacion=editPaciente.getOcupacion();
+            this.sexo = editPaciente.getSexo();
+            this.codSexo=editPaciente.getSexo().getCodSexo();
+            this.idOcupacion=editPaciente.getOcupacion().getCodOcupacion();
+            this.descOcupacion=editPaciente.getOcupacion().getDescripcion();
+            this.idEstaCivil=editPaciente.getEstacivil().getCodEstacivil();
+            this.idInstruccion=editPaciente.getInstruccion().getCodInstruccion();
+            this.idTipoPac=editPaciente.getTipoPaciente().getIdTipoPaciente();
+            this.codDpto=editPaciente.getDistrito().getProvincia().getDepartamento().getCodDepa();
+            this.codProv=editPaciente.getDistrito().getProvincia().getCodProvincia();
+            this.codDistrito=editPaciente.getDistrito().getCodDistrito();
             //Activamos opcion para guardar
             getOpcSave();
         }
@@ -647,7 +684,43 @@ public class PacienteBean implements Serializable {
     public void getOpcNew(){
          this.opcionSave=0;
          System.out.println("opcionSave:"+opcionSave);
-         this.mensaje="";
+         clearFrmPaciente();
+         //this.mensaje="";
+    }
+    
+    
+    public void clearFrmPaciente(){
+        this.codPaciente=null;
+        this.codDistrito=null;
+        this.codDpto=null;
+        this.codProv=null;
+        this.codSexo=null;
+        this.apMaterno=null;
+        this.apPaterno=null;
+        this.descDistrito=null;
+        this.descDpto=null;
+        this.descEstaCivil=null;
+        this.descInstruccion=null;
+        this.descOcupacion=null;
+        this.descProv=null;
+        this.descSexo=null;
+        this.descTipPac=null;
+        this.direccion=null;
+        this.dni=null;
+        this.email=null;
+        this.fechaIngreso=null;
+        this.fechaNacimiento=null;
+        this.foto=null;
+        this.idEstaCivil=null;
+        this.idInstruccion=null;
+        this.idOcupacion=null;
+        this.idTipoPac=null;
+        this.mensaje=null;
+        this.nombre1=null;
+        this.nombre2=null;
+        this.ocupacion=null;
+        this.sexo=null;
+        this.telefono=null;
     }
     
 }
