@@ -1,5 +1,5 @@
 package com.raitcon.hibernate.bean;
-// Generated 23/04/2016 06:58:33 PM by Hibernate Tools 3.2.1.GA
+// Generated 23/04/2016 11:00:37 PM by Hibernate Tools 3.2.1.GA
 
 
 import java.util.Date;
@@ -29,17 +29,17 @@ public class Venta  implements java.io.Serializable {
 
      private String codCompVenta;
      private Procedencia procedencia;
+     private Personal personal;
+     private Paciente paciente;
      private TipoPago tipoPago;
      private TipoDocumento tipoDocumento;
      private String talonario;
      private String codVenta;
      private int ejercicio;
      private Character estadoProceso;
-     private String codPaciente;
      private String ruc;
      private Character estado;
      private Date fecha;
-     private Integer codPersonal;
      private Set<DetVenta> detVentas = new HashSet<DetVenta>(0);
 
     public Venta() {
@@ -54,20 +54,20 @@ public class Venta  implements java.io.Serializable {
         this.ejercicio = ejercicio;
         this.ruc = ruc;
     }
-    public Venta(String codCompVenta, Procedencia procedencia, TipoPago tipoPago, TipoDocumento tipoDocumento, String talonario, String codVenta, int ejercicio, Character estadoProceso, String codPaciente, String ruc, Character estado, Date fecha, Integer codPersonal, Set<DetVenta> detVentas) {
+    public Venta(String codCompVenta, Procedencia procedencia, Personal personal, Paciente paciente, TipoPago tipoPago, TipoDocumento tipoDocumento, String talonario, String codVenta, int ejercicio, Character estadoProceso, String ruc, Character estado, Date fecha, Set<DetVenta> detVentas) {
        this.codCompVenta = codCompVenta;
        this.procedencia = procedencia;
+       this.personal = personal;
+       this.paciente = paciente;
        this.tipoPago = tipoPago;
        this.tipoDocumento = tipoDocumento;
        this.talonario = talonario;
        this.codVenta = codVenta;
        this.ejercicio = ejercicio;
        this.estadoProceso = estadoProceso;
-       this.codPaciente = codPaciente;
        this.ruc = ruc;
        this.estado = estado;
        this.fecha = fecha;
-       this.codPersonal = codPersonal;
        this.detVentas = detVentas;
     }
    
@@ -89,6 +89,24 @@ public class Venta  implements java.io.Serializable {
     
     public void setProcedencia(Procedencia procedencia) {
         this.procedencia = procedencia;
+    }
+@ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="cod_personal")
+    public Personal getPersonal() {
+        return this.personal;
+    }
+    
+    public void setPersonal(Personal personal) {
+        this.personal = personal;
+    }
+@ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="cod_paciente")
+    public Paciente getPaciente() {
+        return this.paciente;
+    }
+    
+    public void setPaciente(Paciente paciente) {
+        this.paciente = paciente;
     }
 @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="id_tipo_pago")
@@ -145,15 +163,6 @@ public class Venta  implements java.io.Serializable {
         this.estadoProceso = estadoProceso;
     }
     
-    @Column(name="cod_paciente", length=11)
-    public String getCodPaciente() {
-        return this.codPaciente;
-    }
-    
-    public void setCodPaciente(String codPaciente) {
-        this.codPaciente = codPaciente;
-    }
-    
     @Column(name="ruc", nullable=false, length=11)
     public String getRuc() {
         return this.ruc;
@@ -179,15 +188,6 @@ public class Venta  implements java.io.Serializable {
     
     public void setFecha(Date fecha) {
         this.fecha = fecha;
-    }
-    
-    @Column(name="cod_personal")
-    public Integer getCodPersonal() {
-        return this.codPersonal;
-    }
-    
-    public void setCodPersonal(Integer codPersonal) {
-        this.codPersonal = codPersonal;
     }
 @OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY, mappedBy="venta")
     public Set<DetVenta> getDetVentas() {

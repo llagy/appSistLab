@@ -1,5 +1,5 @@
 package com.raitcon.hibernate.bean;
-// Generated 08/04/2016 10:38:47 PM by Hibernate Tools 3.2.1.GA
+// Generated 23/04/2016 11:00:37 PM by Hibernate Tools 3.2.1.GA
 
 
 import java.util.HashSet;
@@ -28,7 +28,7 @@ public class Provincia  implements java.io.Serializable {
      private Departamento departamento;
      private String desProvincia;
      private Set<Distrito> distritos = new HashSet<Distrito>(0);
-     
+     private Set<Distrito> distritos_1 = new HashSet<Distrito>(0);
 
     public Provincia() {
     }
@@ -39,12 +39,12 @@ public class Provincia  implements java.io.Serializable {
         this.departamento = departamento;
         this.desProvincia = desProvincia;
     }
-    public Provincia(int codProvincia, Departamento departamento, String desProvincia, Set<Distrito> distritos) {
+    public Provincia(int codProvincia, Departamento departamento, String desProvincia, Set<Distrito> distritos, Set<Distrito> distritos_1) {
        this.codProvincia = codProvincia;
        this.departamento = departamento;
        this.desProvincia = desProvincia;
        this.distritos = distritos;
-       
+       this.distritos_1 = distritos_1;
     }
    
      @Id 
@@ -82,6 +82,14 @@ public class Provincia  implements java.io.Serializable {
     
     public void setDistritos(Set<Distrito> distritos) {
         this.distritos = distritos;
+    }
+@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY, mappedBy="provincia")
+    public Set<Distrito> getDistritos_1() {
+        return this.distritos_1;
+    }
+    
+    public void setDistritos_1(Set<Distrito> distritos_1) {
+        this.distritos_1 = distritos_1;
     }
 
 

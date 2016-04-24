@@ -1,5 +1,5 @@
 package com.raitcon.hibernate.bean;
-// Generated 23/04/2016 06:58:33 PM by Hibernate Tools 3.2.1.GA
+// Generated 23/04/2016 11:00:37 PM by Hibernate Tools 3.2.1.GA
 
 
 import java.util.HashSet;

@@ -1,5 +1,5 @@
 package com.raitcon.hibernate.bean;
-// Generated 23/04/2016 06:58:33 PM by Hibernate Tools 3.2.1.GA
+// Generated 23/04/2016 11:00:37 PM by Hibernate Tools 3.2.1.GA
 
 
 import java.util.HashSet;
@@ -25,6 +25,7 @@ public class ValRef  implements java.io.Serializable {
      private int idValRef;
      private String descripcion;
      private Set<PruebaValRef> pruebaValRefs = new HashSet<PruebaValRef>(0);
+     private Set<PruebaValRef> pruebaValRefs_1 = new HashSet<PruebaValRef>(0);
 
     public ValRef() {
     }
@@ -33,10 +34,11 @@ public class ValRef  implements java.io.Serializable {
     public ValRef(int idValRef) {
         this.idValRef = idValRef;
     }
-    public ValRef(int idValRef, String descripcion, Set<PruebaValRef> pruebaValRefs) {
+    public ValRef(int idValRef, String descripcion, Set<PruebaValRef> pruebaValRefs, Set<PruebaValRef> pruebaValRefs_1) {
        this.idValRef = idValRef;
        this.descripcion = descripcion;
        this.pruebaValRefs = pruebaValRefs;
+       this.pruebaValRefs_1 = pruebaValRefs_1;
     }
    
      @Id 
@@ -65,6 +67,14 @@ public class ValRef  implements java.io.Serializable {
     
     public void setPruebaValRefs(Set<PruebaValRef> pruebaValRefs) {
         this.pruebaValRefs = pruebaValRefs;
+    }
+@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY, mappedBy="valRef")
+    public Set<PruebaValRef> getPruebaValRefs_1() {
+        return this.pruebaValRefs_1;
+    }
+    
+    public void setPruebaValRefs_1(Set<PruebaValRef> pruebaValRefs_1) {
+        this.pruebaValRefs_1 = pruebaValRefs_1;
     }
 
 

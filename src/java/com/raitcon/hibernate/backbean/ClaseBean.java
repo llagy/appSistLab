@@ -5,6 +5,7 @@
 package com.raitcon.hibernate.backbean;
 
 import com.raitcon.hibernate.bean.Clase;
+import com.raitcon.hibernate.bean.Grupo;
 import com.raitcon.hibernate.db.ClaseDB;
 import java.io.Serializable;
 import java.util.HashSet;
@@ -98,8 +99,9 @@ public class ClaseBean implements Serializable{
         if (this.opcionSave !=1){
             Clase clase = new Clase();
             clase.setIdClase(idClase);
-            clase.setDesClase(desClase);
-            clase.setCodGrupo(idGrupo);
+            clase.setDescripcion(desClase);
+            Grupo grupo=new Grupo(idGrupo,"");
+            clase.setGrupo(grupo);
             
             ClaseDB claseDB = new ClaseDB();
             try {
@@ -136,8 +138,9 @@ public class ClaseBean implements Serializable{
     public void updateClase() throws HibernateException, Exception {
             Clase clase = new Clase();
             clase.setIdClase(this.idClase);
-            clase.setDesClase(this.getDesClase());
-            clase.setCodGrupo(idGrupo);
+            clase.setDescripcion(this.getDesClase());
+            Grupo grupo =new Grupo(idGrupo,"");
+            clase.setGrupo(grupo);
             ClaseDB claseDB = new ClaseDB();
             claseDB.updateClase(clase, idClase);
     }
@@ -152,10 +155,9 @@ public class ClaseBean implements Serializable{
         
         if(clase != null){
             this.idClase = clase.getIdClase();
-            this.desClase = clase.getDesClase();
-            this.idGrupo=clase.getCodGrupo();
-            
-            //Activamos opcion para guardar
+            this.desClase = clase.getDescripcion();
+            this.idGrupo=clase.getGrupo().getIdGrupo();
+          //Activamos opcion para guardar
             getOpcSave();
         }
      }

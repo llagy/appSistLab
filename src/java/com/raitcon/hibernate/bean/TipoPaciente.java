@@ -1,10 +1,15 @@
 package com.raitcon.hibernate.bean;
-// Generated 23/04/2016 06:58:33 PM by Hibernate Tools 3.2.1.GA
+// Generated 23/04/2016 11:00:37 PM by Hibernate Tools 3.2.1.GA
 
 
+import java.util.HashSet;
+import java.util.Set;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -19,13 +24,22 @@ public class TipoPaciente  implements java.io.Serializable {
 
      private int idTipoPaciente;
      private String descripcion;
+     private Set<Paciente> pacientes = new HashSet<Paciente>(0);
+     private Set<Paciente> pacientes_1 = new HashSet<Paciente>(0);
 
     public TipoPaciente() {
     }
 
+	
     public TipoPaciente(int idTipoPaciente, String descripcion) {
+        this.idTipoPaciente = idTipoPaciente;
+        this.descripcion = descripcion;
+    }
+    public TipoPaciente(int idTipoPaciente, String descripcion, Set<Paciente> pacientes, Set<Paciente> pacientes_1) {
        this.idTipoPaciente = idTipoPaciente;
        this.descripcion = descripcion;
+       this.pacientes = pacientes;
+       this.pacientes_1 = pacientes_1;
     }
    
      @Id 
@@ -46,6 +60,22 @@ public class TipoPaciente  implements java.io.Serializable {
     
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
+    }
+@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY, mappedBy="tipoPaciente")
+    public Set<Paciente> getPacientes() {
+        return this.pacientes;
+    }
+    
+    public void setPacientes(Set<Paciente> pacientes) {
+        this.pacientes = pacientes;
+    }
+@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY, mappedBy="tipoPaciente")
+    public Set<Paciente> getPacientes_1() {
+        return this.pacientes_1;
+    }
+    
+    public void setPacientes_1(Set<Paciente> pacientes_1) {
+        this.pacientes_1 = pacientes_1;
     }
 
 

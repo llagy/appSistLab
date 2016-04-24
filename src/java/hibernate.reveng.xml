@@ -3,10 +3,19 @@
 <hibernate-reverse-engineering>
   <schema-selection match-catalog="db_laboratorio"/>
   
+  
     <table-filter match-name="clase"/>
+    <table-filter match-name="departamento"/>
+    <table-filter match-name="provincia"/>
+    <table-filter match-name="distrito"/>
+    <table-filter match-name="estacivil"/>
     <table-filter match-name="grupo"/>
     <table-filter match-name="examen"/>
     <table-filter match-name="estudio"/>
+    <table-filter match-name="instruccion"/>
+    <table-filter match-name="ocupacion"/>
+    <table-filter match-name="paciente"/>
+    <table-filter match-name="personal"/>
     <table-filter match-name="prueba"/>
     <table-filter match-name="autoanalizador"/>
     <table-filter match-name="det_venta"/>
@@ -20,5 +29,6 @@
     <table-filter match-name="tipo_resultado"/> 
     <table-filter match-name="val_ref"/>
     <table-filter match-name="venta"/>
+    <table-filter match-name="sexo"/>
      
   </hibernate-reverse-engineering>

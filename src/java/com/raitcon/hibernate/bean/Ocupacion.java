@@ -1,5 +1,5 @@
 package com.raitcon.hibernate.bean;
-// Generated 08/04/2016 10:38:47 PM by Hibernate Tools 3.2.1.GA
+// Generated 23/04/2016 11:00:37 PM by Hibernate Tools 3.2.1.GA
 
 
 import java.util.HashSet;
@@ -24,8 +24,10 @@ public class Ocupacion  implements java.io.Serializable {
 
      private int codOcupacion;
      private String descripcion;
+     private Character estado;
      private Set<Paciente> pacientes = new HashSet<Paciente>(0);
      private Set<Paciente> pacientes_1 = new HashSet<Paciente>(0);
+     private Set<Personal> personals = new HashSet<Personal>(0);
 
     public Ocupacion() {
     }
@@ -34,11 +36,13 @@ public class Ocupacion  implements java.io.Serializable {
     public Ocupacion(int codOcupacion) {
         this.codOcupacion = codOcupacion;
     }
-    public Ocupacion(int codOcupacion, String descripcion, Set<Paciente> pacientes, Set<Paciente> pacientes_1) {
+    public Ocupacion(int codOcupacion, String descripcion, Character estado, Set<Paciente> pacientes, Set<Paciente> pacientes_1, Set<Personal> personals) {
        this.codOcupacion = codOcupacion;
        this.descripcion = descripcion;
+       this.estado = estado;
        this.pacientes = pacientes;
        this.pacientes_1 = pacientes_1;
+       this.personals = personals;
     }
    
      @Id 
@@ -60,6 +64,15 @@ public class Ocupacion  implements java.io.Serializable {
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
+    
+    @Column(name="estado", length=1)
+    public Character getEstado() {
+        return this.estado;
+    }
+    
+    public void setEstado(Character estado) {
+        this.estado = estado;
+    }
 @OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY, mappedBy="ocupacion")
     public Set<Paciente> getPacientes() {
         return this.pacientes;
@@ -75,6 +88,14 @@ public class Ocupacion  implements java.io.Serializable {
     
     public void setPacientes_1(Set<Paciente> pacientes_1) {
         this.pacientes_1 = pacientes_1;
+    }
+@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY, mappedBy="ocupacion")
+    public Set<Personal> getPersonals() {
+        return this.personals;
+    }
+    
+    public void setPersonals(Set<Personal> personals) {
+        this.personals = personals;
     }
 
 

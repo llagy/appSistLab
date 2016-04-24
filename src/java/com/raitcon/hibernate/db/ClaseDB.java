@@ -79,7 +79,7 @@ public class ClaseDB {
             Clase clasUpdate = (Clase) session.get(Clase.class, code);
             
             clasUpdate.setIdClase(clase.getIdClase());
-            clasUpdate.setDesClase(clase.getDesClase());
+            clasUpdate.setDescripcion(clase.getDescripcion());
          
             session.update(clasUpdate);
             

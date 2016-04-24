@@ -1,14 +1,18 @@
 package com.raitcon.hibernate.bean;
-// Generated 08/04/2016 09:59:28 PM by Hibernate Tools 3.2.1.GA
+// Generated 23/04/2016 11:00:37 PM by Hibernate Tools 3.2.1.GA
 
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -37,6 +41,7 @@ public class Personal  implements java.io.Serializable {
      private String direccion;
      private String dni;
      private char estado;
+     private Set<Venta> ventas = new HashSet<Venta>(0);
 
     public Personal() {
     }
@@ -56,7 +61,7 @@ public class Personal  implements java.io.Serializable {
         this.dni = dni;
         this.estado = estado;
     }
-    public Personal(String codPersonal, Sexo sexo, Ocupacion ocupacion, String apPaterno, String apMaterno, String nombres, Date fechaNacimiento, String estadoCivil, String especialidad, String mail, String telefono, String direccion, String dni, char estado) {
+    public Personal(String codPersonal, Sexo sexo, Ocupacion ocupacion, String apPaterno, String apMaterno, String nombres, Date fechaNacimiento, String estadoCivil, String especialidad, String mail, String telefono, String direccion, String dni, char estado, Set<Venta> ventas) {
        this.codPersonal = codPersonal;
        this.sexo = sexo;
        this.ocupacion = ocupacion;
@@ -71,6 +76,7 @@ public class Personal  implements java.io.Serializable {
        this.direccion = direccion;
        this.dni = dni;
        this.estado = estado;
+       this.ventas = ventas;
     }
    
      @Id 
@@ -199,6 +205,14 @@ public class Personal  implements java.io.Serializable {
     
     public void setEstado(char estado) {
         this.estado = estado;
+    }
+@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY, mappedBy="personal")
+    public Set<Venta> getVentas() {
+        return this.ventas;
+    }
+    
+    public void setVentas(Set<Venta> ventas) {
+        this.ventas = ventas;
     }
 
 

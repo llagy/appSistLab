@@ -1,5 +1,5 @@
 package com.raitcon.hibernate.bean;
-// Generated 08/04/2016 10:38:47 PM by Hibernate Tools 3.2.1.GA
+// Generated 23/04/2016 11:00:37 PM by Hibernate Tools 3.2.1.GA
 
 
 import java.util.HashSet;
@@ -25,6 +25,7 @@ public class Sexo  implements java.io.Serializable {
      private char codSexo;
      private String descripcion;
      private Set<Paciente> pacientes = new HashSet<Paciente>(0);
+     private Set<Personal> personals = new HashSet<Personal>(0);
      private Set<Paciente> pacientes_1 = new HashSet<Paciente>(0);
 
     public Sexo() {
@@ -35,10 +36,11 @@ public class Sexo  implements java.io.Serializable {
         this.codSexo = codSexo;
         this.descripcion = descripcion;
     }
-    public Sexo(char codSexo, String descripcion, Set<Paciente> pacientes, Set<Paciente> pacientes_1) {
+    public Sexo(char codSexo, String descripcion, Set<Paciente> pacientes, Set<Personal> personals, Set<Paciente> pacientes_1) {
        this.codSexo = codSexo;
        this.descripcion = descripcion;
        this.pacientes = pacientes;
+       this.personals = personals;
        this.pacientes_1 = pacientes_1;
     }
    
@@ -68,6 +70,14 @@ public class Sexo  implements java.io.Serializable {
     
     public void setPacientes(Set<Paciente> pacientes) {
         this.pacientes = pacientes;
+    }
+@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY, mappedBy="sexo")
+    public Set<Personal> getPersonals() {
+        return this.personals;
+    }
+    
+    public void setPersonals(Set<Personal> personals) {
+        this.personals = personals;
     }
 @OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY, mappedBy="sexo")
     public Set<Paciente> getPacientes_1() {

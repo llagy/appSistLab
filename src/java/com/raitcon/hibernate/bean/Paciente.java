@@ -1,14 +1,18 @@
 package com.raitcon.hibernate.bean;
-// Generated 08/04/2016 10:38:47 PM by Hibernate Tools 3.2.1.GA
+// Generated 23/04/2016 11:00:37 PM by Hibernate Tools 3.2.1.GA
 
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -41,17 +45,20 @@ public class Paciente  implements java.io.Serializable {
      private String email;
      private byte[] foto;
      private Character estado;
+     private String dni;
+     private Set<Venta> ventas = new HashSet<Venta>(0);
 
     public Paciente() {
     }
 
 	
-    public Paciente(String codPaciente, TipoPaciente tipoPaciente, Sexo sexo, Estacivil estacivil, Ocupacion ocupacion, Instruccion instruccion, String nombre1, String apPaterno, String apMaterno, Date fechaNacimiento, Date fechaIngreso, String direccion) {
+    public Paciente(String codPaciente, TipoPaciente tipoPaciente, Sexo sexo, Estacivil estacivil, Ocupacion ocupacion, Distrito distrito, Instruccion instruccion, String nombre1, String apPaterno, String apMaterno, Date fechaNacimiento, Date fechaIngreso, String direccion) {
         this.codPaciente = codPaciente;
         this.tipoPaciente = tipoPaciente;
         this.sexo = sexo;
         this.estacivil = estacivil;
         this.ocupacion = ocupacion;
+        this.distrito = distrito;
         this.instruccion = instruccion;
         this.nombre1 = nombre1;
         this.apPaterno = apPaterno;
@@ -60,7 +67,7 @@ public class Paciente  implements java.io.Serializable {
         this.fechaIngreso = fechaIngreso;
         this.direccion = direccion;
     }
-    public Paciente(String codPaciente, TipoPaciente tipoPaciente, Sexo sexo, Estacivil estacivil, Ocupacion ocupacion, Distrito distrito, Instruccion instruccion, String nombre1, String nombre2, String apPaterno, String apMaterno, Date fechaNacimiento, Date fechaIngreso, String direccion, String telefono, String email, byte[] foto, Character estado) {
+    public Paciente(String codPaciente, TipoPaciente tipoPaciente, Sexo sexo, Estacivil estacivil, Ocupacion ocupacion, Distrito distrito, Instruccion instruccion, String nombre1, String nombre2, String apPaterno, String apMaterno, Date fechaNacimiento, Date fechaIngreso, String direccion, String telefono, String email, byte[] foto, Character estado, String dni, Set<Venta> ventas) {
        this.codPaciente = codPaciente;
        this.tipoPaciente = tipoPaciente;
        this.sexo = sexo;
@@ -79,6 +86,8 @@ public class Paciente  implements java.io.Serializable {
        this.email = email;
        this.foto = foto;
        this.estado = estado;
+       this.dni = dni;
+       this.ventas = ventas;
     }
    
      @Id 
@@ -128,7 +137,7 @@ public class Paciente  implements java.io.Serializable {
         this.ocupacion = ocupacion;
     }
 @ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="cod_distrito")
+    @JoinColumn(name="cod_distrito", nullable=false)
     public Distrito getDistrito() {
         return this.distrito;
     }
@@ -218,8 +227,6 @@ public class Paciente  implements java.io.Serializable {
         this.telefono = telefono;
     }
     
-  
-    
     @Column(name="email", length=60)
     public String getEmail() {
         return this.email;
@@ -245,6 +252,23 @@ public class Paciente  implements java.io.Serializable {
     
     public void setEstado(Character estado) {
         this.estado = estado;
+    }
+    
+    @Column(name="dni", length=11)
+    public String getDni() {
+        return this.dni;
+    }
+    
+    public void setDni(String dni) {
+        this.dni = dni;
+    }
+@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY, mappedBy="paciente")
+    public Set<Venta> getVentas() {
+        return this.ventas;
+    }
+    
+    public void setVentas(Set<Venta> ventas) {
+        this.ventas = ventas;
     }
 
 

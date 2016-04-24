@@ -1,5 +1,5 @@
 package com.raitcon.hibernate.bean;
-// Generated 23/04/2016 06:58:33 PM by Hibernate Tools 3.2.1.GA
+// Generated 23/04/2016 11:00:37 PM by Hibernate Tools 3.2.1.GA
 
 
 import java.util.HashSet;
@@ -27,6 +27,7 @@ public class TipoResultado  implements java.io.Serializable {
      private Integer idTipoResultado;
      private String descripcion;
      private Set<Prueba> pruebas = new HashSet<Prueba>(0);
+     private Set<Prueba> pruebas_1 = new HashSet<Prueba>(0);
 
     public TipoResultado() {
     }
@@ -35,9 +36,10 @@ public class TipoResultado  implements java.io.Serializable {
     public TipoResultado(String descripcion) {
         this.descripcion = descripcion;
     }
-    public TipoResultado(String descripcion, Set<Prueba> pruebas) {
+    public TipoResultado(String descripcion, Set<Prueba> pruebas, Set<Prueba> pruebas_1) {
        this.descripcion = descripcion;
        this.pruebas = pruebas;
+       this.pruebas_1 = pruebas_1;
     }
    
      @Id @GeneratedValue(strategy=IDENTITY)
@@ -66,6 +68,14 @@ public class TipoResultado  implements java.io.Serializable {
     
     public void setPruebas(Set<Prueba> pruebas) {
         this.pruebas = pruebas;
+    }
+@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY, mappedBy="tipoResultado")
+    public Set<Prueba> getPruebas_1() {
+        return this.pruebas_1;
+    }
+    
+    public void setPruebas_1(Set<Prueba> pruebas_1) {
+        this.pruebas_1 = pruebas_1;
     }
 
 
