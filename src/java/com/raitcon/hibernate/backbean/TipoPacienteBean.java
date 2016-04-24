@@ -9,6 +9,7 @@ import com.raitcon.hibernate.bean.Clase;
 import com.raitcon.hibernate.bean.TipoPaciente;
 import com.raitcon.hibernate.db.ClaseDB;
 import com.raitcon.hibernate.db.TipoPacienteDB;
+import java.io.Serializable;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
@@ -21,8 +22,8 @@ import org.hibernate.HibernateException;
  */
 @ManagedBean(name = "tipoPacienteBean")
 @ViewScoped
-public class TipoPacienteBean {
-     private static final long serialVersionUID = -2377612760546575078L;
+public class TipoPacienteBean implements Serializable {
+    private static final long serialVersionUID = -2377612760546575078L;
     protected static Logger log = Logger.getLogger(TipoPacienteBean.class); 
     private int idTipoPaciente;
     private String descripcion;

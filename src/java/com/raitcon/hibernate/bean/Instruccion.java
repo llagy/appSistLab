@@ -25,7 +25,7 @@ public class Instruccion  implements java.io.Serializable {
      private int codInstruccion;
      private String descripcion;
      private Set<Paciente> pacientes = new HashSet<Paciente>(0);
-     private Set<Paciente> pacientes_1 = new HashSet<Paciente>(0);
+ ;
 
     public Instruccion() {
     }
@@ -34,11 +34,11 @@ public class Instruccion  implements java.io.Serializable {
     public Instruccion(int codInstruccion) {
         this.codInstruccion = codInstruccion;
     }
-    public Instruccion(int codInstruccion, String descripcion, Set<Paciente> pacientes, Set<Paciente> pacientes_1) {
+    public Instruccion(int codInstruccion, String descripcion, Set<Paciente> pacientes) {
        this.codInstruccion = codInstruccion;
        this.descripcion = descripcion;
        this.pacientes = pacientes;
-       this.pacientes_1 = pacientes_1;
+     
     }
    
      @Id 
@@ -68,14 +68,7 @@ public class Instruccion  implements java.io.Serializable {
     public void setPacientes(Set<Paciente> pacientes) {
         this.pacientes = pacientes;
     }
-@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY, mappedBy="instruccion")
-    public Set<Paciente> getPacientes_1() {
-        return this.pacientes_1;
-    }
-    
-    public void setPacientes_1(Set<Paciente> pacientes_1) {
-        this.pacientes_1 = pacientes_1;
-    }
+
 
 
 

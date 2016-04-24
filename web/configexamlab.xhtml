@@ -32,306 +32,13 @@
         
     </h:outputStylesheet>
         <h:outputScript target="body">
-            function LimitAttach(tField,iType) { 
-                file=tField.value; 
-                if (iType==1) { 
-                extArray = new Array(".gif",".jpg",".png"); 
-                } 
-                if (iType==2) { 
-                extArray = new Array(".swf"); 
-                } 
-                if (iType==3) { 
-                extArray = new Array(".exe",".sit",".zip",".tar",".swf",".mov",".hqx",".ra",".wmf",".mp3",".qt",".med",".et"); 
-                } 
-                if (iType==4) { 
-                extArray = new Array(".mov",".ra",".wmf",".mp3",".qt",".med",".et",".wav"); 
-                } 
-                if (iType==5) { 
-                extArray = new Array(".html",".htm",".shtml"); 
-                } 
-                if (iType==6) { 
-                extArray = new Array(".doc",".xls",".ppt"); 
-                } 
-                allowSubmit = false; 
-                if (!file) return; 
-                while (file.indexOf("\\") != -1) file = file.slice(file.indexOf("\\") + 1); 
-                ext = file.slice(file.indexOf(".")).toLowerCase(); 
-                for (var i = 0; i &lt; extArray.length; i++) { 
-                if (extArray[i] == ext) { 
-                allowSubmit = true; 
-                break; 
-                } 
-                } 
-                if (allowSubmit) { 
-                } else { 
-                tField.value=""; 
-                alert("Usted sólo puede subir archivos con extensiones " + (extArray.join(" ")) + "\nPor favor seleccione un nuevo archivo"); 
-                } 
-               } 
-               
-               
-               var inicio=new Date(); 
-               inicio=inicio.getTime(); 
-               /*function ini() { 
-                fin=new Date(); 
-                fin=fin.getTime(); 
-                tiempo=(fin-inicio)/1000; //Gracias por el consejo, Ferny 
-                document.getElementById('tmp').innerHTML=tiempo; 
-                } */
+            
             </h:outputScript> 
         <h:body  onload="" >
             
             <h1>Alta de Paciente</h1>
-            <h:form id="formPcte"    > 
-                
-               <rich:panel id="sample2" styleClass="tooltip-text" bodyClass="rich-laguna-panel-no-header">
-                        <table>
-                            <tr>
-                                <td> <h:panelGrid columns="6" cellspacing="10">
-                          
-                            <h:outputText value="RUC/DNI:" />
-                            
-                            <h:panelGroup>
-                                <h:inputText id="codPaciente"  style="width: 125px;"
-                                         value="#{pacienteBean.codPaciente}" 
-                                         >
-                                
-                            </h:inputText>
-                             
-                                <a4j:commandButton id="btnListar" 
-                                                   value=".." 
-                                                   oncomplete="#{rich:component('popupPaciente')}.show()"
-                                                   action="#{pacienteBean.listPacienteAll()}"  
-                                                   render="popupPaciente"
-                                                   execute="@this"   >
-                                </a4j:commandButton>
-                            </h:panelGroup>
-
-                            <h:outputText value="Primer nombre: "/>
-                            <h:inputText id="nom1Pcte"
-                                         value="#{pacienteBean.nombre1}" 
-                                         >
-                            </h:inputText>
-                             <h:outputText value="Segundo nombre: "/>
-                            <h:inputText id="nom2Pcte"
-                                         value="#{pacienteBean.nombre2}"                                          >
-                            </h:inputText>
-                                 
-
-                            <h:outputText value="Apellido Paterno:" />
-                            <h:inputText id="apePatPcte" 
-                                         value="#{pacienteBean.apPaterno}"
-                                        
-                                         >
-                            </h:inputText>
-
-                            <h:outputText value="Apellido Materno:" />
-                            <h:inputText id="apeMatPcte" 
-                                         value="#{pacienteBean.apMaterno}"
-                                        
-                                         >
-                            </h:inputText>
-                            <h:outputText value="email" />
-                              <h:inputText id="emailPcte" value="#{pacienteBean.email}">
-                              </h:inputText>
-                            
-                            
-                            <h:outputText value="Direccion: " />
-                            <h:inputText id="dirPcte" 
-                                         value="#{pacienteBean.direccion}"
-                                         >
-                            </h:inputText>
-                            <h:outputText value="Teléfono: " />
-                            <h:inputText id="telfPcte" 
-                                         value="#{pacienteBean.telefono}"
-                                         >
-                            </h:inputText>
-                            
-                            <h:outputText value="F.Nacimiento: " />
-                            <rich:calendar id="calNacPcte"
-                                           value="#{pacienteBean.fechaNacimiento}"
-                                           locale="#{calendarBean.locale}" 
-                                           
-                                           >         
-                            </rich:calendar>
-                            
-                             <h:outputText value="F.Registro:" />
-                            
-                            <rich:calendar id="calRegPcte"
-                                           value="#{pacienteBean.fechaIngreso}" 
-                                           locale="#{calendarBean.locale}" 
-                                           
-                                           >         
-                            </rich:calendar>
-                            
-                            <h:panelGroup>
-                            <h:outputText value="Tipo Paciente:" />
-                               <h:inputText id="tipPcte" 
-                                            value="#{pacienteBean.idTipoPac}" style="width:30px;">
-                               </h:inputText>
-                               <a4j:commandButton id="btnTipPcte" 
-                                                   value=".." 
-                                                   oncomplete="#{rich:component('popupTipoPcte')}.show()"
-                                                   action="#{tipoPacienteBean.listTipoPacienteAll()}"  
-                                                   render="popupTipoPcte"
-                                                   execute="@this"   >
-                                </a4j:commandButton>   
-                             </h:panelGroup>
-                             <h:panelGroup>
-                            <h:outputText value="Estado Civil: " />
-                               <h:inputText id="estcPcte" 
-                                            value="#{pacienteBean.descEstaCivil}" style="width:30px;">
-                               </h:inputText>
-                               <a4j:commandButton id="btnEstcPcte" 
-                                                   value=".." 
-                                                   oncomplete="#{rich:component('popupEstaCivil')}.show()"
-                                                   action="#{estaCivilBean.listEstaCivilAll()}"  
-                                                   render="popupEstaCivil"
-                                                   execute="@this"   >
-                                </a4j:commandButton>
-                            </h:panelGroup>
-                             
-                             <h:panelGroup>
-                            <h:outputText value="Sexo: " />
-                               <h:inputText id="sexPcte" 
-                                            value="#{pacienteBean.codSexo}" style="width:30px;">
-                               </h:inputText>
-                               <a4j:commandButton id="btnSexo" 
-                                                   value=".." 
-                                                   oncomplete="#{rich:component('popupSexo')}.show()"
-                                                   action="#{sexoBean.listSexoAll()}"  
-                                                   render="popupSexo"
-                                                   execute="@this"   >
-                                </a4j:commandButton>
-                            </h:panelGroup>
-                             
-                             <h:panelGroup>
-                            <h:outputText value="Instrucción: " />
-                               <h:inputText id="instPcte" 
-                                            value="#{pacienteBean.idInstruccion}" style="width:30px;">
-                               </h:inputText>
-                               <a4j:commandButton id="btnInst" 
-                                                   value=".." 
-                                                   oncomplete="#{rich:component('popupInstruccion')}.show()"
-                                                   action="#{instruccionBean.listInstruccionAll()}"  
-                                                   render="popupInstruccion"
-                                                   execute="@this"   >
-                                </a4j:commandButton>
-                            </h:panelGroup>
-                            <h:panelGroup>
-                                <h:outputText value="Ocupación:" />
-                            <h:inputText id="ocupPcte" 
-                                         value="#{pacienteBean.idOcupacion}" style="width: 30px;"
-                                         >
-                            </h:inputText>
-                                <a4j:commandButton id="btnOcupacion" 
-                                                   value=".." 
-                                                   oncomplete="#{rich:component('popupOcupacion')}.show()"
-                                                   action="#{ocupacionBean.listOcupacionAll()}"  
-                                                   render="popupOcupacion"
-                                                   execute="@this"   >
-                                </a4j:commandButton>
-                            
-                          
-                            
-                            </h:panelGroup>
-                             
-                            <h:panelGroup>
-                            <h:outputText value="Departamento: " />
-                               <h:inputText id="dptoPcte" 
-                                            value="#{pacienteBean.codDpto}" style="width:30px;">
-                               </h:inputText>
-                               <a4j:commandButton id="btnDpto" 
-                                                   value=".." 
-                                                   oncomplete="#{rich:component('popupDpto')}.show()"
-                                                   action="#{departamentoBean.listDptoAll()}"  
-                                                   render="popupDpto"
-                                                   execute="@this"   >
-                                </a4j:commandButton>
-                            </h:panelGroup>
-                             
-                             <h:panelGroup>
-                            <h:outputText value="Provincia: " />
-                               <h:inputText id="provPcte" 
-                                            value="#{pacienteBean.codProv}" style="width:30px;">
-                               </h:inputText>
-                               <a4j:commandButton id="btnProv" 
-                                                   value=".." 
-                                                   oncomplete="#{rich:component('popupProv')}.show()"
-                                                   action="#{provinciaBean.listProvinciaByIdDpto()}"  
-                                                   render="popupProv"
-                                                   execute="@this"   >
-                                   <f:setPropertyActionListener target="#{provinciaBean.idDpto}" value="#{pacienteBean.codDpto}" />
-                                </a4j:commandButton>
-                            </h:panelGroup>
-                              <h:panelGroup>
-                            <h:outputText value="Distrito " />
-                               <h:inputText id="distPcte" 
-                                            value="#{pacienteBean.codDistrito}" style="width:30px;">
-                               </h:inputText>
-                               <a4j:commandButton id="btnDist" 
-                                                   value=".." 
-                                                   oncomplete="#{rich:component('popupDist')}.show()"
-                                                   action="#{distritoBean.listDistritoByIdProv()}"  
-                                                   render="popupDist"
-                                                   execute="@this"   >
-                                   <f:setPropertyActionListener target="#{distritoBean.idProvincia}" value="#{pacienteBean.codProv}" />
-                                </a4j:commandButton>
-                            </h:panelGroup>
-
-                        </h:panelGrid>
-                                </td> 
-                                         
-            
-                            </tr>
-                            <tr>
-                                 
-                                <td>
-                                    
-                         </td> 
-                         </tr>    
-                                
-                  </table>
-                       
-                        
-                   
-                    
-                   </rich:panel>          
-
-                    <rich:panel id="sample1" styleClass="tooltip-text" bodyClass="rich-laguna-panel-no-header">
-
-                        <span >
-                           
-                          
-                            <span >
-                                <h:commandButton id="btnGrabar" 
-                                                 value="Grabar" 
-                                                 action="#{pacienteBean.agregarPaciente()}" 
-                                                  />
-                                                              
-                               
-                                
-                                
-                            </span>
-
-                               <span >
-                                <a4j:commandButton id="btnCancelar" 
-                                                   value="Cancelar" 
-                                                   onclick="Cancelar();"
-                                                   execute="@this"   >
-                                </a4j:commandButton>
-                            </span>
-                            
-                          
-                        </span>
-                        <br/>
-                                              
-                        
-                        <h:outputText  id="txtMensaje" value="#{pacienteBean.mensaje}" style="color:#ff0000;"  />
-                   
-                     
-                    </rich:panel>
-                    <rich:panel id="sample3" styleClass="tooltip-text" bodyClass="rich-laguna-panel-no-header">    
+            <h:form id="frmConfEx"    > 
+                 <rich:panel id="sample3" styleClass="tooltip-text" bodyClass="rich-laguna-panel-no-header">    
                      <span>
                                 <h:panelGroup>
                                 <h:outputText value="Código:" />
@@ -373,6 +80,10 @@
                             <h:outputText value="#{pcte.apMaterno}" />
                         </rich:column>
                         <rich:column>
+                            <f:facet name="header">Dni</f:facet>
+                            <h:outputText value="#{pcte.dni}" />
+                        </rich:column>
+                        <rich:column>
                             <f:facet name="header">Dirección</f:facet>
                             <h:outputText value="#{pcte.direccion}" />
                         </rich:column>
@@ -394,7 +105,7 @@
                             <h:outputText value="#{pcte.sexo.descripcion}" />
                         </rich:column>
                         <rich:column>
-                               <a4j:commandLink styleClass="no-decor" render="codPaciente,nom1Pcte,nom2Pcte,telfPcte,emailPcte,
+                               <a4j:commandLink styleClass="no-decor" render="codPaciente,dniPcte,nom1Pcte,nom2Pcte,telfPcte,emailPcte,
                                              apePatPcte,apeMatPcte,dirPcte,calNacPcte,calRegPcte
                                              ,sexPcte,estcPcte,ocupPcte,instPcte,tipPcte,dptoPcte,provPcte,distPcte" execute="@this"
                                   action="#{pacienteBean.pintarFrmPcte()}">
@@ -403,7 +114,7 @@
                             </a4j:commandLink>
                             
                             
-                             <a4j:commandLink styleClass="no-decor" render="codPaciente,nom1Pcte,nom2Pcte,telfPcte,emailPcte,
+                             <a4j:commandLink styleClass="no-decor" render="codPaciente,dniPcte,nom1Pcte,nom2Pcte,telfPcte,emailPcte,
                                              apePatPcte,apeMatPcte,dirPcte,calNacPcte,calRegPcte
                                              ,sexPcte,estcPcte,ocupPcte,instPcte,tipPcte,dptoPcte,provPcte,distPcte" execute="@this"
                                               action="#{pacienteBean.getOpcNew()}">
@@ -421,32 +132,7 @@
                 
                
             </h:form> 
-             <h:form enctype="multipart/form-data">
-                <rich:panel id="sample4" styleClass="tooltip-text" bodyClass="rich-laguna-panel-no-header">    
-                <h:panelGrid columns="2">
-                    <h:outputLabel value="Cargar archivo" for="fileUpload" />
-                    <h:inputFile value="#{fileUploadFormBean.fileUpload}" id="fileUpload" onblur="LimitAttach(this,1);"    />
-
-                    <h:commandButton value="Cargar Foto"/>
-                </h:panelGrid>
-
-                    <h:panelGrid rendered="#{not empty(fileUploadFormBean.fileUpload.name)}" columns="2"  >
-
-                    <h:outputText value="fileName:" />
-                    <h:outputText value="#{fileUploadFormBean.fName}" />
-
-                    <h:outputText value="contentType:" />
-                    <h:outputText value="#{fileUploadFormBean.fileUpload.contentType}" />
-
-                    <h:outputText value="size:" />
-                    <h:outputText value="#{fileUploadFormBean.fileUpload.size}" />
-                </h:panelGrid>
-               </rich:panel>     
-
-        </h:form>
-            <h:form>
-                      
-            </h:form>
+             
            
   
             
@@ -479,6 +165,10 @@
                             <h:outputText value="#{paciente.apMaterno}" />
                         </rich:column>
                         <rich:column>
+                            <f:facet name="header">Dni</f:facet>
+                            <h:outputText value="#{paciente.dni}" />
+                        </rich:column>
+                        <rich:column>
                             <f:facet name="header">Dirección</f:facet>
                             <h:outputText value="#{paciente.direccion}" />
                         </rich:column>
@@ -498,7 +188,7 @@
 
                         <rich:column>
                             <a4j:commandLink styleClass="no-decor" 
-                                             render="codPaciente,nom1Pcte,nom2Pcte,telfPcte,emailPcte,
+                                             render="codPaciente,dniPcte,nom1Pcte,nom2Pcte,telfPcte,emailPcte,
                                              apePatPcte,apeMatPcte,dirPcte,calNacPcte,calRegPcte
                                              ,sexPcte,estcPcte,ocupPcte,instPcte,tipPcte,dptoPcte,provPcte,distPcte" 
                                              execute="@this" action="#{pacienteBean.pintarFrmPcte()}"
@@ -727,10 +417,9 @@
                             <a4j:commandLink styleClass="no-decor" 
                                              render="estcPcte" 
                                              execute="@this" action="#{pacienteBean.pintarFrmEstaCivil()}"
-                                              onclick="#{rich:component('popupEstaCivil')}.hide();">
+                                              onclick="#{rich:component('popupEstaCivil')}.hide()">
                                 <h:graphicImage value="/images/icons/verify.gif"/>
                                 <f:setPropertyActionListener target="#{pacienteBean.idEstaCivil}" value="#{ec.codEstacivil}" />
-                                
                             </a4j:commandLink>
                         </rich:column>
 

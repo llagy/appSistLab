@@ -99,7 +99,7 @@ public class InstruccionDB {
      }
      
      
-     public Instruccion getInstrucionById(Integer idInstruccion) {
+     public Instruccion getInstruccionById(Integer idInstruccion) {
        
         try {
             Transaction tx = session.beginTransaction();

@@ -38,7 +38,6 @@ public class Paciente  implements java.io.Serializable {
      private Date fechaIngreso;
      private String direccion;
      private String telefono;
-     private String dni;
      private String email;
      private byte[] foto;
      private Character estado;
@@ -61,7 +60,7 @@ public class Paciente  implements java.io.Serializable {
         this.fechaIngreso = fechaIngreso;
         this.direccion = direccion;
     }
-    public Paciente(String codPaciente, TipoPaciente tipoPaciente, Sexo sexo, Estacivil estacivil, Ocupacion ocupacion, Distrito distrito, Instruccion instruccion, String nombre1, String nombre2, String apPaterno, String apMaterno, Date fechaNacimiento, Date fechaIngreso, String direccion, String telefono, String dni, String email, byte[] foto, Character estado) {
+    public Paciente(String codPaciente, TipoPaciente tipoPaciente, Sexo sexo, Estacivil estacivil, Ocupacion ocupacion, Distrito distrito, Instruccion instruccion, String nombre1, String nombre2, String apPaterno, String apMaterno, Date fechaNacimiento, Date fechaIngreso, String direccion, String telefono, String email, byte[] foto, Character estado) {
        this.codPaciente = codPaciente;
        this.tipoPaciente = tipoPaciente;
        this.sexo = sexo;
@@ -77,7 +76,6 @@ public class Paciente  implements java.io.Serializable {
        this.fechaIngreso = fechaIngreso;
        this.direccion = direccion;
        this.telefono = telefono;
-       this.dni = dni;
        this.email = email;
        this.foto = foto;
        this.estado = estado;
@@ -220,14 +218,7 @@ public class Paciente  implements java.io.Serializable {
         this.telefono = telefono;
     }
     
-    @Column(name="dni", length=11)
-    public String getDni() {
-        return this.dni;
-    }
-    
-    public void setDni(String dni) {
-        this.dni = dni;
-    }
+  
     
     @Column(name="email", length=60)
     public String getEmail() {

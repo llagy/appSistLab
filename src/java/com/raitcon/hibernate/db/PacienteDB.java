@@ -63,7 +63,6 @@ public class PacienteDB {
             pcteUpdate.setApMaterno(pcte.getApMaterno());
             pcteUpdate.setApPaterno(pcte.getApPaterno());
             pcteUpdate.setDireccion(pcte.getDireccion());
-            pcteUpdate.setDni(pcte.getDni());
             pcteUpdate.setFechaNacimiento(pcte.getFechaNacimiento());
             pcteUpdate.setFechaIngreso(pcte.getFechaIngreso());
             pcteUpdate.setEmail(pcte.getEmail());
@@ -143,7 +142,7 @@ public class PacienteDB {
         try {
             System.out.println("metodo getPacienteAll");
             session = HibernateSessionFactory.getSession();
-            Query q = session.createQuery("from Paciente as paciente  WHERE estado='1' order by nombre1");
+            Query q = session.createQuery("from Paciente as paciente  WHERE estado='1' order by cod_paciente");
             pacienteList = (List<Paciente>) q.list();
         } catch (Exception e) {
             log.debug("Error getPacienteAll:"+e.getMessage() );

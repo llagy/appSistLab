@@ -61,7 +61,7 @@ public class DistritoDB {
         Distrito distrito = null;
         try {
             Transaction tx = session.beginTransaction();
-            Query q = session.createQuery("from Distrito WHERE cod_distrto =" + idProv);
+            Query q = session.createQuery("from Distrito WHERE cod_distrito =" + idProv);
             System.out.println("Query: " + q.toString());
             distrito = (Distrito) q.uniqueResult();
             tx.commit();

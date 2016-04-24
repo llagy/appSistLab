@@ -16,10 +16,13 @@ import com.raitcon.hibernate.bean.Sexo;
 import com.raitcon.hibernate.bean.TipoPaciente;
 import com.raitcon.hibernate.db.DepartamentoDB;
 import com.raitcon.hibernate.db.DistritoDB;
+import com.raitcon.hibernate.db.EstaCivilDB;
+import com.raitcon.hibernate.db.InstruccionDB;
 import com.raitcon.hibernate.db.OcupacionDB;
 import com.raitcon.hibernate.db.PacienteDB;
 import com.raitcon.hibernate.db.ProvinciaDB;
 import com.raitcon.hibernate.db.SexoDB;
+import com.raitcon.hibernate.db.TipoPacienteDB;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
@@ -82,7 +85,7 @@ public class PacienteBean implements Serializable {
     
     
     public PacienteBean(){
-       // this.opcionSave=0;
+        this.opcionSave=0;
         System.out.println("Se instancia constructor");
         this.listPacienteAll();
     }
@@ -405,7 +408,7 @@ public class PacienteBean implements Serializable {
     
      public void listPacienteById() {
         listPaciente = null;
-                PacienteDB pacienteDB = new PacienteDB();
+        PacienteDB pacienteDB = new PacienteDB();
         Paciente pcte= pacienteDB.getPacienteByCod(this.codPcteFind);
         if (pcte!=null){
          listPaciente= new ArrayList<Paciente>();
@@ -430,7 +433,6 @@ public class PacienteBean implements Serializable {
                 paciente.setApMaterno(apMaterno);
                 paciente.setFechaNacimiento(fechaNacimiento);
                 paciente.setFechaIngreso(fechaIngreso);
-                paciente.setDni(dni);
                 paciente.setTelefono(telefono);
                 paciente.setDireccion(direccion);
                 sexo=new Sexo(codSexo, descSexo);
@@ -497,7 +499,6 @@ public class PacienteBean implements Serializable {
             paciente.setApMaterno(apMaterno);
             paciente.setFechaNacimiento(fechaNacimiento);
             paciente.setFechaIngreso(fechaIngreso);
-            paciente.setDni(dni);
             paciente.setTelefono(telefono);
             paciente.setDireccion(direccion);
             sexo=new Sexo(codSexo, descSexo);
@@ -563,7 +564,6 @@ public class PacienteBean implements Serializable {
         // if(pcte != null){
         if(this.editPaciente != null){
             this.codPaciente = editPaciente.getCodPaciente();
-            this.dni = editPaciente.getDni();
             this.nombre1 = editPaciente.getNombre1();
             this.nombre2=editPaciente.getNombre2();
             this.apPaterno = editPaciente.getApPaterno();
@@ -674,6 +674,49 @@ public class PacienteBean implements Serializable {
             //Activamos opcion para guardar
             //getOpcSave();
         }
+     }
+    
+    public void pintarFrmTipoPaciente() {
+
+        System.out.println("codigo tipopaciente: " + idTipoPac);
+        TipoPaciente tipoPaciente = null;
+        TipoPacienteDB tipoPacienteDB = new TipoPacienteDB();
+        tipoPaciente = tipoPacienteDB.getTipoPacienteById(idTipoPac);
+        
+        if(tipoPaciente != null){
+            this.idTipoPac = tipoPaciente.getIdTipoPaciente();
+            this.descTipPac= tipoPaciente.getDescripcion();
+            
+            
+           
+        }
+    }
+    
+     public void pintarFrmEstaCivil() {
+
+        System.out.println("Código Estado Civil: " + idEstaCivil);
+        Estacivil estaCivil = null;
+        EstaCivilDB departamentoDB = new EstaCivilDB();
+        estaCivil = departamentoDB.getEstaCivilById(idEstaCivil);
+        
+        if(estaCivil != null){
+            this.idEstaCivil = estaCivil.getCodEstacivil();
+            this.descEstaCivil = estaCivil.getDescripcion();
+          }
+     }
+     
+     
+     public void pintarFrmInstruccion() {
+
+        System.out.println("Código Instruccion: " + idInstruccion);
+        Instruccion instruccion = null;
+        InstruccionDB instruccionDB = new InstruccionDB();
+        instruccion = instruccionDB.getInstruccionById(idInstruccion);
+        
+        if(instruccion != null){
+            this.idInstruccion = instruccion.getCodInstruccion();
+            this.descInstruccion = instruccion.getDescripcion();
+          }
      }
     
     public void getOpcSave(){
