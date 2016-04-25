@@ -31,6 +31,8 @@ public class Examen  implements java.io.Serializable {
      private String descripcion;
      private String enlace;
      private BigDecimal precio;
+     private String recomendacion;
+     private BigDecimal tiempoRespuesta;
      private Set<DetVenta> detVentas = new HashSet<DetVenta>(0);
      private Set<Estudio> estudios = new HashSet<Estudio>(0);
 
@@ -43,13 +45,17 @@ public class Examen  implements java.io.Serializable {
         this.clase = clase;
         this.tipoExamen = tipoExamen;
     }
-    public Examen(String codExamen, Clase clase, TipoExamen tipoExamen, String descripcion, String enlace, BigDecimal precio, Set<DetVenta> detVentas, Set<Estudio> estudios) {
+    public Examen(String codExamen, Clase clase, TipoExamen tipoExamen, String descripcion,
+            String enlace, BigDecimal precio, String recomendacion, BigDecimal tiempoRespuesta,
+            Set<DetVenta> detVentas, Set<Estudio> estudios) {
        this.codExamen = codExamen;
        this.clase = clase;
        this.tipoExamen = tipoExamen;
        this.descripcion = descripcion;
        this.enlace = enlace;
        this.precio = precio;
+       this.recomendacion=recomendacion;
+       this.tiempoRespuesta=tiempoRespuesta;
        this.detVentas = detVentas;
        this.estudios = estudios;
     }
@@ -109,6 +115,25 @@ public class Examen  implements java.io.Serializable {
     public void setPrecio(BigDecimal precio) {
         this.precio = precio;
     }
+    @Column(name="recomendacion", length=400)
+    public String getRecomendacion() {
+        return recomendacion;
+    }
+
+    public void setRecomendacion(String recomendacion) {
+        this.recomendacion = recomendacion;
+    }
+    @Column(name="tiempo_respuesta", precision=9)
+    public BigDecimal getTiempoRespuesta() {
+        return tiempoRespuesta;
+    }
+
+    public void setTiempoRespuesta(BigDecimal tiempoRespuesta) {
+        this.tiempoRespuesta = tiempoRespuesta;
+    }
+    
+    
+    
 @OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY, mappedBy="examen")
     public Set<DetVenta> getDetVentas() {
         return this.detVentas;
