@@ -29,7 +29,7 @@ public class Estudio  implements java.io.Serializable {
      private String descripcion;
      private Character estado;
      private Set<Prueba> pruebas = new HashSet<Prueba>(0);
-     private Set<Prueba> pruebas_1 = new HashSet<Prueba>(0);
+   
 
     public Estudio() {
     }
@@ -39,13 +39,14 @@ public class Estudio  implements java.io.Serializable {
         this.idEstudio = idEstudio;
         this.examen = examen;
     }
-    public Estudio(int idEstudio, Examen examen, String descripcion, Character estado, Set<Prueba> pruebas, Set<Prueba> pruebas_1) {
+    public Estudio(int idEstudio, Examen examen, String descripcion, Character estado,
+            Set<Prueba> pruebas) {
        this.idEstudio = idEstudio;
        this.examen = examen;
        this.descripcion = descripcion;
        this.estado = estado;
        this.pruebas = pruebas;
-       this.pruebas_1 = pruebas_1;
+      
     }
    
      @Id 
@@ -93,14 +94,7 @@ public class Estudio  implements java.io.Serializable {
     public void setPruebas(Set<Prueba> pruebas) {
         this.pruebas = pruebas;
     }
-@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY, mappedBy="estudio")
-    public Set<Prueba> getPruebas_1() {
-        return this.pruebas_1;
-    }
-    
-    public void setPruebas_1(Set<Prueba> pruebas_1) {
-        this.pruebas_1 = pruebas_1;
-    }
+
 
 
 

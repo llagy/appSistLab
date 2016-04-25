@@ -29,6 +29,20 @@
         overflow: auto;
         }
         
+         .pic {
+            margin-right: 2px;
+        }
+ 
+        .barsearch {
+            height: 14px;
+            width: 100px;
+        }
+ 
+        .barsearchbutton {
+            border-width: 1px;
+            background-color: #{a4jSkin.generalBackgroundColor};
+        }
+        
         
     </h:outputStylesheet>
         <h:outputScript target="body">
@@ -120,7 +134,7 @@
             <!--h:form id="frmEstudio"-->
             
                 <rich:popupPanel id="popupEstudio" header="Estudios" 
-                             autosized="true" 
+                                 autosized="true"   
                              >
                 <f:facet name="controls">
                    <h:graphicImage value="/images/icons/close16.gif" 
@@ -129,8 +143,16 @@
                    
                      
                 </f:facet>
-                <br/>
+                <rich:toolbar height="26" itemSeparator="grid" style="width: 450px;">
+                <rich:toolbarGroup>
+                    <h:graphicImage value="/images/icons/create_doc.gif" styleClass="pic" alt="create_doc" title="nuevo" />
+
+                </rich:toolbarGroup>
+              
+                
+               </rich:toolbar>
                 <rich:panel styleClass="top">
+                    
                 <h:panelGrid columns="3">
                     
            
@@ -162,7 +184,7 @@
                 <h:panelGrid columns="1" id="editGrid">
                     <rich:dataTable value="#{estudioBean.listEstudio}" 
                                     var="estudio" 
-                                    id="tb_Personal" 
+                                    id="tb_estudio" 
                                     rows="15">
                         <rich:column >
                             <f:facet name="header">Código</f:facet>
@@ -180,10 +202,24 @@
                         </rich:column>
                         <rich:column>
                             <a4j:commandLink styleClass="no-decor" 
+                                             render="pgNvoEstudio" 
+                                             execute="@this" action="#{estudioBean.frmPintarDetEstudio()}"
+                                              onclick="#{rich:component('popupNvoEstudio')}.show();">
+                                <h:graphicImage value="/images/icons/det.gif" title="detalle"/>
+                                <f:setPropertyActionListener target="#{estudioBean.estudio}" value="#{estudio}" />
+                            </a4j:commandLink>
+                             <a4j:commandLink styleClass="no-decor" 
+                                             render="popupNvoEstudio" 
+                                             execute="@this" 
+                                              onclick="#{rich:component('popupNvoEstudio')}.show();">
+                                <h:graphicImage value="/images/icons/edit.gif" title="editar"/>
+                                <f:setPropertyActionListener target="#{pacienteBean.editPaciente}" value="#{paciente}" />
+                            </a4j:commandLink>
+                            <a4j:commandLink styleClass="no-decor" 
                                              render="distPcte" 
                                              execute="@this" action="#{pacienteBean.pintarFrmPcte()}"
-                                              onclick="#{rich:component('popupEstudio')}.hide();">
-                                <h:graphicImage value="/images/icons/det.gif" title="detalle"/>
+                                              onclick="#{rich:component('popupNvoEstudio')}.hide();">
+                                <h:graphicImage value="/images/icons/delete.gif" title="eliminar"/>
                                 <f:setPropertyActionListener target="#{pacienteBean.editPaciente}" value="#{paciente}" />
                             </a4j:commandLink>
                         </rich:column>
@@ -195,6 +231,65 @@
                 </h:panelGrid>
                 </rich:panel >
             </rich:popupPanel>
+            
+            
+             <rich:popupPanel id="popupNvoEstudio" header="Estudios2" 
+                                 autosized="true"   
+                             >
+                <f:facet name="controls">
+                   <h:graphicImage value="/images/icons/close16.gif" 
+                                   onclick="#{rich:component('popupNvoEstudio')}.hide();
+                                       return false;" title="cerrar"/> 
+                   
+                     
+                </f:facet>
+                <rich:panel styleClass="top">
+                    
+                    <h:panelGrid id="pgNvoEstudio" columns="3">
+                    
+           
+                     <h:outputText value="cod.examen:" />
+                               <h:inputText id="codExamen2" 
+                                            value="#{estudioBean.examen.codExamen}" style="width: 50px;" disabled="true">
+                               </h:inputText>
+                               <h:inputText id="desExamen2" 
+                                            value="#{estudioBean.examen.descripcion}" style="width: 250px;" disabled="true">
+                               </h:inputText> 
+                      <h:outputText value="grupo:" />
+                               <h:inputText id="idGrupo2" 
+                                            value="#{estudioBean.examen.clase.grupo.idGrupo}" style="width: 50px;" disabled="true">
+                               </h:inputText>
+                               <h:inputText id="descGrupo2" 
+                                            value="#{estudioBean.examen.clase.grupo.descripcion}" style="width: 250px;" disabled="true">
+                               </h:inputText>
+                       <h:outputText value="clase:" />
+                               <h:inputText id="idClase2" 
+                                            value="#{estudioBean.examen.clase.idClase}" style="width: 50px;" disabled="true">
+                               </h:inputText>
+                                <h:inputText id="descClase2" 
+                                             value="#{estudioBean.examen.clase.descripcion}" style="width: 250px;" disabled="true">
+                               </h:inputText>
+                       
+                        <h:outputText value="estudio:" />
+                               <h:inputText id="idEstudio" 
+                                            value="#{estudioBean.estudio.idEstudio}" style="width: 50px;" disabled="true">
+                               </h:inputText>
+                                <h:inputText id="descEstudio" 
+                                             value="#{estudioBean.estudio.descripcion}" style="width: 250px;" >
+                               </h:inputText>
+                        
+                        <a4j:commandButton id="btnGuardar" value="Guardar">
+                            
+                        </a4j:commandButton>
+                        <a4j:commandButton id="btnSalir" value="Salir">
+                            
+                        </a4j:commandButton>
+                      
+                </h:panelGrid>
+                </rich:panel>
+                
+            </rich:popupPanel>
+
 
             <!--/h:form-->  
                      
