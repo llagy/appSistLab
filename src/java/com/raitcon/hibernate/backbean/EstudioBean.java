@@ -29,11 +29,12 @@ public class EstudioBean implements Serializable {
     private Estudio estudio;
     private String descripcion;
     private Character estado;
+    private Integer opcBoton;
     private List<Estudio>listEstudio;
 
     
     public EstudioBean(){
-        System.out.println("Se instancia constructor de estudio");
+        System.out.println("Se instancia constructor de estudioBean");
     }
     
     public String getCodExamen() {
@@ -87,6 +88,16 @@ public class EstudioBean implements Serializable {
         this.estado = estado;
     }
 
+    public Integer getOpcBoton() {
+        return opcBoton;
+    }
+
+    public void setOpcBoton(Integer opcBoton) {
+        this.opcBoton = opcBoton;
+    }
+    
+    
+
     public List<Estudio> getListEstudio() {
         return listEstudio;
     }
@@ -98,7 +109,7 @@ public class EstudioBean implements Serializable {
    
     public void findEstudioByExamen(){
         this.codExamen=examen.getCodExamen();
-        log.info("Buscamos todos estudios los que pertenezcan al código de examen:"+codExamen);
+        log.info("Buscamos todos los estudios que pertenezcan al código de examen:"+codExamen);
         EstudioDB estudioDB=new EstudioDB();
         
         this.listEstudio=estudioDB.findEstudioByExamen(codExamen);
@@ -106,15 +117,41 @@ public class EstudioBean implements Serializable {
    }
     
     public void frmPintarDetEstudio(){
-        System.out.println("llego a frmPintarDetEstudio");
+        System.out.println("invocando frmPintarDetEstudio");
         log.info("Se cargo obejto estudio código:"+estudio.getIdEstudio());
         //EstudioDB estudioDB=new EstudioDB();
         
         this.idEstudio=estudio.getIdEstudio();
-        System.out.println("llego a this.idEstudio:"+this.idEstudio);
-        
+        System.out.println("this.idEstudio:"+this.idEstudio);
+        this.idEstudio=this.estudio.getIdEstudio();
+        this.descripcion=this.estudio.getDescripcion();
        // this.listEstudio=estudioDB.findEstudioByExamen(codExamen);
-       
+       opcBoton=1;
+       System.out.println("getOpcBoton:"+getOpcBoton());
    }
+    public void frmPintarDetEstudioEdit(){
+        System.out.println("invocando frmPintarDetEstudioEdit");
+        log.info("Se cargo obejto estudio código:"+estudio.getIdEstudio());
+        //EstudioDB estudioDB=new EstudioDB();
+        
+        this.idEstudio=estudio.getIdEstudio();
+        System.out.println("this.idEstudio:"+this.idEstudio);
+        this.idEstudio=this.estudio.getIdEstudio();
+        this.descripcion=this.estudio.getDescripcion();
+       // this.listEstudio=estudioDB.findEstudioByExamen(codExamen);
+       opcBoton=3;
+        System.out.println("getOpcBoton:"+getOpcBoton());
+   }
+    public void frmPintarNvoDetEstudio(){
+        System.out.println("invocando frmPintarNvoDetEstudio");
+                
+        this.idEstudio=null;
+        //System.out.println("llego a this.idEstudio:"+this.idEstudio);
+        this.descripcion=null;
+       // this.listEstudio=estudioDB.findEstudioByExamen(codExamen);
+       opcBoton=2;
+        System.out.println("getOpcBoton:"+getOpcBoton());
+   }
+    
     
 }

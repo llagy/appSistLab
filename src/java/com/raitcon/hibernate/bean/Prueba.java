@@ -122,7 +122,7 @@ public class Prueba  implements java.io.Serializable {
         this.descripcion = descripcion;
     }
     
-    @Column(name="resultado_defect", nullable=false, length=300)
+    @Column(name="resultado_defect",length=300)
     public String getResultadoDefect() {
         return this.resultadoDefect;
     }

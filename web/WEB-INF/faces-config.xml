@@ -8,7 +8,7 @@
       <locale-config>
           <default-locale>es</default-locale>
       </locale-config>
-    </application>-->
+    </application>
     
     <navigation-rule>
      <from-view-id>/index.xhtml</from-view-id> 
@@ -19,17 +19,26 @@
     </navigation-rule>
    <error-page>
     <exception-type>javax.faces.application.ViewExpiredException</exception-type>
-    <location>/sessionExpired.xhtml</location>
+    <location>/faces/sessionExpired.xhtml</location>
    </error-page>  
      
    <error-page>
     <error-code>400</error-code>
     <location>/400.html</location>
    </error-page>
+   <error-page>
+    <error-code>404</error-code>
+    <location>/400.html</location>
+   </error-page>
+   
+   <error-page>
+    <error-code>404</error-code>
+    <location>/500.html</location>
+   </error-page>
    <message-bundle>ShowcaseErrorMessages</message-bundle>    
   
-   <lifecycle>
+   <!--<lifecycle>
        <phase-listener>com.raitcon.web.session.SessionPhaseListener</phase-listener>
-   </lifecycle>   
+   </lifecycle>   -->
     
 </faces-config>
