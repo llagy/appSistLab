@@ -1,0 +1,287 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition 
+    xmlns:ui="http://java.sun.com/jsf/facelets" 
+    template="/templates/common/template.xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:a4j="http://richfaces.org/a4j"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:rich="http://richfaces.org/rich"
+    xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+    xmlns="http://www.w3.org/1999/xhtml">
+    <ui:define name="left">
+        <ui:include src="/templates/common/menuacordion.xhtml" />
+    </ui:define> 
+
+    <h:head>
+
+    </h:head>
+
+    <ui:define name="content">    
+        <h:outputScript target="body">
+           
+            //document.getElementById("formOcupacion:codOcupacion").disabled=true;
+            //document.getElementById("formOcupacion:descripcion").disabled=true;
+            //document.getElementById("formOcupacion:btnGrabar").disabled=true;
+            
+            function activar(){
+            document.getElementById("formOcupacion:codOcupacion").disabled=false;
+            document.getElementById("formOcupacion:descripcion").disabled=false;
+            document.getElementById("formOcupacion:btnGrabar").disabled=false;
+            limpiarCampos();
+            }
+
+            function desactivar(){
+            document.getElementById("formOcupacion:codOcupacion").disabled=true;
+            document.getElementById("formOcupacion:descripcion").disabled=true;
+            
+            document.getElementById("formOcupacion:btnGrabar").disabled=true;
+            }
+            
+            
+            
+            function limpiarCampos(){
+            document.getElementById("formOcupacion:codOcupacion").value="";
+            document.getElementById("formOcupacion:descripcion").value="";
+
+            }
+            
+            function activarUpdate(){
+            document.getElementById("formOcupacion:btnGrabar").disabled=false;
+            }
+            
+            function Cancelar(){
+            
+            limpiarCampos();
+            document.getElementById("formOcupacion:btnGrabar").disabled=true;
+            }
+            
+            function mensajeConfirmar(){
+               var statusConf=confirm("Â¿Desea eliminar Ocupacion?");
+               if(statusConf==true){
+                document.getElementById("formPers").submit();
+                alert("ingreso aqui");
+                }else
+                {
+                 alert("No se elimina");
+                return false;
+                }
+              
+            }
+            
+
+        </h:outputScript>
+        <h:outputStylesheet>
+        .top {
+        vertical-align: top;
+        }
+ 
+        .info {
+        height: 202px;
+        overflow: auto;
+        }
+    </h:outputStylesheet>
+        <h:body onload="" >
+            <h1>Registro Ocupacion</h1>
+            <h:form id="formOcupacion" > 
+                
+               <rich:panel id="sample2" styleClass="tooltip-text" bodyClass="rich-laguna-panel-no-header">
+                        <table>
+                            <tr>
+                                <td> <h:panelGrid columns="6" cellspacing="10">
+                          
+                            <h:outputText value="Codigo:" />
+                            
+                            <h:panelGroup>
+                            <h:inputText id="codOcupacion" 
+                                         value="#{ocupacionBean.codOcupacion}" required="true" 
+                                         requiredMessage="Ocupacion requerido."
+                                         >
+                                
+                            </h:inputText>
+                             
+                                <a4j:commandButton id="btnListar" 
+                                                   value=".." 
+                                                   oncomplete="#{rich:component('popupOcupacion')}.show()"
+                                                   action="#{ocupacionBean.listOcupacionAll()}"  
+                                                   render="popupOcupacion"
+                                                   execute="@this"   >
+                                </a4j:commandButton>
+                            </h:panelGroup>
+
+                            <h:outputText value="Descripcion: "/>
+                            <h:inputText id="descripcion"
+                                         value="#{ocupacionBean.descripcion}" required="true" 
+                                         requiredMessage="Descripcion es requerido."
+                                         >
+                            </h:inputText>
+                          
+                            
+
+                          
+                           
+
+                        </h:panelGrid>
+                                </td> 
+                                                        
+            
+                            </tr>
+                                
+                        </table>
+                    
+                 </rich:panel>          
+
+                 <rich:panel id="sample1" styleClass="tooltip-text" bodyClass="rich-laguna-panel-no-header">
+
+                        <span >
+
+                            <span >
+                                <h:commandButton id="btnGrabar" 
+                                                 value="Grabar" 
+                                                 action="#{ocupacionBean.agregarOcupacion}"
+                                                 />
+                                
+                            </span>
+
+                               <span >
+                                <a4j:commandButton id="btnCancelar" 
+                                                   value="Cancelar" 
+                                                   onclick="Cancelar();"
+                                                   execute="@this"   >
+                                </a4j:commandButton>
+                            </span>
+                          
+                        </span>
+                        <br/>
+                        <rich:message for="codOcupacion" ajaxRendered="true" />
+                        <rich:message for="descripcion" ajaxRendered="true" />
+         
+                        
+                        
+                        <h:outputText  id="txtMensaje" value="#{ocupacionBean.mensaje}" style="color:#ff0000;"  />
+                   
+                    </rich:panel>
+                
+                   <h:panelGrid columns="1" id="editGrid">
+                    <rich:dataTable value="#{ocupacionBean.listOcupacion}" 
+                                    var="itocupacion" 
+                                    id="tb_ocupacion" 
+                                    rows="15">
+                        <rich:column>
+                            <f:facet name="header">Codigo</f:facet>
+                            <h:outputText value="#{itocupacion.codOcupacion}" />
+                        </rich:column>
+                        <rich:column>
+                            <f:facet name="header">Descripcion</f:facet>
+                            <h:outputText value="#{itocupacion.descripcion}" />
+                        </rich:column>
+
+                            <rich:column>
+                           
+                             
+                              <a4j:commandLink styleClass="no-decor" render="codOcupacion,descripcion" execute="@this"
+                                              action="#{ocupacionBean.getOpcNew()}">
+                                <h:graphicImage value="/images/icons/verify.gif" alt="new" />
+                                                         
+                            </a4j:commandLink>
+                             
+                              <a4j:commandLink styleClass="no-decor" 
+                                             render="codOcupacion,descripcion" 
+                                             execute="@this" action="#{ocupacionBean.pintarFrmOcupacion()}"
+                                             >
+                                <h:graphicImage value="/images/icons/new.gif"/>
+                                <f:setPropertyActionListener target="#{ocupacionBean.editOcupacion}" value="#{itocupacion}" />
+                                
+                            </a4j:commandLink>
+                             
+                             
+                             
+                             
+                             <a4j:commandLink styleClass="no-decor" execute="@this" render="@none"
+                               oncomplete="#{rich:component('confirmPane')}.show()">
+                              <h:graphicImage value="/images/icons/delete.gif" alt="delete" />
+                              <a4j:param value="#{itocupacion.codOcupacion }" assignTo="#{ocupacionBean.codOcupacion }" />
+                            </a4j:commandLink>
+                        </rich:column>
+                       
+
+                        <f:facet name="footer">
+                            <rich:dataScroller page="1" />
+                        </f:facet>
+                    </rich:dataTable>
+                </h:panelGrid>
+                
+                
+                
+                
+                
+               
+         </h:form> 
+
+            <rich:popupPanel id="popupOcupacion" 
+                             autosized="true" 
+                             onmaskclick="#{rich:component('popupOcupacion')}.hide()">
+                <f:facet name="controls">
+                    <h:outputLink value="#" onclick="#{rich:component('popupOcupcion')}.hide();
+                            return false;">X</h:outputLink>
+                </f:facet>
+                <h:panelGrid columns="1" id="editGrid">
+                    <rich:dataTable value="#{ocupacionBean.listOcupacion}" 
+                                    var="ocupacion" 
+                                    id="tb_ocupacion" 
+                                    rows="15">
+                        <rich:column>
+                            <f:facet name="header">Codigo</f:facet>
+                            <h:outputText value="#{ocupacion.codOcupacion}" />
+                        </rich:column>
+                        <rich:column>
+                            <f:facet name="header">Descripcion</f:facet>
+                            <h:outputText value="#{ocupacion.descripcion}" />
+                        </rich:column>
+
+
+                        <rich:column>
+                             <a4j:commandLink styleClass="no-decor" 
+                                             render="codOcupacion,descripcion" 
+                                             execute="@this" action="#{ocupacionBean.pintarFrmOcupacion()}"
+                                              onclick="#{rich:component('popupOcupacion')}.hide()">
+                                <h:graphicImage value="/images/icons/new.gif"/>
+                                <f:setPropertyActionListener target="#{ocupacionBean.codOcupacion}"
+                                                             value="#{ocupacion.codOcupacion}" />
+                            </a4j:commandLink>
+                            
+                              <a4j:commandLink styleClass="no-decor" execute="@this" render="@none"
+                               oncomplete="#{rich:component('confirmPane')}.show()">
+                              <h:graphicImage value="/images/icons/delete.gif" alt="delete" />
+                              <a4j:param value="#{ocupacion.codOcupacion}" assignTo="#{ocupacionBean.codOcupacion}" />
+                            </a4j:commandLink>
+                            
+                            
+                        </rich:column>
+
+                        <f:facet name="footer">
+                            <rich:dataScroller page="1" />
+                        </f:facet>
+                    </rich:dataTable>
+                </h:panelGrid>
+            </rich:popupPanel>
+            
+            
+         <a4j:jsFunction name="remove" action="#{ocupacionBean.remove}" render="tb_ocupacion" execute="@this"
+               oncomplete="#{rich:component('confirmPane')}.hide();" />
+           
+         <rich:popupPanel id="confirmPane" autosized="true">
+            ¿Estas seguro que quieres eliminar registro?
+            <a4j:commandButton value="Cancelar" onclick="#{rich:component('confirmPane')}.hide(); return false;" />
+            <a4j:commandButton value="Eliminar" onclick="remove(); return false;" />
+        </rich:popupPanel>
+            
+            
+            
+            
+        </h:body>
+    </ui:define>
+</ui:composition>
+
+
+

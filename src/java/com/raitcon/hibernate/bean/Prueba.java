@@ -42,7 +42,7 @@ public class Prueba  implements java.io.Serializable {
      private Character estado;
      private String nombreReal;
      private Set<PruebaValRef> pruebaValRefs = new HashSet<PruebaValRef>(0);
-     private Set<PruebaValRef> pruebaValRefs_1 = new HashSet<PruebaValRef>(0);
+     
 
     public Prueba() {
     }
@@ -53,7 +53,12 @@ public class Prueba  implements java.io.Serializable {
         this.estudio = estudio;
         this.resultadoDefect = resultadoDefect;
     }
-    public Prueba(int idPrueba, TipoResultado tipoResultado, Estudio estudio, Autoanalizador autoanalizador, String descripcion, String resultadoDefect, String undMedida, String resultado2, String resultado3, String resultado4, String resultado5, String resultado6, String resultado7, String resultado8, String resultado9, Character estado, String nombreReal, Set<PruebaValRef> pruebaValRefs, Set<PruebaValRef> pruebaValRefs_1) {
+    public Prueba(int idPrueba, TipoResultado tipoResultado, Estudio estudio,
+            Autoanalizador autoanalizador, String descripcion, String resultadoDefect,
+            String undMedida, String resultado2, String resultado3, String resultado4,
+            String resultado5, String resultado6, String resultado7, String resultado8, 
+            String resultado9, Character estado, String nombreReal, 
+            Set<PruebaValRef> pruebaValRefs) {
        this.idPrueba = idPrueba;
        this.tipoResultado = tipoResultado;
        this.estudio = estudio;
@@ -72,7 +77,7 @@ public class Prueba  implements java.io.Serializable {
        this.estado = estado;
        this.nombreReal = nombreReal;
        this.pruebaValRefs = pruebaValRefs;
-       this.pruebaValRefs_1 = pruebaValRefs_1;
+       
     }
    
      @Id 
@@ -237,14 +242,7 @@ public class Prueba  implements java.io.Serializable {
     public void setPruebaValRefs(Set<PruebaValRef> pruebaValRefs) {
         this.pruebaValRefs = pruebaValRefs;
     }
-@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY, mappedBy="prueba")
-    public Set<PruebaValRef> getPruebaValRefs_1() {
-        return this.pruebaValRefs_1;
-    }
-    
-    public void setPruebaValRefs_1(Set<PruebaValRef> pruebaValRefs_1) {
-        this.pruebaValRefs_1 = pruebaValRefs_1;
-    }
+
 
 
 

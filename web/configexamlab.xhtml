@@ -325,7 +325,7 @@
                    
                      
                 </f:facet>
-                 <rich:toolbar height="26" itemSeparator="grid" style="width: 510px;">
+                 <rich:toolbar height="26" itemSeparator="grid" style="width: 520px;">
                 <rich:toolbarGroup>
                      <a4j:commandLink styleClass="no-decor" 
                                              render="popupPrueba" 
@@ -413,7 +413,7 @@
                         </rich:column>
                         <rich:column>
                             <a4j:commandLink styleClass="no-decor" 
-                                             render="pgNvaPrueba2" 
+                                             render="pgNvaPrueba2,tb_valRef,idResults" 
                                              execute="@this" action="#{pruebaBean.frmPintarPrueba()}"
                                               onclick="#{rich:component('popupPrueba2')}.show();">
                                 <h:graphicImage value="/images/icons/edit.gif" title="editar"/>
@@ -448,7 +448,7 @@
                    
                      
                 </f:facet>
-                 <rich:toolbar height="26" itemSeparator="grid" style="width: 510px;">
+                 <rich:toolbar height="26" itemSeparator="grid" style="width: 600px;">
                 <rich:toolbarGroup>
                      <a4j:commandLink styleClass="no-decor" 
                                              render="popupPrueba2" 
@@ -476,21 +476,21 @@
                     
                     <h:outputText value="cod.examen:" />
                                <h:inputText id="codExamen4" 
-                                            value="#{estudioBean.examen.codExamen}" style="width: 50px;" disabled="true">
+                                            value="#{estudioBean.examen.codExamen}" style="width: 80px;" disabled="true">
                                </h:inputText>
                                <h:inputText id="desExamen4" 
                                             value="#{estudioBean.examen.descripcion}" style="width: 250px;" disabled="true">
                                </h:inputText> 
                       <h:outputText value="grupo:" />
                                <h:inputText id="idGrupo4" 
-                                            value="#{estudioBean.examen.clase.grupo.idGrupo}" style="width: 50px;" disabled="true">
+                                            value="#{estudioBean.examen.clase.grupo.idGrupo}" style="width: 80px;" disabled="true">
                                </h:inputText>
                                <h:inputText id="descGrupo4" 
                                             value="#{estudioBean.examen.clase.grupo.descripcion}" style="width: 250px;" disabled="true">
                                </h:inputText>
                        <h:outputText value="clase:" />
                                <h:inputText id="idClase4" 
-                                            value="#{estudioBean.examen.clase.idClase}" style="width: 50px;" disabled="true">
+                                            value="#{estudioBean.examen.clase.idClase}" style="width: 80px;" disabled="true">
                                </h:inputText>
                                 <h:inputText id="descClase4" 
                                              value="#{estudioBean.examen.clase.descripcion}" style="width: 250px;" disabled="true">
@@ -498,7 +498,7 @@
                        
                         <h:outputText value="estudio:" />
                                <h:inputText id="idEstudio4" 
-                                            value="#{pruebaBean.estudio.idEstudio}" style="width: 50px;" disabled="true">
+                                            value="#{pruebaBean.estudio.idEstudio}" style="width:80px;" disabled="true">
                                </h:inputText>
                                                 
                                 <h:inputText id="descEstudio4" 
@@ -506,41 +506,104 @@
                                </h:inputText>
                         
                         <h:outputText value="Prueba:" />
+                        
                                <h:inputText id="idPrueba" 
-                                            value="#{pruebaBean.idPrueba}" style="width: 50px;" disabled="true">
+                                            value="#{pruebaBean.idPrueba}" style="width: 80px;" disabled="true">
                                </h:inputText>
                                                 
                                 <h:inputText id="descPrueba" 
-                                             value="#{pruebaBean.descripcion}" style="width: 250px;" disabled="true" >
-                               </h:inputText>     
+                                             value="#{pruebaBean.descripcion}" style="width: 250px;"  >
+                               </h:inputText>  
+                        
+                        <h:outputText value="Estado:" />
+                        
+                            <h:inputText id="idEstado" 
+                                         value="#{pruebaBean.prueba.estado.toString().compareTo('1')==0? 'activado':'desactivado'}"
+                                         style="width: 80px;"  disabled="true" >
+                            </h:inputText>
+                         <a4j:commandButton value="..">
+                             
+                         </a4j:commandButton>
+                        
+                        <h:outputText value="U.Medida" />
+                        <rich:column colspan="1"> 
+                            
+                            <h:inputText id="uMedida" 
+                                         value="#{pruebaBean.prueba.undMedida}" style="width: 80px;"  >
+                            </h:inputText>
+                        </rich:column>                  
                         
                                              
                 </h:panelGrid>
+                        
                 </rich:panel>
-                 
+                   <rich:panel id="idResults" styleClass="top" title="Resultados">
+                       <p>Resultados:</p>
+                       
+                        <h:panelGrid id="pgNvaPrueba3" columns="2">
+                       <h:outputText value="R.defecto" />
+                         
+                            <h:inputTextarea id="rDefecto" 
+                                         value="#{pruebaBean.resulDefect}" style="width: 400px;"  >
+                            </h:inputTextarea>
+                        <h:outputText value="N°1:" />
+                                                                  
+                        <h:inputTextarea id="r1" 
+                                             value="#{pruebaBean.resulDefect}" style="width: 400px;"  >
+                               </h:inputTextarea> 
+                         <h:outputText value="N°2:" />
+                                                                  
+                         <h:inputText id="r2" 
+                                      value="#{pruebaBean.result1}" style="width: 400px;"  >
+                               </h:inputText> 
+                          <h:outputText value="N°3:" />
+                          <h:inputText id="r3" 
+                                       value="#{pruebaBean.result2}" style="width: 400px;"  >
+                               </h:inputText> 
+                           <h:outputText value="N°4:" />
+                          <h:inputText id="r4" 
+                                       value="#{pruebaBean.result3}" style="width: 400px;"  >
+                               </h:inputText>
+                           <h:outputText value="N°5:" />
+                          <h:inputText id="r5" 
+                                       value="#{pruebaBean.result4}" style="width: 400px;"  >
+                               </h:inputText>
+                                                    
+                         
+                        </h:panelGrid>  
+                       
+                    </rich:panel> 
              
                  <rich:panel styleClass="top">
                      
-                      <rich:dataTable value="#{pruebaBean.listPrueba}" 
-                                    var="prueba" 
+                     <rich:dataTable value="#{pruebaBean.listPruebaValRef}" 
+                                    var="valRef" 
                                     id="tb_valRef" 
                                     rows="10" >
                         <rich:column >
                             <f:facet name="header">Código</f:facet>
-                            <h:outputText value="#{prueba.idPrueba}" />
+                            <h:outputText value="#{valRef.idPruebaValRef}" />
                         </rich:column>
                         <rich:column style="width: 250px;">
                             <f:facet name="header">Descripción</f:facet>
-                            <h:outputText value="#{prueba.descripcion}" />
+                            <h:outputText value="#{valRef.valRef.descripcion}" />
                         </rich:column>
                          <rich:column>
-                            <f:facet name="header">Resultado</f:facet>
-                            <h:outputText value="#{prueba.resultadoDefect}" />
+                            <f:facet name="header">Desde</f:facet>
+                            <h:outputText value="#{valRef.desde}" />
                         </rich:column> 
                                             
                         <rich:column>
-                            <f:facet name="header">Estado</f:facet>
-                            <h:outputText value="#{prueba.estado.toString().compareTo('1')==0? 'activado':'desactivado'}" />
+                            <f:facet name="header">Hasta</f:facet>
+                            <h:outputText value="#{valRef.hasta}" />
+                        </rich:column>
+                         <rich:column>
+                            <f:facet name="header">ValRefMin</f:facet>
+                            <h:outputText value="#{valRef.valRefMin}" />
+                        </rich:column>
+                         <rich:column>
+                            <f:facet name="header">ValRefMax</f:facet>
+                            <h:outputText value="#{valRef.valorRefMax}" />
                         </rich:column>
                         <rich:column>
                             <a4j:commandLink styleClass="no-decor" 

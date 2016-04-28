@@ -20,73 +20,32 @@
     <ui:define name="content">    
         <h:outputScript target="body">
            
-            document.getElementById("formClass:codPersonal").disabled=true;
-            document.getElementById("formClass:nomPers").disabled=true;
-            document.getElementById("formClass:dniPers").disabled=true;
-            document.getElementById("formClass:apePatPers").disabled=true; 
-            document.getElementById("formClass:apeMatPers").disabled=true; 
-            document.getElementById("formClass:espPers").disabled=true; 
-            document.getElementById("formClass:dirPers").disabled=true; 
-            document.getElementById("formClass:telfPers").disabled=true;
-            document.getElementById("formClass:mailPers").disabled=true;
-            document.getElementById("formClass:estcPers").disabled=true;
-            document.getElementById("formClass:calPers").disabled=true;
-            document.getElementById("formClass:sexPers").disabled=true;
-            document.getElementById("formClass:ocupPers").disabled=true;
+           // document.getElementById("formClass:codClase").disabled=true;
+           // document.getElementById("formClass:desClase").disabled=true;
             
-            document.getElementById("formClass:btnGrabar").disabled=true;
+            
+           // document.getElementById("formClass:btnGrabar").disabled=true;
             
             function activar(){
-            document.getElementById("formClass:codPersonal").disabled=false;
-            document.getElementById("formClass:nomPers").disabled=false;
-            document.getElementById("formClass:dniPers").disabled=false;
-            document.getElementById("formClass:apePatPers").disabled=false; 
-            document.getElementById("formClass:apeMatPers").disabled=false; 
-            document.getElementById("formClass:espPers").disabled=false; 
-            document.getElementById("formClass:dirPers").disabled=false; 
-            document.getElementById("formClass:telfPers").disabled=false;
-            document.getElementById("formClass:mailPers").disabled=false;
-            document.getElementById("formClass:estcPers").disabled=false;
-            document.getElementById("formClass:calPers").disabled=false;
-            document.getElementById("formClass:sexPers").disabled=false;
-            document.getElementById("formClass:ocupPers").disabled=false; 
-            
+            document.getElementById("formClass:codClase").disabled=false;
+            document.getElementById("formClass:desClase").disabled=false;
             document.getElementById("formClass:btnGrabar").disabled=false;
+           
             limpiarCampos();
             }
 
             function desactivar(){
-            document.getElementById("formClass:codPersonal").disabled=true;
-            document.getElementById("formClass:nomPers").disabled=true;
-            document.getElementById("formClass:dniPers").disabled=true;
-            document.getElementById("formClass:apePatPers").disabled=true; 
-            document.getElementById("formClass:apeMatPers").disabled=true; 
-            document.getElementById("formClass:espPers").disabled=true; 
-            document.getElementById("formClass:dirPers").disabled=true; 
-            document.getElementById("formClass:telfPers").disabled=true;
-            document.getElementById("formClass:mailPers").disabled=true;
-            document.getElementById("formClass:estcPers").disabled=true;
-            document.getElementById("formClass:calPers").disabled=true;
-            document.getElementById("formClass:sexPers").disabled=true;
-            document.getElementById("formClass:ocupPers").disabled=true;
+            document.getElementById("formClass:codClase").disabled=true;
+            document.getElementById("formClass:desClase").disabled=true;
+            
             
             document.getElementById("formClass:btnGrabar").disabled=true;
             }
             
             function limpiarCampos(){
-            document.getElementById("formClass:codPersonal").value="";
-            document.getElementById("formClass:nomPers").value="";
-            document.getElementById("formClass:dniPers").value="";
-            document.getElementById("formClass:apePatPers").value="";
-            document.getElementById("formClass:apeMatPers").value=""; 
-            document.getElementById("formClass:espPers").value=""; 
-            document.getElementById("formClass:dirPers").value=""; 
-            document.getElementById("formClass:telfPers").value="";
-            document.getElementById("formClass:mailPers").value="";
-            document.getElementById("formClass:estcPers").value="";
-            document.getElementById("formClass:calPers").value="";
-            document.getElementById("formClass:sexPers").value="";
-            document.getElementById("formClass:ocupPers").value="";
+            document.getElementById("formClass:codClase").value="";
+            document.getElementById("formClass:desClase").value="";
+            
             }
             
             function activarUpdate(){
@@ -95,11 +54,11 @@
             function Cancelar(){
             
             limpiarCampos();
-            document.getElementById("formClass:btnGrabar").disabled=true;
+            //document.getElementById("formClass:btnGrabar").disabled=true;
             }
             
             function mensajeConfirmar(){
-               var statusConf=confirm("¿Desea eliminar personal?");
+               var statusConf=confirm("Â¿Desea eliminar personal?");
                if(statusConf==true){
                 document.getElementById("formClass").submit();
                 alert("ingreso aqui");
@@ -124,7 +83,7 @@
         }
     </h:outputStylesheet>
         <h:body onload="" >
-            <h1>Registro Clase parte 1</h1>
+            <h1>Registro Clase 44</h1>
             <h:form id="formClass" > 
                 
                <rich:panel id="sample2" styleClass="tooltip-text" bodyClass="rich-laguna-panel-no-header">
@@ -134,31 +93,40 @@
                                     
                                     <h:panelGrid columns="6" cellspacing="10">
                           
-                            <h:outputText value="Código:" />
+                            <h:outputText value="Codigo:" />
                             
-                            <h:panelGroup>
-                                <h:inputText id="codClase"  style="width: 30px;"
+                            
+                                <h:inputText id="codClase"  style="width: 50px;"
                                          value="#{claseBean.idClase}" required="true" 
                                          requiredMessage="Id clase es requerido."
                                          >
                                 
                             </h:inputText>
                              
-                                <a4j:commandButton id="btnListar" 
+                               
+                       
+
+                            <h:outputText value="Descripcion "/>
+                            <h:inputText id="desClase"
+                                         value="#{claseBean.descripcion}" required="true" 
+                                         requiredMessage="Descripcion es requerido."
+                                         >
+                            </h:inputText>
+                            
+                             <h:panelGroup>
+                            <h:outputText value="Grupo: " />
+                               <h:inputText id="desGrupo" 
+                                            value="#{claseBean.grupo.descripcion }" style="width:100px;">
+                               </h:inputText>
+                               <a4j:commandButton id="btnEstcPcte" 
                                                    value=".." 
-                                                   oncomplete="#{rich:component('popupClase')}.show()"
-                                                   action="#{claseBean.listClaseAll()}"  
-                                                   render="popupClase"
+                                                   oncomplete="#{rich:component('popupGrupo')}.show()"
+                                                   action="#{grupoBean.listGrupoAll()}"  
+                                                   render="popupGrupo"
                                                    execute="@this"   >
                                 </a4j:commandButton>
                             </h:panelGroup>
-
-                            <h:outputText value="Descripción "/>
-                            <h:inputText id="desClase"
-                                         value="#{claseBean.desClase}" required="true" 
-                                         requiredMessage="Descripción es requerido."
-                                         >
-                            </h:inputText>
+                            
                             
                         </h:panelGrid>
                                 </td> 
@@ -176,29 +144,11 @@
                     <rich:panel id="sample1" styleClass="tooltip-text" bodyClass="rich-laguna-panel-no-header">
 
                         <span >
-                            <span >
-                                <a4j:commandButton id="btnNuevo" 
-                                                   value="Nuevo" 
-                                                   onclick="activar();"
-                                                   action="#{claseBean.getOpcNew()}"  
-                                                   render="codPersonal,txtMensaje"
-                                                   execute="@this"   >
-                                </a4j:commandButton>
-                            </span>
-                            <span >
-                                 <a4j:commandButton id="btnEditar" 
-                                                   value="Editar" 
-                                                   onclick="activarUpdate();"
-                                                   action="#{claseBean.getOpcSave()}"  
-                                                   render="codPersonal,txtMensaje"
-                                                   execute="@this"   
-                                                   >
-                                </a4j:commandButton>
-                            </span>
+                            
                             <span >
                                 <h:commandButton id="btnGrabar" 
                                                  value="Grabar" 
-                                                 action="#{personalBean.agregarPersonal}"
+                                                 action="#{claseBean.agregarClase()}"
                                                  />
                                 
                             </span>
@@ -222,6 +172,73 @@
                     </rich:panel>
                 
                 
+                 <h:panelGrid columns="1" id="editGrid">
+                    <rich:dataTable value="#{claseBean.listClase}" 
+                                    var="itClase" 
+                                    id="tbClase2" 
+                                    rows="15">
+                        <rich:column>
+                            <f:facet name="header">Codigo</f:facet>
+                            <h:outputText value="#{itClase.idClase}" />
+                        </rich:column>
+                        <rich:column>
+                            <f:facet name="header">Descripcion</f:facet>
+                            <h:outputText value="#{itClase.descripcion}" />
+                        </rich:column>
+                        
+                         <rich:column>
+                            <f:facet name="header">Grupo</f:facet>
+                            <h:outputText value="#{itClase.grupo.descripcion}" />
+                        </rich:column>
+                        
+                        
+                         <rich:column>
+                           
+                             
+                              <a4j:commandLink styleClass="no-decor" render="codClase,desClase,desGrupo" execute="@this"
+                                              action="#{claseBean.getOpcNew()}">
+                                <h:graphicImage value="/images/icons/verify.gif" alt="new" />
+                                                         
+                            </a4j:commandLink>
+                             
+                              <a4j:commandLink styleClass="no-decor" 
+                                             render="codClase,desClase,desGrupo" 
+                                             execute="@this" action="#{claseBean.pintarFrmClase()}"
+                                             >
+                                <h:graphicImage value="/images/icons/new.gif"/>
+                                <f:setPropertyActionListener target="#{claseBean.editClase}" value="#{itClase}" />
+                                
+                            </a4j:commandLink>
+                             
+                             
+                             
+                             
+                             <a4j:commandLink styleClass="no-decor" execute="@this" render="@none"
+                               oncomplete="#{rich:component('confirmPane')}.show()">
+                              <h:graphicImage value="/images/icons/delete.gif" alt="delete" />
+                             <a4j:param value="#{itClase.idClase}" assignTo="#{claseBean.idClase}" />
+                            </a4j:commandLink>
+                        </rich:column>
+
+                        <f:facet name="footer">
+                            <rich:dataScroller page="1" />
+                        </f:facet>
+                    </rich:dataTable>
+                </h:panelGrid>
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                </h:form> 
+                
+        
+                
+                
                 
                 
                 
@@ -233,7 +250,7 @@
                     <h:outputLink value="#" onclick="#{rich:component('popupClase')}.hide();
                             return false;">X</h:outputLink>
                 </f:facet>
-                <h:panelGrid columns="1" id="editGrid">
+                <h:panelGrid columns="1" id="editGridClase">
                     <rich:dataTable value="#{claseBean.listClase}" 
                                     var="it" 
                                     id="tbClase" 
@@ -243,8 +260,8 @@
                             <h:outputText value="#{it.idClase}" />
                         </rich:column>
                         <rich:column>
-                            <f:facet name="header">Descripción</f:facet>
-                            <h:outputText value="#{it.desClase}" />
+                            <f:facet name="header">Descripcion</f:facet>
+                            <h:outputText value="#{it.descripcion}" />
                         </rich:column>
                          <rich:column>
                             <a4j:commandLink styleClass="no-decor" 
@@ -268,7 +285,7 @@
                 </h:panelGrid>
             </rich:popupPanel>
                 
-             <a4j:jsFunction name="remove" action="#{claseBean.remove}" render="tbClase" execute="@this"
+             <a4j:jsFunction name="remove" action="#{claseBean.remove}" render="tbClase2" execute="@this"
                oncomplete="#{rich:component('confirmPane')}.hide();" />
            
          <rich:popupPanel id="confirmPane" autosized="true">
@@ -276,13 +293,51 @@
             <a4j:commandButton value="Cancelar" onclick="#{rich:component('confirmPane')}.hide(); return false;" />
             <a4j:commandButton value="Eliminar" onclick="remove(); return false;" />
         </rich:popupPanel>
-               
-            </h:form> 
+             
+             
+               <rich:popupPanel id="popupGrupo" 
+                             autosized="true" 
+                             onmaskclick="#{rich:component('popupGrupo')}.hide()">
+                <f:facet name="controls">
+                    <h:outputLink value="#" onclick="#{rich:component('popupGrupo')}.hide();
+                            return false;">X</h:outputLink>
+                </f:facet>
+                <h:panelGrid columns="1" id="editGridGrupo">
+                    <rich:dataTable value="#{grupoBean.listGrupo}" 
+                                    var="itGrupo" 
+                                    id="tbGrupo" 
+                                    rows="15">
+                        <rich:column>
+                            <f:facet name="header">Codigo</f:facet>
+                            <h:outputText value="#{itGrupo.idGrupo}" />
+                        </rich:column>
+                        <rich:column>
+                            <f:facet name="header">Descripcion</f:facet>
+                            <h:outputText value="#{itGrupo.descripcion}" />
+                        </rich:column>
+                         <rich:column>
+                            <a4j:commandLink styleClass="no-decor" 
+                                             render="desGrupo" 
+                                             execute="@this" action="#{grupoBean.pintarFrmGrupo()}"
+                                              onclick="#{rich:component('popupGrupo')}.hide()">
+                                <h:graphicImage value="/images/icons/verify.gif"/>
+                                <f:setPropertyActionListener target="#{claseBean.grupo}" value="#{itGrupo}" />
+                            </a4j:commandLink>
+     
+                        </rich:column>
 
-          
+                        <f:facet name="footer">
+                            <rich:dataScroller page="1" />
+                        </f:facet>
+                    </rich:dataTable>
+                </h:panelGrid>
+            </rich:popupPanel>
+            
+                  
           
             
 
         </h:body>
     </ui:define>
 </ui:composition>
+

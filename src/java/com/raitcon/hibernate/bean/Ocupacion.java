@@ -26,7 +26,6 @@ public class Ocupacion  implements java.io.Serializable {
      private String descripcion;
      private Character estado;
      private Set<Paciente> pacientes = new HashSet<Paciente>(0);
-     private Set<Paciente> pacientes_1 = new HashSet<Paciente>(0);
      private Set<Personal> personals = new HashSet<Personal>(0);
 
     public Ocupacion() {
@@ -36,13 +35,13 @@ public class Ocupacion  implements java.io.Serializable {
     public Ocupacion(int codOcupacion) {
         this.codOcupacion = codOcupacion;
     }
-    public Ocupacion(int codOcupacion, String descripcion, Character estado, Set<Paciente> pacientes, Set<Paciente> pacientes_1, Set<Personal> personals) {
+    public Ocupacion(int codOcupacion, String descripcion,
+            Character estado, Set<Paciente> pacientes, Set<Personal> personals) {
        this.codOcupacion = codOcupacion;
        this.descripcion = descripcion;
        this.estado = estado;
        this.pacientes = pacientes;
-       this.pacientes_1 = pacientes_1;
-       this.personals = personals;
+        this.personals = personals;
     }
    
      @Id 
@@ -81,14 +80,7 @@ public class Ocupacion  implements java.io.Serializable {
     public void setPacientes(Set<Paciente> pacientes) {
         this.pacientes = pacientes;
     }
-@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY, mappedBy="ocupacion")
-    public Set<Paciente> getPacientes_1() {
-        return this.pacientes_1;
-    }
-    
-    public void setPacientes_1(Set<Paciente> pacientes_1) {
-        this.pacientes_1 = pacientes_1;
-    }
+
 @OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY, mappedBy="ocupacion")
     public Set<Personal> getPersonals() {
         return this.personals;

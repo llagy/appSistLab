@@ -8,9 +8,7 @@ import com.raitcon.hibernate.bean.Clase;
 import com.raitcon.hibernate.bean.Grupo;
 import com.raitcon.hibernate.db.ClaseDB;
 import java.io.Serializable;
-import java.util.HashSet;
 import java.util.List;
-import java.util.logging.Level;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import org.apache.log4j.Logger;
@@ -28,15 +26,24 @@ public class ClaseBean implements Serializable{
     protected static Logger log = Logger.getLogger(ClaseBean.class); 
     private Integer idGrupo; 
     private Integer idClase;
-    private String desClase;
+    private String descripcion;
     private List<Clase> listClase;
     private String mensaje;
     private Integer opcionSave;
+    private Clase editClase;
+    
+    
+    private String descripcionGrupo;
+    private Grupo grupo;
+    
     
     
     public ClaseBean(){
+      this.listClaseAll();
       opcionSave=0;  
     }
+    
+
 
     public Integer getIdGrupo() {
         return idGrupo;
@@ -54,13 +61,7 @@ public class ClaseBean implements Serializable{
         this.idClase = idClase;
     }
 
-    public String getDesClase() {
-        return desClase;
-    }
-
-    public void setDesClase(String desClase) {
-        this.desClase = desClase;
-    }
+    
 
     public List<Clase> getListClase() {
         return listClase;
@@ -99,8 +100,12 @@ public class ClaseBean implements Serializable{
         if (this.opcionSave !=1){
             Clase clase = new Clase();
             clase.setIdClase(idClase);
-            clase.setDescripcion(desClase);
-            Grupo grupo=new Grupo(idGrupo,"");
+            clase.setDescripcion(descripcion);
+           System.out.println(" cccvvvv agregarClase " + grupo.getDescripcion()+" ddd "+ grupo.getIdGrupo());
+            
+            //Grupo grupo=new Grupo(idGrupo,"");
+            Grupo grupo=new Grupo(this.grupo.getIdGrupo(),"",'1');
+            
             clase.setGrupo(grupo);
             
             ClaseDB claseDB = new ClaseDB();
@@ -131,6 +136,12 @@ public class ClaseBean implements Serializable{
             }
         }
         
+        
+        if (result == 1) {
+            this.listClaseAll();
+        } 
+
+        
       
     }
     
@@ -138,8 +149,9 @@ public class ClaseBean implements Serializable{
     public void updateClase() throws HibernateException, Exception {
             Clase clase = new Clase();
             clase.setIdClase(this.idClase);
-            clase.setDescripcion(this.getDesClase());
-            Grupo grupo =new Grupo(idGrupo,"");
+            clase.setDescripcion(this.getDescripcion());
+             System.out.print(" cccvvvv agregarClase " + grupo.getDescripcion() +"  gggthis.grupo.getIdGrupo()= "+this.grupo.getIdGrupo());
+            Grupo grupo =new Grupo(this.grupo.getIdGrupo(),"",'1');
             clase.setGrupo(grupo);
             ClaseDB claseDB = new ClaseDB();
             claseDB.updateClase(clase, idClase);
@@ -148,15 +160,17 @@ public class ClaseBean implements Serializable{
     
      public void pintarFrmClase() {
 
-        System.out.println("codigo clase: " + idClase);
-        Clase clase = null;
-        ClaseDB claseDB = new ClaseDB();
-        clase = claseDB.getClaseById(idClase);
+          System.out.println("codigo clase: " + idClase);
+          System.out.println("codigo descripcion: " + descripcion);
+        //Clase clase = null;
+        //ClaseDB claseDB = new ClaseDB();
+        //clase = claseDB.getClaseById(idClase);
         
-        if(clase != null){
-            this.idClase = clase.getIdClase();
-            this.desClase = clase.getDescripcion();
-            this.idGrupo=clase.getGrupo().getIdGrupo();
+        if(this.editClase != null){
+            this.idClase = editClase.getIdClase();
+            this.descripcion = editClase.getDescripcion();
+            this.idGrupo=editClase.getGrupo().getIdGrupo();
+            this.grupo=editClase.getGrupo();
           //Activamos opcion para guardar
             getOpcSave();
         }
@@ -170,6 +184,7 @@ public class ClaseBean implements Serializable{
     
     public void getOpcNew(){
          this.opcionSave=0;
+         clearFrmClase();
          this.mensaje="";
     }
     
@@ -193,5 +208,70 @@ public class ClaseBean implements Serializable{
         }
     }
 
+    /**
+     * @return the descripcion
+     */
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    /**
+     * @param descripcion the descripcion to set
+     */
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    /**
+     * @return the editClase
+     */
+    public Clase getEditClase() {
+        return editClase;
+    }
+
+    /**
+     * @param editClase the editClase to set
+     */
+    public void setEditClase(Clase editClase) {
+        this.editClase = editClase;
+    }
     
+    
+    
+    
+    public void clearFrmClase(){
+        this.descripcion=null;
+        this.idClase=null;
+        this.grupo=null;
+
+       
+    }
+
+    /**
+     * @return the descripcionGrupo
+     */
+    public String getDescripcionGrupo() {
+        return descripcionGrupo;
+    }
+
+    /**
+     * @param descripcionGrupo the descripcionGrupo to set
+     */
+    public void setDescripcionGrupo(String descripcionGrupo) {
+        this.descripcionGrupo = descripcionGrupo;
+    }
+
+    /**
+     * @return the grupo
+     */
+    public Grupo getGrupo() {
+        return grupo;
+    }
+
+    /**
+     * @param grupo the grupo to set
+     */
+    public void setGrupo(Grupo grupo) {
+        this.grupo = grupo;
+    }
 }

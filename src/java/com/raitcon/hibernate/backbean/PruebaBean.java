@@ -6,8 +6,10 @@ package com.raitcon.hibernate.backbean;
 
 import com.raitcon.hibernate.bean.Estudio;
 import com.raitcon.hibernate.bean.Prueba;
+import com.raitcon.hibernate.bean.PruebaValRef;
 import com.raitcon.hibernate.db.PruebaDB;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
@@ -29,6 +31,7 @@ public class PruebaBean implements Serializable {
     private Prueba prueba;
     private Integer idPrueba;
     private String descripcion;
+    private String unidMedida;
     private String nameReal;
     private Character estado;
     private String resulDefect;
@@ -45,7 +48,7 @@ public class PruebaBean implements Serializable {
     private Integer idAutoanalizador;
     private Integer opcBoton;
     private List<Prueba> listPrueba;
-
+    private List<PruebaValRef>listPruebaValRef;
     
     public PruebaBean(){
         System.out.println("Se instancia constructor de pruebaBean");
@@ -82,6 +85,15 @@ public class PruebaBean implements Serializable {
         this.estado = estado;
     }
 
+    public String getUnidMedida() {
+        return unidMedida;
+    }
+
+    public void setUnidMedida(String unidMedida) {
+        this.unidMedida = unidMedida;
+    }
+
+    
     public Integer getIdPrueba() {
         return idPrueba;
     }
@@ -221,6 +233,16 @@ public class PruebaBean implements Serializable {
     public void setListPrueba(List<Prueba> listPrueba) {
         this.listPrueba = listPrueba;
     }
+
+    public List<PruebaValRef> getListPruebaValRef() {
+        return listPruebaValRef;
+    }
+
+    public void setListPruebaValRef(List<PruebaValRef> listPruebaValRef) {
+        this.listPruebaValRef = listPruebaValRef;
+    }
+
+    
     
     
     public void findPruebaByEstudio(){ 
@@ -236,6 +258,15 @@ public class PruebaBean implements Serializable {
         System.out.println("invocando frmPintarPrueba");
         this.idPrueba=prueba.getIdPrueba();
         this.descripcion=prueba.getDescripcion();
+        this.resulDefect=prueba.getResultadoDefect();
+        this.result1=prueba.getResultado2();
+        this.result2=prueba.getResultado3();
+        this.result3=prueba.getResultado4();
+        this.result4=prueba.getResultado5();
+        this.result5=prueba.getResultado6();
+        this.result6=prueba.getResultado7();
+                
+        listPruebaValRef=new ArrayList<PruebaValRef>(prueba.getPruebaValRefs());
         
    }
     

@@ -26,7 +26,7 @@ public class Grupo  implements java.io.Serializable {
 
      private int idGrupo;
      private String descripcion;
-     private Integer estado;
+     private Character estado;
      private Set<Clase> clases = new HashSet<Clase>(0);
 
     public Grupo() {
@@ -37,7 +37,14 @@ public class Grupo  implements java.io.Serializable {
         this.idGrupo = idGrupo;
         this.descripcion = descripcion;
     }
-    public Grupo(int idGrupo, String descripcion, Integer estado, Set<Clase> clases) {
+    
+    
+    public Grupo(int idGrupo, String descripcion, Character estado) {
+        this.idGrupo = idGrupo;
+        this.descripcion = descripcion;
+        this.estado = estado;
+    }
+    public Grupo(int idGrupo, String descripcion, Character estado, Set<Clase> clases) {
        this.idGrupo = idGrupo;
        this.descripcion = descripcion;
        this.estado = estado;
@@ -64,12 +71,12 @@ public class Grupo  implements java.io.Serializable {
         this.descripcion = descripcion;
     }
     
-    @Column(name="estado", unique=true)
-    public Integer getEstado() {
+    @Column(name="estado", length=1)
+    public Character getEstado() {
         return this.estado;
     }
     
-    public void setEstado(Integer estado) {
+    public void setEstado(Character estado) {
         this.estado = estado;
     }
 @OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY, mappedBy="grupo")

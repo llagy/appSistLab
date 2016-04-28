@@ -5,6 +5,7 @@
 package com.raitcon.hibernate.db;
 
 import com.raitcon.hibernate.bean.Prueba;
+import com.raitcon.hibernate.bean.PruebaValRef;
 import com.raitcon.hibernate.factory.HibernateSessionFactory;
 import com.raitcon.hibernate.factory.HibernateUtil;
 import java.util.List;
@@ -16,26 +17,28 @@ import org.hibernate.Session;
  *
  * @author mriverar
  */
-public class PruebaDB {
-   
-   protected static Logger log = Logger.getLogger(PruebaDB.class);
+public class PruebaValRefDB {
+    
+  protected static Logger log = Logger.getLogger(PruebaValRefDB.class);
      private Session session = null;
      
-      public PruebaDB() {
+      public PruebaValRefDB() {
         this.session = HibernateUtil.getSessionFactory().getCurrentSession();
     }  
     
-     public List<Prueba> findPruebasByEstudio(Integer idEstudio) {
-        List<Prueba> estudioList = null;
+     public List<PruebaValRef> findPruebaValRefByPrueba(Integer idPrueba) {
+        List<PruebaValRef> estudioList = null;
         try {
-            System.out.println("metodo findPruebasByEstudio");
+            System.out.println("metodo findPruebaValRefByPrueba");
             session = HibernateSessionFactory.getSession();
-            Query q = session.createQuery("from Prueba as prueba WHERE id_estudio="+idEstudio);
-            estudioList = (List<Prueba>) q.list();
+            Query q = session.createQuery("from PruebaValRef as pruebaValRef WHERE id_prueba="+idPrueba);
+            estudioList = (List<PruebaValRef>) q.list();
         } catch (Exception e) {
-            log.debug("Error findPruebasByEstudio:"+e.getMessage() );
+            log.debug("Error findPruebaValRefByPrueba:"+e.getMessage() );
             e.printStackTrace();
         }
         return estudioList;
-    }
+    }  
+    
+    
 }

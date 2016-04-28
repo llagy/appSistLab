@@ -29,13 +29,13 @@ public class Clase  implements java.io.Serializable {
      private Integer idClase;
      private Grupo grupo;
      private String descripcion;
-     private Integer estado;
+     private Character estado;
      private Set<Examen> examens = new HashSet<Examen>(0);
 
     public Clase() {
     }
 
-    public Clase(Grupo grupo, String descripcion, Integer estado, Set<Examen> examens) {
+    public Clase(Grupo grupo, String descripcion, Character estado, Set<Examen> examens) {
        this.grupo = grupo;
        this.descripcion = descripcion;
        this.estado = estado;
@@ -71,12 +71,12 @@ public class Clase  implements java.io.Serializable {
         this.descripcion = descripcion;
     }
     
-    @Column(name="estado")
-    public Integer getEstado() {
+    @Column(name="estado",length = 1)
+    public Character getEstado() {
         return this.estado;
     }
     
-    public void setEstado(Integer estado) {
+    public void setEstado(Character estado) {
         this.estado = estado;
     }
 @OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY, mappedBy="clase")
