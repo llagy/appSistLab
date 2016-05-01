@@ -2,6 +2,7 @@ package com.raitcon.hibernate.bean;
 // Generated 23/04/2016 11:00:37 PM by Hibernate Tools 3.2.1.GA
 
 
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -40,6 +41,7 @@ public class Venta  implements java.io.Serializable {
      private String ruc;
      private Character estado;
      private Date fecha;
+     private BigDecimal total;
      private Set<DetVenta> detVentas = new HashSet<DetVenta>(0);
 
     public Venta() {
@@ -189,6 +191,16 @@ public class Venta  implements java.io.Serializable {
     public void setFecha(Date fecha) {
         this.fecha = fecha;
     }
+    @Column(name="total", precision=9)
+    public BigDecimal getTotal() {
+        return total;
+    }
+
+    public void setTotal(BigDecimal total) {
+        this.total = total;
+    }
+    
+    
 @OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY, mappedBy="venta")
     public Set<DetVenta> getDetVentas() {
         return this.detVentas;

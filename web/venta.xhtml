@@ -1,0 +1,162 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition 
+    xmlns:ui="http://java.sun.com/jsf/facelets" 
+    template="/templates/common/template.xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:a4j="http://richfaces.org/a4j"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:rich="http://richfaces.org/rich"
+    xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+    xmlns="http://www.w3.org/1999/xhtml">
+    <ui:define name="left">
+        <ui:include src="/templates/common/menuacordion.xhtml" />
+    </ui:define> 
+
+    <h:head>
+
+    </h:head>
+
+    <ui:define name="content">    
+        
+        <h:outputStylesheet>
+        .top {
+        vertical-align: top;
+        }
+ 
+        .info {
+        height: 202px;
+        overflow: auto;
+        }
+        
+         .pic {
+            margin-right: 2px;
+        }
+ 
+        .barsearch {
+            height: 14px;
+            width: 100px;
+        }
+ 
+        .barsearchbutton {
+            border-width: 1px;
+            background-color: #{a4jSkin.generalBackgroundColor};
+        }
+        
+        
+    </h:outputStylesheet>
+        <h:outputScript target="body">
+            
+        </h:outputScript> 
+        <h:body  onload="" >
+            
+            <h1>Ventas</h1>
+            <h:form id="frmVenta"    > 
+                 <rich:panel id="sample3" styleClass="tooltip-text" bodyClass="rich-laguna-panel-no-header">    
+                     <span>
+                      <h:panelGroup>
+                            <h:outputText value="Desde:" />
+                            
+                            <rich:calendar id="fDesde"
+                                           value="#{ventaBean.fechaIni}" 
+                                           locale="#{calendarBean.locale}" 
+                                           datePattern="dd/MM/yyyy"
+                                           >         
+                            </rich:calendar>
+                            
+                            <h:outputText value="Hasta:" />
+                            
+                            <rich:calendar id="fHasta"
+                                           value="#{ventaBean.fechaFin}" 
+                                           locale="#{calendarBean.locale}" 
+                                           datePattern="dd/MM/yyyy"
+                                           >         
+                            </rich:calendar>
+                                
+                            <a4j:commandButton id="btnBuscar" 
+                                                   value="Buscar" 
+                                                   action="#{ventaBean.findVentaByFecha()}"  
+                                                   render="tbExamen"
+                                                   execute="@form"   >
+                            </a4j:commandButton>
+                             <a4j:commandButton id="btnNuevo" 
+                                                   value="Nuevo" 
+                                                   action="#{ventaBean.findVentaByFecha()}"  
+                                                   render="tbExamen"
+                                                   execute="@form"   >
+                            </a4j:commandButton>
+                          
+                            
+                            </h:panelGroup>
+                                
+                            </span>
+                  <h:panelGrid columns="1" id="gridExamen">
+                      <rich:dataTable value="#{ventaBean.listVenta}" 
+                                    var="vta" 
+                                    id="tbExamen" 
+                                    rows="10">
+                        <rich:column>
+                            <f:facet name="header">Código</f:facet>
+                            <h:outputText value="#{vta.codCompVenta}" />
+                        </rich:column>
+                        <rich:column>
+                            <f:facet name="header">Fecha</f:facet>
+                            <h:outputText value="#{vta.fecha}" />
+                        </rich:column>
+                        <rich:column>
+                            <f:facet name="header">T.Documento</f:facet>
+                            <h:outputText value="#{vta.tipoDocumento.descripcion}" />
+                        </rich:column>
+                        <rich:column>
+                            <f:facet name="header">Estado</f:facet>
+                            <h:outputText value="#{vta.estado.toString().compareTo('1')==0?'Activo':'Anulado'}" />
+                        </rich:column>
+                        <rich:column>
+                            <f:facet name="header">Total</f:facet>
+                            <h:outputText value="#{vta.total}" />
+                        </rich:column>
+                       
+                        <rich:column>
+                             <a4j:commandLink styleClass="no-decor" render="popupEstudio"
+                                              oncomplete="#{rich:component('popupEstudio')}.show()"
+                                              execute="@this"
+                                              action="#{estudioBean.findEstudioByExamen()}">
+                                 <h:graphicImage value="/images/icons/det.gif" alt="det" title="detalle" />
+                                 <f:setPropertyActionListener target="#{estudioBean.examen}" value="#{exa}" />                         
+                            </a4j:commandLink>
+                        </rich:column>
+
+                        <f:facet name="footer">
+                            <rich:dataScroller page="1" />
+                        </f:facet>
+                    </rich:dataTable>
+                </h:panelGrid> 
+                 </rich:panel>  
+               
+                
+       <rich:tabPanel>
+           <rich:tab header="Detalle">
+            <ui:include src="/400.html" />
+        </rich:tab>
+          
+           <rich:tab header="Otros">
+            Here is tab #3
+        </rich:tab>
+    </rich:tabPanel> 
+               
+            </h:form> 
+             
+           
+          
+
+            
+               
+       
+               
+            
+            
+           
+            
+        </h:body>
+    </ui:define>
+</ui:composition>

@@ -50,12 +50,24 @@
             </h:outputScript> 
         <h:body  onload="" >
             
-            <h1>Examenes</h1>
+            <h3>Examenes</h3>
             <h:form id="frmConfEx"    > 
                  <rich:panel id="sample3" styleClass="tooltip-text" bodyClass="rich-laguna-panel-no-header">    
                      <span>
                       <h:panelGroup>
-                                <h:outputText value="Descripción" />
+                          <h:selectOneMenu
+                           value="#{bean.state}" valueChangeListener="#{bean.selectionChanged}">
+
+                                    <f:selectItems  value="#{bean.selectItems}"/>
+
+                                    <f:selectItem itemValue="Código"/>            
+
+                                    <f:selectItem itemValue="Descripción"/>
+
+                                   <f:selectItem itemValue="Clase"/>
+                      
+
+                          </h:selectOneMenu>  
                             <h:inputText id="descExamen" 
                                          value="#{examenBean.descripcion}" style="width: 150px;"
                                          >
@@ -76,7 +88,7 @@
                     <rich:dataTable value="#{examenBean.listExamen}" 
                                     var="exa" 
                                     id="tbExamen" 
-                                    rows="10">
+                                    rows="6">
                         <rich:column>
                             <f:facet name="header">Código</f:facet>
                             <h:outputText value="#{exa.codExamen}" />
@@ -392,8 +404,8 @@
                      
                       <rich:dataTable value="#{pruebaBean.listPrueba}" 
                                     var="prueba" 
-                                    id="tb_prueba" 
-                                    rows="10" >
+                                    id="tb_prueba"  styleClass="inputText"
+                                    rows="10"   >
                         <rich:column >
                             <f:facet name="header">Código</f:facet>
                             <h:outputText value="#{prueba.idPrueba}" />
@@ -427,7 +439,7 @@
                                 <f:setPropertyActionListener target="#{pacienteBean.editPaciente}" value="#{paciente}" />
                             </a4j:commandLink>
                         </rich:column>
-
+                       
                         <f:facet name="footer">
                             <rich:dataScroller page="1" />
                         </f:facet>

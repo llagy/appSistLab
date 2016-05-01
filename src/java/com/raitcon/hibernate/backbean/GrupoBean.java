@@ -4,16 +4,10 @@
  */
 package com.raitcon.hibernate.backbean;
 
-import static com.raitcon.hibernate.backbean.ClaseBean.log;
-import com.raitcon.hibernate.bean.Clase;
 import com.raitcon.hibernate.bean.Grupo;
-import com.raitcon.hibernate.bean.Sexo;
-import com.raitcon.hibernate.db.ClaseDB;
 import com.raitcon.hibernate.db.GrupoDB;
 import java.io.Serializable;
-import java.util.HashSet;
 import java.util.List;
-import java.util.logging.Level;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import org.apache.log4j.Logger;
