@@ -1,5 +1,6 @@
 package com.raitcon.hibernate.bean;
-// Generated 23/04/2016 11:00:37 PM by Hibernate Tools 3.2.1.GA
+// Generated 09/05/2016 10:48:05 PM by Hibernate Tools 3.2.1.GA
+
 
 
 import java.util.HashSet;
@@ -28,8 +29,8 @@ public class Estudio  implements java.io.Serializable {
      private Examen examen;
      private String descripcion;
      private Character estado;
+     private Integer peso;
      private Set<Prueba> pruebas = new HashSet<Prueba>(0);
-   
 
     public Estudio() {
     }
@@ -39,14 +40,13 @@ public class Estudio  implements java.io.Serializable {
         this.idEstudio = idEstudio;
         this.examen = examen;
     }
-    public Estudio(int idEstudio, Examen examen, String descripcion, Character estado,
-            Set<Prueba> pruebas) {
+    public Estudio(int idEstudio, Examen examen, String descripcion, Character estado, Integer peso, Set<Prueba> pruebas) {
        this.idEstudio = idEstudio;
        this.examen = examen;
        this.descripcion = descripcion;
        this.estado = estado;
+       this.peso = peso;
        this.pruebas = pruebas;
-      
     }
    
      @Id 
@@ -86,6 +86,15 @@ public class Estudio  implements java.io.Serializable {
     public void setEstado(Character estado) {
         this.estado = estado;
     }
+    
+    @Column(name="peso")
+    public Integer getPeso() {
+        return this.peso;
+    }
+    
+    public void setPeso(Integer peso) {
+        this.peso = peso;
+    }
 @OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY, mappedBy="estudio")
     public Set<Prueba> getPruebas() {
         return this.pruebas;
@@ -94,7 +103,6 @@ public class Estudio  implements java.io.Serializable {
     public void setPruebas(Set<Prueba> pruebas) {
         this.pruebas = pruebas;
     }
-
 
 
 

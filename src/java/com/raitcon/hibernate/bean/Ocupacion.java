@@ -1,5 +1,6 @@
 package com.raitcon.hibernate.bean;
-// Generated 23/04/2016 11:00:37 PM by Hibernate Tools 3.2.1.GA
+// Generated 09/05/2016 10:48:05 PM by Hibernate Tools 3.2.1.GA
+
 
 
 import java.util.HashSet;
@@ -35,13 +36,12 @@ public class Ocupacion  implements java.io.Serializable {
     public Ocupacion(int codOcupacion) {
         this.codOcupacion = codOcupacion;
     }
-    public Ocupacion(int codOcupacion, String descripcion,
-            Character estado, Set<Paciente> pacientes, Set<Personal> personals) {
+    public Ocupacion(int codOcupacion, String descripcion, Character estado, Set<Paciente> pacientes, Set<Personal> personals) {
        this.codOcupacion = codOcupacion;
        this.descripcion = descripcion;
        this.estado = estado;
        this.pacientes = pacientes;
-        this.personals = personals;
+       this.personals = personals;
     }
    
      @Id 
@@ -80,7 +80,6 @@ public class Ocupacion  implements java.io.Serializable {
     public void setPacientes(Set<Paciente> pacientes) {
         this.pacientes = pacientes;
     }
-
 @OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY, mappedBy="ocupacion")
     public Set<Personal> getPersonals() {
         return this.personals;

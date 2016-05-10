@@ -114,6 +114,23 @@ public class ClaseDB {
         return null;
     }
      
+     public Clase getClaseByDesc(String desc) {
+       
+        try {
+            Transaction tx = session.beginTransaction();
+            Query q = session.createQuery("from Clase WHERE descripcion ='" + desc+"'");
+            System.out.println("Query: " + q.toString());
+            Clase clase=(Clase) q.uniqueResult();
+            tx.commit();
+            return clase;
+            
+        } catch (Exception e) {
+            log.debug("Error:" + e.getMessage());
+            e.printStackTrace();
+        }
+        return null;
+    }
+     
      
      public void deleteClase(Integer id) throws HibernateException, Exception {
         session = HibernateSessionFactory.getSession();

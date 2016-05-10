@@ -1,7 +1,9 @@
 package com.raitcon.hibernate.bean;
-// Generated 23/04/2016 11:00:37 PM by Hibernate Tools 3.2.1.GA
+// Generated 09/05/2016 10:48:05 PM by Hibernate Tools 3.2.1.GA
 
 
+
+import java.math.BigDecimal;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -30,6 +32,7 @@ public class Parametros  implements java.io.Serializable {
      private String site;
      private Integer igv;
      private Character estado;
+     private BigDecimal tipoCambio;
 
     public Parametros() {
     }
@@ -40,7 +43,7 @@ public class Parametros  implements java.io.Serializable {
         this.sucursal = sucursal;
         this.ruc = ruc;
     }
-    public Parametros(String razonSocial, String sucursal, String ruc, String direccion, String empresacol, String telefono, String email, String site, Integer igv, Character estado) {
+    public Parametros(String razonSocial, String sucursal, String ruc, String direccion, String empresacol, String telefono, String email, String site, Integer igv, Character estado, BigDecimal tipoCambio) {
        this.razonSocial = razonSocial;
        this.sucursal = sucursal;
        this.ruc = ruc;
@@ -51,6 +54,7 @@ public class Parametros  implements java.io.Serializable {
        this.site = site;
        this.igv = igv;
        this.estado = estado;
+       this.tipoCambio = tipoCambio;
     }
    
      @Id @GeneratedValue(strategy=IDENTITY)
@@ -152,6 +156,15 @@ public class Parametros  implements java.io.Serializable {
     
     public void setEstado(Character estado) {
         this.estado = estado;
+    }
+    
+    @Column(name="tipo_cambio", precision=9, scale=3)
+    public BigDecimal getTipoCambio() {
+        return this.tipoCambio;
+    }
+    
+    public void setTipoCambio(BigDecimal tipoCambio) {
+        this.tipoCambio = tipoCambio;
     }
 
 

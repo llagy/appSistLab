@@ -8,10 +8,12 @@ import com.raitcon.hibernate.bean.Clase;
 import com.raitcon.hibernate.bean.Examen;
 
 import com.raitcon.hibernate.bean.TipoExamen;
+import com.raitcon.hibernate.db.ClaseDB;
 import com.raitcon.hibernate.db.ExamenDB;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
@@ -34,11 +36,13 @@ public class ExamenBean implements Serializable {
      private Integer idTipoExamen;
      private String descTipoExamen;
      private String descripcion;
+     private String cadBusca;
      private String enlace;
      private BigDecimal precio;
      private String recomendacion;
      private BigDecimal tiempoRespuesta;
      private List<Examen>listExamen;
+     private String campoBusqueda;
     
     public ExamenBean(){
         
@@ -141,6 +145,22 @@ public class ExamenBean implements Serializable {
     public void setTiempoRespuesta(BigDecimal tiempoRespuesta) {
         this.tiempoRespuesta = tiempoRespuesta;
     }
+
+    public String getCampoBusqueda() {
+        return campoBusqueda;
+    }
+
+    public void setCampoBusqueda(String campoBusqueda) {
+        this.campoBusqueda = campoBusqueda;
+    }
+
+    public String getCadBusca() {
+        return cadBusca;
+    }
+
+    public void setCadBusca(String cadBusca) {
+        this.cadBusca = cadBusca;
+    }
     
     
 
@@ -161,9 +181,23 @@ public class ExamenBean implements Serializable {
     
     
     public void findExamenByName(){
+        
+    System.out.println("campo busqueda:"+this.campoBusqueda);
      listExamen = null;
      ExamenDB examenDB = new ExamenDB();
-     listExamen= examenDB.findExamenByName(this.descripcion);
+     if(this.campoBusqueda.equalsIgnoreCase("Descripción"))
+     listExamen= examenDB.findExamenByName(this.cadBusca);
+     else if(this.campoBusqueda.equalsIgnoreCase("Código")){
+         listExamen= examenDB.findExamenByCode(this.cadBusca);
+         
+     }else{
+         //Se busca por clase
+         ClaseDB claseDB=new ClaseDB();
+         Clase clase=claseDB.getClaseByDesc(this.cadBusca);
+         
+         listExamen= new ArrayList<Examen>(clase.getExamens());
+     }
+         
     /* System.out.println("Llego aqui");
      for(Examen o:listExamen ){
          System.out.println("o.getCodExamen:"+o.getCodExamen());

@@ -1,15 +1,15 @@
 package com.raitcon.hibernate.bean;
-// Generated 23/04/2016 11:00:37 PM by Hibernate Tools 3.2.1.GA
+// Generated 09/05/2016 10:48:05 PM by Hibernate Tools 3.2.1.GA
 
 
-import java.util.HashSet;
-import java.util.Set;
-import javax.persistence.CascadeType;
+
+import java.math.BigDecimal;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
@@ -23,22 +23,35 @@ public class ValRef  implements java.io.Serializable {
 
 
      private int idValRef;
-     private String descripcion;
-     private Set<PruebaValRef> pruebaValRefs = new HashSet<PruebaValRef>(0);
-     private Set<PruebaValRef> pruebaValRefs_1 = new HashSet<PruebaValRef>(0);
+     private Sexo sexo;
+     private TipoEdad tipoEdad;
+     private Prueba prueba;
+     private Integer edadMin;
+     private Integer edadMax;
+     private BigDecimal valMin;
+     private BigDecimal valMax;
+     private String valRefText;
+     private Character estado;
 
     public ValRef() {
     }
 
 	
-    public ValRef(int idValRef) {
+    public ValRef(int idValRef, Sexo sexo) {
         this.idValRef = idValRef;
+        this.sexo = sexo;
     }
-    public ValRef(int idValRef, String descripcion, Set<PruebaValRef> pruebaValRefs, Set<PruebaValRef> pruebaValRefs_1) {
+    public ValRef(int idValRef, Sexo sexo, TipoEdad tipoEdad, Prueba prueba, Integer edadMin, Integer edadMax, BigDecimal valMin, BigDecimal valMax, String valRefText, Character estado) {
        this.idValRef = idValRef;
-       this.descripcion = descripcion;
-       this.pruebaValRefs = pruebaValRefs;
-       this.pruebaValRefs_1 = pruebaValRefs_1;
+       this.sexo = sexo;
+       this.tipoEdad = tipoEdad;
+       this.prueba = prueba;
+       this.edadMin = edadMin;
+       this.edadMax = edadMax;
+       this.valMin = valMin;
+       this.valMax = valMax;
+       this.valRefText = valRefText;
+       this.estado = estado;
     }
    
      @Id 
@@ -51,30 +64,86 @@ public class ValRef  implements java.io.Serializable {
     public void setIdValRef(int idValRef) {
         this.idValRef = idValRef;
     }
-    
-    @Column(name="descripcion", length=45)
-    public String getDescripcion() {
-        return this.descripcion;
+@ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="cod_sexo", nullable=false)
+    public Sexo getSexo() {
+        return this.sexo;
     }
     
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
+    public void setSexo(Sexo sexo) {
+        this.sexo = sexo;
     }
-@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY, mappedBy="valRef")
-    public Set<PruebaValRef> getPruebaValRefs() {
-        return this.pruebaValRefs;
-    }
-    
-    public void setPruebaValRefs(Set<PruebaValRef> pruebaValRefs) {
-        this.pruebaValRefs = pruebaValRefs;
-    }
-@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY, mappedBy="valRef")
-    public Set<PruebaValRef> getPruebaValRefs_1() {
-        return this.pruebaValRefs_1;
+@ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="id_tipo_edad")
+    public TipoEdad getTipoEdad() {
+        return this.tipoEdad;
     }
     
-    public void setPruebaValRefs_1(Set<PruebaValRef> pruebaValRefs_1) {
-        this.pruebaValRefs_1 = pruebaValRefs_1;
+    public void setTipoEdad(TipoEdad tipoEdad) {
+        this.tipoEdad = tipoEdad;
+    }
+@ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="id_prueba")
+    public Prueba getPrueba() {
+        return this.prueba;
+    }
+    
+    public void setPrueba(Prueba prueba) {
+        this.prueba = prueba;
+    }
+    
+    @Column(name="edad_min")
+    public Integer getEdadMin() {
+        return this.edadMin;
+    }
+    
+    public void setEdadMin(Integer edadMin) {
+        this.edadMin = edadMin;
+    }
+    
+    @Column(name="edad_max")
+    public Integer getEdadMax() {
+        return this.edadMax;
+    }
+    
+    public void setEdadMax(Integer edadMax) {
+        this.edadMax = edadMax;
+    }
+    
+    @Column(name="val_min", precision=9)
+    public BigDecimal getValMin() {
+        return this.valMin;
+    }
+    
+    public void setValMin(BigDecimal valMin) {
+        this.valMin = valMin;
+    }
+    
+    @Column(name="val_max", precision=9)
+    public BigDecimal getValMax() {
+        return this.valMax;
+    }
+    
+    public void setValMax(BigDecimal valMax) {
+        this.valMax = valMax;
+    }
+    
+    @Column(name="val_ref_text", length=400)
+    public String getValRefText() {
+        return this.valRefText;
+    }
+    
+    public void setValRefText(String valRefText) {
+        this.valRefText = valRefText;
+    }
+    
+    @Column(name="estado", length=1)
+    public Character getEstado() {
+        return this.estado;
+    }
+    
+    public void setEstado(Character estado) {
+        this.estado = estado;
     }
 
 

@@ -1,5 +1,6 @@
 package com.raitcon.hibernate.bean;
-// Generated 23/04/2016 11:00:37 PM by Hibernate Tools 3.2.1.GA
+// Generated 09/05/2016 10:48:05 PM by Hibernate Tools 3.2.1.GA
+
 
 
 import java.util.HashSet;
@@ -27,10 +28,11 @@ public class Prueba  implements java.io.Serializable {
      private int idPrueba;
      private TipoResultado tipoResultado;
      private Estudio estudio;
+     private UnidMedida unidMedida;
      private Autoanalizador autoanalizador;
      private String descripcion;
      private String resultadoDefect;
-     private String undMedida;
+     private String resultado1;
      private String resultado2;
      private String resultado3;
      private String resultado4;
@@ -41,31 +43,26 @@ public class Prueba  implements java.io.Serializable {
      private String resultado9;
      private Character estado;
      private String nombreReal;
-     private Set<PruebaValRef> pruebaValRefs = new HashSet<PruebaValRef>(0);
-     
+     private Set<ValRef> valRefs = new HashSet<ValRef>(0);
+     private Set<ValRef> valRefs_1 = new HashSet<ValRef>(0);
 
     public Prueba() {
     }
 
 	
-    public Prueba(int idPrueba, Estudio estudio, String resultadoDefect) {
+    public Prueba(int idPrueba, Estudio estudio) {
         this.idPrueba = idPrueba;
         this.estudio = estudio;
-        this.resultadoDefect = resultadoDefect;
     }
-    public Prueba(int idPrueba, TipoResultado tipoResultado, Estudio estudio,
-            Autoanalizador autoanalizador, String descripcion, String resultadoDefect,
-            String undMedida, String resultado2, String resultado3, String resultado4,
-            String resultado5, String resultado6, String resultado7, String resultado8, 
-            String resultado9, Character estado, String nombreReal, 
-            Set<PruebaValRef> pruebaValRefs) {
+    public Prueba(int idPrueba, TipoResultado tipoResultado, Estudio estudio, UnidMedida unidMedida, Autoanalizador autoanalizador, String descripcion, String resultadoDefect, String resultado1, String resultado2, String resultado3, String resultado4, String resultado5, String resultado6, String resultado7, String resultado8, String resultado9, Character estado, String nombreReal, Set<ValRef> valRefs, Set<ValRef> valRefs_1) {
        this.idPrueba = idPrueba;
        this.tipoResultado = tipoResultado;
        this.estudio = estudio;
+       this.unidMedida = unidMedida;
        this.autoanalizador = autoanalizador;
        this.descripcion = descripcion;
        this.resultadoDefect = resultadoDefect;
-       this.undMedida = undMedida;
+       this.resultado1 = resultado1;
        this.resultado2 = resultado2;
        this.resultado3 = resultado3;
        this.resultado4 = resultado4;
@@ -76,8 +73,8 @@ public class Prueba  implements java.io.Serializable {
        this.resultado9 = resultado9;
        this.estado = estado;
        this.nombreReal = nombreReal;
-       this.pruebaValRefs = pruebaValRefs;
-       
+       this.valRefs = valRefs;
+       this.valRefs_1 = valRefs_1;
     }
    
      @Id 
@@ -109,6 +106,15 @@ public class Prueba  implements java.io.Serializable {
         this.estudio = estudio;
     }
 @ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="id_unid_medida")
+    public UnidMedida getUnidMedida() {
+        return this.unidMedida;
+    }
+    
+    public void setUnidMedida(UnidMedida unidMedida) {
+        this.unidMedida = unidMedida;
+    }
+@ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="id_autoanalizador")
     public Autoanalizador getAutoanalizador() {
         return this.autoanalizador;
@@ -127,7 +133,7 @@ public class Prueba  implements java.io.Serializable {
         this.descripcion = descripcion;
     }
     
-    @Column(name="resultado_defect",length=300)
+    @Column(name="resultado_defect", length=300)
     public String getResultadoDefect() {
         return this.resultadoDefect;
     }
@@ -136,13 +142,13 @@ public class Prueba  implements java.io.Serializable {
         this.resultadoDefect = resultadoDefect;
     }
     
-    @Column(name="und_medida", length=15)
-    public String getUndMedida() {
-        return this.undMedida;
+    @Column(name="resultado1", length=100)
+    public String getResultado1() {
+        return this.resultado1;
     }
     
-    public void setUndMedida(String undMedida) {
-        this.undMedida = undMedida;
+    public void setResultado1(String resultado1) {
+        this.resultado1 = resultado1;
     }
     
     @Column(name="resultado2", length=100)
@@ -235,14 +241,21 @@ public class Prueba  implements java.io.Serializable {
         this.nombreReal = nombreReal;
     }
 @OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY, mappedBy="prueba")
-    public Set<PruebaValRef> getPruebaValRefs() {
-        return this.pruebaValRefs;
+    public Set<ValRef> getValRefs() {
+        return this.valRefs;
     }
     
-    public void setPruebaValRefs(Set<PruebaValRef> pruebaValRefs) {
-        this.pruebaValRefs = pruebaValRefs;
+    public void setValRefs(Set<ValRef> valRefs) {
+        this.valRefs = valRefs;
     }
-
+@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY, mappedBy="prueba")
+    public Set<ValRef> getValRefs_1() {
+        return this.valRefs_1;
+    }
+    
+    public void setValRefs_1(Set<ValRef> valRefs_1) {
+        this.valRefs_1 = valRefs_1;
+    }
 
 
 

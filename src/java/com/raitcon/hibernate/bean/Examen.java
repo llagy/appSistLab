@@ -1,5 +1,6 @@
 package com.raitcon.hibernate.bean;
-// Generated 23/04/2016 11:00:37 PM by Hibernate Tools 3.2.1.GA
+// Generated 09/05/2016 10:48:05 PM by Hibernate Tools 3.2.1.GA
+
 
 
 import java.math.BigDecimal;
@@ -29,11 +30,20 @@ public class Examen  implements java.io.Serializable {
      private Clase clase;
      private TipoExamen tipoExamen;
      private String descripcion;
-     private String enlace;
-     private BigDecimal precio;
-     private String recomendacion;
      private BigDecimal tiempoRespuesta;
+     private BigDecimal precio1;
+     private BigDecimal precio2;
+     private BigDecimal precio3;
+     private BigDecimal precio4;
+     private Character perfil;
+     private String recomendacion;
+     private Integer numMuestra;
+     private Integer peso;
+     private Character estado;
+     private Set<DetPerfil> detPerfils = new HashSet<DetPerfil>(0);
      private Set<DetVenta> detVentas = new HashSet<DetVenta>(0);
+     private Set<DetPerfil> detPerfils_1 = new HashSet<DetPerfil>(0);
+     private Set<DtExamenInsumo> dtExamenInsumos = new HashSet<DtExamenInsumo>(0);
      private Set<Estudio> estudios = new HashSet<Estudio>(0);
 
     public Examen() {
@@ -45,18 +55,25 @@ public class Examen  implements java.io.Serializable {
         this.clase = clase;
         this.tipoExamen = tipoExamen;
     }
-    public Examen(String codExamen, Clase clase, TipoExamen tipoExamen, String descripcion,
-            String enlace, BigDecimal precio, String recomendacion, BigDecimal tiempoRespuesta,
-            Set<DetVenta> detVentas, Set<Estudio> estudios) {
+    public Examen(String codExamen, Clase clase, TipoExamen tipoExamen, String descripcion, BigDecimal tiempoRespuesta, BigDecimal precio1, BigDecimal precio2, BigDecimal precio3, BigDecimal precio4, Character perfil, String recomendacion, Integer numMuestra, Integer peso, Character estado, Set<DetPerfil> detPerfils, Set<DetVenta> detVentas, Set<DetPerfil> detPerfils_1, Set<DtExamenInsumo> dtExamenInsumos, Set<Estudio> estudios) {
        this.codExamen = codExamen;
        this.clase = clase;
        this.tipoExamen = tipoExamen;
        this.descripcion = descripcion;
-       this.enlace = enlace;
-       this.precio = precio;
-       this.recomendacion=recomendacion;
-       this.tiempoRespuesta=tiempoRespuesta;
+       this.tiempoRespuesta = tiempoRespuesta;
+       this.precio1 = precio1;
+       this.precio2 = precio2;
+       this.precio3 = precio3;
+       this.precio4 = precio4;
+       this.perfil = perfil;
+       this.recomendacion = recomendacion;
+       this.numMuestra = numMuestra;
+       this.peso = peso;
+       this.estado = estado;
+       this.detPerfils = detPerfils;
        this.detVentas = detVentas;
+       this.detPerfils_1 = detPerfils_1;
+       this.dtExamenInsumos = dtExamenInsumos;
        this.estudios = estudios;
     }
    
@@ -98,42 +115,103 @@ public class Examen  implements java.io.Serializable {
         this.descripcion = descripcion;
     }
     
-    @Column(name="enlace", length=20)
-    public String getEnlace() {
-        return this.enlace;
-    }
-    
-    public void setEnlace(String enlace) {
-        this.enlace = enlace;
-    }
-    
-    @Column(name="precio", precision=9)
-    public BigDecimal getPrecio() {
-        return this.precio;
-    }
-    
-    public void setPrecio(BigDecimal precio) {
-        this.precio = precio;
-    }
-    @Column(name="recomendacion", length=400)
-    public String getRecomendacion() {
-        return recomendacion;
-    }
-
-    public void setRecomendacion(String recomendacion) {
-        this.recomendacion = recomendacion;
-    }
     @Column(name="tiempo_respuesta", precision=9)
     public BigDecimal getTiempoRespuesta() {
-        return tiempoRespuesta;
+        return this.tiempoRespuesta;
     }
-
+    
     public void setTiempoRespuesta(BigDecimal tiempoRespuesta) {
         this.tiempoRespuesta = tiempoRespuesta;
     }
     
+    @Column(name="precio1", precision=9)
+    public BigDecimal getPrecio1() {
+        return this.precio1;
+    }
     
+    public void setPrecio1(BigDecimal precio1) {
+        this.precio1 = precio1;
+    }
     
+    @Column(name="precio2", precision=9)
+    public BigDecimal getPrecio2() {
+        return this.precio2;
+    }
+    
+    public void setPrecio2(BigDecimal precio2) {
+        this.precio2 = precio2;
+    }
+    
+    @Column(name="precio3", precision=9)
+    public BigDecimal getPrecio3() {
+        return this.precio3;
+    }
+    
+    public void setPrecio3(BigDecimal precio3) {
+        this.precio3 = precio3;
+    }
+    
+    @Column(name="precio4", precision=9)
+    public BigDecimal getPrecio4() {
+        return this.precio4;
+    }
+    
+    public void setPrecio4(BigDecimal precio4) {
+        this.precio4 = precio4;
+    }
+    
+    @Column(name="perfil", length=1)
+    public Character getPerfil() {
+        return this.perfil;
+    }
+    
+    public void setPerfil(Character perfil) {
+        this.perfil = perfil;
+    }
+    
+    @Column(name="recomendacion", length=400)
+    public String getRecomendacion() {
+        return this.recomendacion;
+    }
+    
+    public void setRecomendacion(String recomendacion) {
+        this.recomendacion = recomendacion;
+    }
+    
+    @Column(name="num_muestra")
+    public Integer getNumMuestra() {
+        return this.numMuestra;
+    }
+    
+    public void setNumMuestra(Integer numMuestra) {
+        this.numMuestra = numMuestra;
+    }
+    
+    @Column(name="peso")
+    public Integer getPeso() {
+        return this.peso;
+    }
+    
+    public void setPeso(Integer peso) {
+        this.peso = peso;
+    }
+    
+    @Column(name="estado", length=1)
+    public Character getEstado() {
+        return this.estado;
+    }
+    
+    public void setEstado(Character estado) {
+        this.estado = estado;
+    }
+@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY, mappedBy="examen")
+    public Set<DetPerfil> getDetPerfils() {
+        return this.detPerfils;
+    }
+    
+    public void setDetPerfils(Set<DetPerfil> detPerfils) {
+        this.detPerfils = detPerfils;
+    }
 @OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY, mappedBy="examen")
     public Set<DetVenta> getDetVentas() {
         return this.detVentas;
@@ -141,6 +219,22 @@ public class Examen  implements java.io.Serializable {
     
     public void setDetVentas(Set<DetVenta> detVentas) {
         this.detVentas = detVentas;
+    }
+@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY, mappedBy="examen")
+    public Set<DetPerfil> getDetPerfils_1() {
+        return this.detPerfils_1;
+    }
+    
+    public void setDetPerfils_1(Set<DetPerfil> detPerfils_1) {
+        this.detPerfils_1 = detPerfils_1;
+    }
+@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY, mappedBy="examen")
+    public Set<DtExamenInsumo> getDtExamenInsumos() {
+        return this.dtExamenInsumos;
+    }
+    
+    public void setDtExamenInsumos(Set<DtExamenInsumo> dtExamenInsumos) {
+        this.dtExamenInsumos = dtExamenInsumos;
     }
 @OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY, mappedBy="examen")
     public Set<Estudio> getEstudios() {

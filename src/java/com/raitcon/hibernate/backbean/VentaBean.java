@@ -49,6 +49,7 @@ public class VentaBean {
     private Date fechaIni;
     private Date fechaFin;
     private BigDecimal total;
+    private Integer ejercicio;
     
     public VentaBean(){
         System.out.println("Se instancia constructor de ventaBean");
@@ -207,6 +208,15 @@ public class VentaBean {
     public void setTotal(BigDecimal total) {
         this.total = total;
     }
+
+    public Integer getEjercicio() {
+        return ejercicio;
+    }
+
+    public void setEjercicio(Integer ejercicio) {
+        this.ejercicio = ejercicio;
+    }
+    
     
     public void findVentaByFecha(){
         //this.codCompVenta=venta.getCodCompVenta();

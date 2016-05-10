@@ -1,7 +1,9 @@
 package com.raitcon.hibernate.bean;
-// Generated 23/04/2016 11:00:37 PM by Hibernate Tools 3.2.1.GA
+// Generated 09/05/2016 10:48:05 PM by Hibernate Tools 3.2.1.GA
 
 
+
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -41,7 +43,9 @@ public class Personal  implements java.io.Serializable {
      private String direccion;
      private String dni;
      private char estado;
+     private BigDecimal bono;
      private Set<Venta> ventas = new HashSet<Venta>(0);
+     private Set<Venta> ventas_1 = new HashSet<Venta>(0);
 
     public Personal() {
     }
@@ -61,7 +65,7 @@ public class Personal  implements java.io.Serializable {
         this.dni = dni;
         this.estado = estado;
     }
-    public Personal(String codPersonal, Sexo sexo, Ocupacion ocupacion, String apPaterno, String apMaterno, String nombres, Date fechaNacimiento, String estadoCivil, String especialidad, String mail, String telefono, String direccion, String dni, char estado, Set<Venta> ventas) {
+    public Personal(String codPersonal, Sexo sexo, Ocupacion ocupacion, String apPaterno, String apMaterno, String nombres, Date fechaNacimiento, String estadoCivil, String especialidad, String mail, String telefono, String direccion, String dni, char estado, BigDecimal bono, Set<Venta> ventas, Set<Venta> ventas_1) {
        this.codPersonal = codPersonal;
        this.sexo = sexo;
        this.ocupacion = ocupacion;
@@ -76,7 +80,9 @@ public class Personal  implements java.io.Serializable {
        this.direccion = direccion;
        this.dni = dni;
        this.estado = estado;
+       this.bono = bono;
        this.ventas = ventas;
+       this.ventas_1 = ventas_1;
     }
    
      @Id 
@@ -134,8 +140,8 @@ public class Personal  implements java.io.Serializable {
     public void setNombres(String nombres) {
         this.nombres = nombres;
     }
-    @Temporal(TemporalType.DATE)
-    @Column(name="fecha_nacimiento", nullable=false, length=10)
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name="fecha_nacimiento", nullable=false, length=19)
     public Date getFechaNacimiento() {
         return this.fechaNacimiento;
     }
@@ -206,6 +212,15 @@ public class Personal  implements java.io.Serializable {
     public void setEstado(char estado) {
         this.estado = estado;
     }
+    
+    @Column(name="bono", precision=9)
+    public BigDecimal getBono() {
+        return this.bono;
+    }
+    
+    public void setBono(BigDecimal bono) {
+        this.bono = bono;
+    }
 @OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY, mappedBy="personal")
     public Set<Venta> getVentas() {
         return this.ventas;
@@ -213,6 +228,14 @@ public class Personal  implements java.io.Serializable {
     
     public void setVentas(Set<Venta> ventas) {
         this.ventas = ventas;
+    }
+@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY, mappedBy="personal")
+    public Set<Venta> getVentas_1() {
+        return this.ventas_1;
+    }
+    
+    public void setVentas_1(Set<Venta> ventas_1) {
+        this.ventas_1 = ventas_1;
     }
 
 

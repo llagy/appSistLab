@@ -6,9 +6,11 @@ package com.raitcon.hibernate.backbean;
 
 import com.raitcon.hibernate.bean.Estudio;
 import com.raitcon.hibernate.bean.Prueba;
-import com.raitcon.hibernate.bean.PruebaValRef;
+import com.raitcon.hibernate.bean.ValRef;
+//import com.raitcon.hibernate.bean.PruebaValRef;
 import com.raitcon.hibernate.db.PruebaDB;
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
@@ -33,6 +35,10 @@ public class PruebaBean implements Serializable {
     private String descripcion;
     private String unidMedida;
     private String nameReal;
+    private BigDecimal precio1;
+    private BigDecimal precio2;
+    private BigDecimal precio3;
+    private BigDecimal precio4;
     private Character estado;
     private String resulDefect;
     private String result1;
@@ -48,7 +54,7 @@ public class PruebaBean implements Serializable {
     private Integer idAutoanalizador;
     private Integer opcBoton;
     private List<Prueba> listPrueba;
-    private List<PruebaValRef>listPruebaValRef;
+   private List<ValRef>listValRef;
     
     public PruebaBean(){
         System.out.println("Se instancia constructor de pruebaBean");
@@ -111,6 +117,40 @@ public class PruebaBean implements Serializable {
     public void setNameReal(String nameReal) {
         this.nameReal = nameReal;
     }
+
+    public BigDecimal getPrecio1() {
+        return precio1;
+    }
+
+    public void setPrecio1(BigDecimal precio1) {
+        this.precio1 = precio1;
+    }
+
+    public BigDecimal getPrecio2() {
+        return precio2;
+    }
+
+    public void setPrecio2(BigDecimal precio2) {
+        this.precio2 = precio2;
+    }
+
+    public BigDecimal getPrecio3() {
+        return precio3;
+    }
+
+    public void setPrecio3(BigDecimal precio3) {
+        this.precio3 = precio3;
+    }
+
+    public BigDecimal getPrecio4() {
+        return precio4;
+    }
+
+    public void setPrecio4(BigDecimal precio4) {
+        this.precio4 = precio4;
+    }
+    
+    
 
     public String getResulDefect() {
         return resulDefect;
@@ -234,12 +274,12 @@ public class PruebaBean implements Serializable {
         this.listPrueba = listPrueba;
     }
 
-    public List<PruebaValRef> getListPruebaValRef() {
-        return listPruebaValRef;
+    public List<ValRef> getListValRef() {
+        return listValRef;
     }
 
-    public void setListPruebaValRef(List<PruebaValRef> listPruebaValRef) {
-        this.listPruebaValRef = listPruebaValRef;
+    public void setListPruebaValRef(List<ValRef> listValRef) {
+        this.listValRef = listValRef;
     }
 
     
@@ -259,14 +299,17 @@ public class PruebaBean implements Serializable {
         this.idPrueba=prueba.getIdPrueba();
         this.descripcion=prueba.getDescripcion();
         this.resulDefect=prueba.getResultadoDefect();
-        this.result1=prueba.getResultado2();
-        this.result2=prueba.getResultado3();
-        this.result3=prueba.getResultado4();
-        this.result4=prueba.getResultado5();
-        this.result5=prueba.getResultado6();
-        this.result6=prueba.getResultado7();
+        this.result1=prueba.getResultado1();
+        this.result2=prueba.getResultado2();
+        this.result3=prueba.getResultado3();
+        this.result4=prueba.getResultado4();
+        this.result5=prueba.getResultado5();
+        this.result6=prueba.getResultado6();
+        this.result7=prueba.getResultado7();
+        this.result8=prueba.getResultado8();
+        this.result9=prueba.getResultado9();
                 
-        listPruebaValRef=new ArrayList<PruebaValRef>(prueba.getPruebaValRefs());
+        listValRef=new ArrayList<ValRef>(prueba.getValRefs());
         
    }
     

@@ -17,7 +17,20 @@
 
     </h:head>
 
-    <ui:define name="content">    
+    <ui:define name="content">   
+        
+    <h:outputScript>
+        highlightInvalidInputs = function() {
+            var rows = $(#{rich:element('grid')}).find('tr');
+            rows.find('input').removeClass('invalid');
+            rows.has('.rf-msg-err').find('input').addClass('invalid')
+        }
+    </h:outputScript>
+    <style>
+        .invalid {
+            border-color: #D91C0D !important;
+        }
+    </style>
         
         <h:outputStylesheet>
         .top {
@@ -81,15 +94,18 @@
                             </a4j:commandButton>
                              <a4j:commandButton id="btnNuevo" 
                                                    value="Nuevo" 
-                                                   action="#{ventaBean.findVentaByFecha()}"  
-                                                   render="tbExamen"
-                                                   execute="@form"   >
+                                                   action="#{dynamicPanelBean.activeTabPanel()}"  
+                                                   render="panelDetVenta"
+                                                   execute="@this"   >
+                                 <f:setPropertyActionListener target="#{dynamicPanelBean.activeTab}" value="detalle" />  
                             </a4j:commandButton>
-                          
+                            <h:commandLink value="Previous tab">
+                            <rich:toggleControl targetPanel="panelDetVenta" targetItem="Otros"   />
+                            </h:commandLink>
                             
                             </h:panelGroup>
                                 
-                            </span>
+                            </span>     
                   <h:panelGrid columns="1" id="gridExamen">
                       <rich:dataTable value="#{ventaBean.listVenta}" 
                                     var="vta" 
@@ -134,17 +150,51 @@
                  </rich:panel>  
                
                 
-       <rich:tabPanel>
-           <rich:tab header="Detalle">
-            <ui:include src="/400.html" />
-        </rich:tab>
-          
-           <rich:tab header="Otros">
-            Here is tab #3
-        </rich:tab>
+                <rich:tabPanel  id="panelDetVenta"  switchType="ajax" activeItem="#{dynamicPanelBean.activeTab}"  >
+                      <rich:tab id="idTabDetalle" header="Detalle" name="detalle" >
+                     <rich:focus />
+ 
+            <h:panelGrid columns="3" id="grid">
+                <h:outputText value="Name:" />
+                <h:inputText label="Name" id="name" value="#{ventaBean.codCompVenta}">
+                    <f:validateRequired />
+                    <f:validateLength minimum="3" />
+                </h:inputText>
+                <rich:message for="name" ajaxRendered="true" />
+                <h:outputText value="Job:" />
+                <h:inputText label="Job" id="job" value="#{ventaBean.talonario}">
+                    <f:validateRequired />
+                    <f:validateLength minimum="3" maximum="50" />
+                </h:inputText>
+                <rich:message for="job" ajaxRendered="true" />
+                <h:outputText value="Address:" />
+                <h:inputText label="Address" id="address" value="#{ventaBean.ejercicio}">
+                    <f:validateRequired />
+                    <f:validateLength minimum="10" />
+                </h:inputText>
+                <rich:message for="address" ajaxRendered="true" />
+                <h:outputText value="Zip:" />
+                <h:inputText label="Zip" id="zip" value="#{ventaBean.ruc}">
+                    <f:validateRequired />
+                    <f:validateLength minimum="4" maximum="9" />
+                </h:inputText>
+                <rich:message for="zip" ajaxRendered="true" />
+            </h:panelGrid>
+             
+            <a4j:commandButton value="Ajax Validate" oncomplete="highlightInvalidInputs()"/>
+                </rich:tab>
+
+                    <rich:tab id="idTabOtros" header="Otros" name="idTabOtros"  >
+                    Here is tab #2
+                </rich:tab>
+                    
+                 <rich:tab id="id3" header="Comentarios">
+                    Here is tab #3
+                </rich:tab>
     </rich:tabPanel> 
-               
-            </h:form> 
+                
+                
+   </h:form> 
              
            
           

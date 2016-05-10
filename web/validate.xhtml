@@ -1,0 +1,65 @@
+<html>
+    <head>
+        <title></title>
+      </head>
+    <body>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:a4j="http://richfaces.org/a4j"
+    xmlns:rich="http://richfaces.org/rich">
+ 
+    <rich:panel header="Focus and Form Input Validation">
+ 
+        <h:form id="frmValidacion">
+ 
+            <rich:focus />
+ 
+            <h:panelGrid columns="3" id="grid">
+                <h:outputText value="Name:" />
+                <h:inputText label="Name" id="name" value="#{ventaBean.codCompVenta}">
+                    <f:validateRequired />
+                    <f:validateLength minimum="3" />
+                </h:inputText>
+                <rich:message for="name" ajaxRendered="true" />
+                <h:outputText value="Job:" />
+                <h:inputText label="Job" id="job" value="#{ventaBean.talonario}">
+                    <f:validateRequired />
+                    <f:validateLength minimum="3" maximum="50" />
+                </h:inputText>
+                <rich:message for="job" ajaxRendered="true" />
+                <h:outputText value="Address:" />
+                <h:inputText label="Address" id="address" value="#{ventaBean.ejercicio}">
+                    <f:validateRequired />
+                    <f:validateLength minimum="10" />
+                </h:inputText>
+                <rich:message for="address" ajaxRendered="true" />
+                <h:outputText value="Zip:" />
+                <h:inputText label="Zip" id="zip" value="#{ventaBean.ruc}">
+                    <f:validateRequired />
+                    <f:validateLength minimum="4" maximum="9" />
+                </h:inputText>
+                <rich:message for="zip" ajaxRendered="true" />
+            </h:panelGrid>
+             
+            <a4j:commandButton value="Ajax Validate" oncomplete="highlightInvalidInputs()"/>
+        </h:form>
+ 
+    </rich:panel>
+    <h:outputScript>
+        highlightInvalidInputs = function() {
+            var rows = $(#{rich:element('grid')}).find('tr');
+            rows.find('input').removeClass('invalid');
+            rows.has('.rf-msg-err').find('input').addClass('invalid')
+        }
+    </h:outputScript>
+    <style>
+        .invalid {
+            border-color: #D91C0D !important;
+        }
+    </style>
+ 
+</ui:composition>
+
+
+        <div>Se generó errores en el sistema, favor de comuicarse con el administrador.</div>
+    </body>
+</html>

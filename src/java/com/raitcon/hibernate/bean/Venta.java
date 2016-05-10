@@ -1,5 +1,6 @@
 package com.raitcon.hibernate.bean;
-// Generated 23/04/2016 11:00:37 PM by Hibernate Tools 3.2.1.GA
+// Generated 09/05/2016 10:48:05 PM by Hibernate Tools 3.2.1.GA
+
 
 
 import java.math.BigDecimal;
@@ -30,10 +31,10 @@ public class Venta  implements java.io.Serializable {
 
      private String codCompVenta;
      private Procedencia procedencia;
-     private Personal personal;
      private Paciente paciente;
      private TipoPago tipoPago;
      private TipoDocumento tipoDocumento;
+     private Personal personal;
      private String talonario;
      private String codVenta;
      private int ejercicio;
@@ -41,7 +42,7 @@ public class Venta  implements java.io.Serializable {
      private String ruc;
      private Character estado;
      private Date fecha;
-     private BigDecimal total;
+     private BigDecimal descuento;
      private Set<DetVenta> detVentas = new HashSet<DetVenta>(0);
 
     public Venta() {
@@ -56,13 +57,13 @@ public class Venta  implements java.io.Serializable {
         this.ejercicio = ejercicio;
         this.ruc = ruc;
     }
-    public Venta(String codCompVenta, Procedencia procedencia, Personal personal, Paciente paciente, TipoPago tipoPago, TipoDocumento tipoDocumento, String talonario, String codVenta, int ejercicio, Character estadoProceso, String ruc, Character estado, Date fecha, Set<DetVenta> detVentas) {
+    public Venta(String codCompVenta, Procedencia procedencia, Paciente paciente, TipoPago tipoPago, TipoDocumento tipoDocumento, Personal personal, String talonario, String codVenta, int ejercicio, Character estadoProceso, String ruc, Character estado, Date fecha, BigDecimal descuento, Set<DetVenta> detVentas) {
        this.codCompVenta = codCompVenta;
        this.procedencia = procedencia;
-       this.personal = personal;
        this.paciente = paciente;
        this.tipoPago = tipoPago;
        this.tipoDocumento = tipoDocumento;
+       this.personal = personal;
        this.talonario = talonario;
        this.codVenta = codVenta;
        this.ejercicio = ejercicio;
@@ -70,6 +71,7 @@ public class Venta  implements java.io.Serializable {
        this.ruc = ruc;
        this.estado = estado;
        this.fecha = fecha;
+       this.descuento = descuento;
        this.detVentas = detVentas;
     }
    
@@ -91,15 +93,6 @@ public class Venta  implements java.io.Serializable {
     
     public void setProcedencia(Procedencia procedencia) {
         this.procedencia = procedencia;
-    }
-@ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="cod_personal")
-    public Personal getPersonal() {
-        return this.personal;
-    }
-    
-    public void setPersonal(Personal personal) {
-        this.personal = personal;
     }
 @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="cod_paciente")
@@ -127,6 +120,15 @@ public class Venta  implements java.io.Serializable {
     
     public void setTipoDocumento(TipoDocumento tipoDocumento) {
         this.tipoDocumento = tipoDocumento;
+    }
+@ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="cod_personal")
+    public Personal getPersonal() {
+        return this.personal;
+    }
+    
+    public void setPersonal(Personal personal) {
+        this.personal = personal;
     }
     
     @Column(name="talonario", nullable=false, length=5)
@@ -191,16 +193,15 @@ public class Venta  implements java.io.Serializable {
     public void setFecha(Date fecha) {
         this.fecha = fecha;
     }
-    @Column(name="total", precision=9)
-    public BigDecimal getTotal() {
-        return total;
-    }
-
-    public void setTotal(BigDecimal total) {
-        this.total = total;
+    
+    @Column(name="descuento", precision=3)
+    public BigDecimal getDescuento() {
+        return this.descuento;
     }
     
-    
+    public void setDescuento(BigDecimal descuento) {
+        this.descuento = descuento;
+    }
 @OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY, mappedBy="venta")
     public Set<DetVenta> getDetVentas() {
         return this.detVentas;

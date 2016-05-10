@@ -1,7 +1,9 @@
 package com.raitcon.hibernate.bean;
-// Generated 23/04/2016 11:00:37 PM by Hibernate Tools 3.2.1.GA
+// Generated 09/05/2016 10:48:05 PM by Hibernate Tools 3.2.1.GA
 
 
+
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -33,6 +35,7 @@ public class Paciente  implements java.io.Serializable {
      private Estacivil estacivil;
      private Ocupacion ocupacion;
      private Distrito distrito;
+     private TipoPersona tipoPersona;
      private Instruccion instruccion;
      private String nombre1;
      private String nombre2;
@@ -46,7 +49,9 @@ public class Paciente  implements java.io.Serializable {
      private byte[] foto;
      private Character estado;
      private String dni;
+     private BigDecimal limCredito;
      private Set<Venta> ventas = new HashSet<Venta>(0);
+     private Set<Venta> ventas_1 = new HashSet<Venta>(0);
 
     public Paciente() {
     }
@@ -67,13 +72,14 @@ public class Paciente  implements java.io.Serializable {
         this.fechaIngreso = fechaIngreso;
         this.direccion = direccion;
     }
-    public Paciente(String codPaciente, TipoPaciente tipoPaciente, Sexo sexo, Estacivil estacivil, Ocupacion ocupacion, Distrito distrito, Instruccion instruccion, String nombre1, String nombre2, String apPaterno, String apMaterno, Date fechaNacimiento, Date fechaIngreso, String direccion, String telefono, String email, byte[] foto, Character estado, String dni, Set<Venta> ventas) {
+    public Paciente(String codPaciente, TipoPaciente tipoPaciente, Sexo sexo, Estacivil estacivil, Ocupacion ocupacion, Distrito distrito, TipoPersona tipoPersona, Instruccion instruccion, String nombre1, String nombre2, String apPaterno, String apMaterno, Date fechaNacimiento, Date fechaIngreso, String direccion, String telefono, String email, byte[] foto, Character estado, String dni, BigDecimal limCredito, Set<Venta> ventas, Set<Venta> ventas_1) {
        this.codPaciente = codPaciente;
        this.tipoPaciente = tipoPaciente;
        this.sexo = sexo;
        this.estacivil = estacivil;
        this.ocupacion = ocupacion;
        this.distrito = distrito;
+       this.tipoPersona = tipoPersona;
        this.instruccion = instruccion;
        this.nombre1 = nombre1;
        this.nombre2 = nombre2;
@@ -87,7 +93,9 @@ public class Paciente  implements java.io.Serializable {
        this.foto = foto;
        this.estado = estado;
        this.dni = dni;
+       this.limCredito = limCredito;
        this.ventas = ventas;
+       this.ventas_1 = ventas_1;
     }
    
      @Id 
@@ -144,6 +152,15 @@ public class Paciente  implements java.io.Serializable {
     
     public void setDistrito(Distrito distrito) {
         this.distrito = distrito;
+    }
+@ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="id_tipo_persona")
+    public TipoPersona getTipoPersona() {
+        return this.tipoPersona;
+    }
+    
+    public void setTipoPersona(TipoPersona tipoPersona) {
+        this.tipoPersona = tipoPersona;
     }
 @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="cod_instruccion", nullable=false)
@@ -262,6 +279,15 @@ public class Paciente  implements java.io.Serializable {
     public void setDni(String dni) {
         this.dni = dni;
     }
+    
+    @Column(name="lim_credito", precision=9)
+    public BigDecimal getLimCredito() {
+        return this.limCredito;
+    }
+    
+    public void setLimCredito(BigDecimal limCredito) {
+        this.limCredito = limCredito;
+    }
 @OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY, mappedBy="paciente")
     public Set<Venta> getVentas() {
         return this.ventas;
@@ -269,6 +295,14 @@ public class Paciente  implements java.io.Serializable {
     
     public void setVentas(Set<Venta> ventas) {
         this.ventas = ventas;
+    }
+@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY, mappedBy="paciente")
+    public Set<Venta> getVentas_1() {
+        return this.ventas_1;
+    }
+    
+    public void setVentas_1(Set<Venta> ventas_1) {
+        this.ventas_1 = ventas_1;
     }
 
 

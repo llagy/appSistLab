@@ -1,5 +1,6 @@
 package com.raitcon.hibernate.bean;
-// Generated 23/04/2016 11:00:37 PM by Hibernate Tools 3.2.1.GA
+// Generated 09/05/2016 10:48:05 PM by Hibernate Tools 3.2.1.GA
+
 
 
 import java.util.HashSet;
@@ -27,15 +28,13 @@ public class Estacivil  implements java.io.Serializable {
      private Integer codEstacivil;
      private String descripcion;
      private Set<Paciente> pacientes = new HashSet<Paciente>(0);
-     private Set<Paciente> pacientes_1 = new HashSet<Paciente>(0);
 
     public Estacivil() {
     }
 
-    public Estacivil(String descripcion, Set<Paciente> pacientes, Set<Paciente> pacientes_1) {
+    public Estacivil(String descripcion, Set<Paciente> pacientes) {
        this.descripcion = descripcion;
        this.pacientes = pacientes;
-       this.pacientes_1 = pacientes_1;
     }
    
      @Id @GeneratedValue(strategy=IDENTITY)
@@ -64,14 +63,6 @@ public class Estacivil  implements java.io.Serializable {
     
     public void setPacientes(Set<Paciente> pacientes) {
         this.pacientes = pacientes;
-    }
-@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY, mappedBy="estacivil")
-    public Set<Paciente> getPacientes_1() {
-        return this.pacientes_1;
-    }
-    
-    public void setPacientes_1(Set<Paciente> pacientes_1) {
-        this.pacientes_1 = pacientes_1;
     }
 
 

@@ -1,5 +1,6 @@
 package com.raitcon.hibernate.bean;
-// Generated 23/04/2016 11:00:37 PM by Hibernate Tools 3.2.1.GA
+// Generated 09/05/2016 10:48:05 PM by Hibernate Tools 3.2.1.GA
+
 
 
 import java.util.HashSet;
@@ -24,9 +25,11 @@ public class Sexo  implements java.io.Serializable {
 
      private char codSexo;
      private String descripcion;
-     private Set<Paciente> pacientes = new HashSet<Paciente>(0);
+     private Integer peso;
+     private Set<ValRef> valRefs = new HashSet<ValRef>(0);
+     private Set<ValRef> valRefs_1 = new HashSet<ValRef>(0);
      private Set<Personal> personals = new HashSet<Personal>(0);
-     private Set<Paciente> pacientes_1 = new HashSet<Paciente>(0);
+     private Set<Paciente> pacientes = new HashSet<Paciente>(0);
 
     public Sexo() {
     }
@@ -36,12 +39,14 @@ public class Sexo  implements java.io.Serializable {
         this.codSexo = codSexo;
         this.descripcion = descripcion;
     }
-    public Sexo(char codSexo, String descripcion, Set<Paciente> pacientes, Set<Personal> personals, Set<Paciente> pacientes_1) {
+    public Sexo(char codSexo, String descripcion, Integer peso, Set<ValRef> valRefs, Set<ValRef> valRefs_1, Set<Personal> personals, Set<Paciente> pacientes) {
        this.codSexo = codSexo;
        this.descripcion = descripcion;
-       this.pacientes = pacientes;
+       this.peso = peso;
+       this.valRefs = valRefs;
+       this.valRefs_1 = valRefs_1;
        this.personals = personals;
-       this.pacientes_1 = pacientes_1;
+       this.pacientes = pacientes;
     }
    
      @Id 
@@ -63,13 +68,30 @@ public class Sexo  implements java.io.Serializable {
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
-@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY, mappedBy="sexo")
-    public Set<Paciente> getPacientes() {
-        return this.pacientes;
+    
+    @Column(name="peso")
+    public Integer getPeso() {
+        return this.peso;
     }
     
-    public void setPacientes(Set<Paciente> pacientes) {
-        this.pacientes = pacientes;
+    public void setPeso(Integer peso) {
+        this.peso = peso;
+    }
+@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY, mappedBy="sexo")
+    public Set<ValRef> getValRefs() {
+        return this.valRefs;
+    }
+    
+    public void setValRefs(Set<ValRef> valRefs) {
+        this.valRefs = valRefs;
+    }
+@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY, mappedBy="sexo")
+    public Set<ValRef> getValRefs_1() {
+        return this.valRefs_1;
+    }
+    
+    public void setValRefs_1(Set<ValRef> valRefs_1) {
+        this.valRefs_1 = valRefs_1;
     }
 @OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY, mappedBy="sexo")
     public Set<Personal> getPersonals() {
@@ -80,12 +102,12 @@ public class Sexo  implements java.io.Serializable {
         this.personals = personals;
     }
 @OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY, mappedBy="sexo")
-    public Set<Paciente> getPacientes_1() {
-        return this.pacientes_1;
+    public Set<Paciente> getPacientes() {
+        return this.pacientes;
     }
     
-    public void setPacientes_1(Set<Paciente> pacientes_1) {
-        this.pacientes_1 = pacientes_1;
+    public void setPacientes(Set<Paciente> pacientes) {
+        this.pacientes = pacientes;
     }
 
 

@@ -1,5 +1,6 @@
 package com.raitcon.hibernate.bean;
-// Generated 25/03/2016 09:41:30 AM by Hibernate Tools 3.2.1.GA
+// Generated 09/05/2016 10:48:05 PM by Hibernate Tools 3.2.1.GA
+
 
 
 import javax.persistence.Column;

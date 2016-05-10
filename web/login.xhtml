@@ -30,6 +30,7 @@
                         <!--<span id="idCabeceraLogin" style="color:Red;"><rich:message for="usuario" ajaxRendered="true" /></span>-->
                     </div>
                     <div class="LoginUsuariosDato">
+                            <rich:focus />
                             <h:inputText label="usuario" id="usuario" required="true" value="#{userBean.usuario}" style="width:300px;" >
                               <f:validateRequired />
                               <rich:validator />

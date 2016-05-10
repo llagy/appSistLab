@@ -1,5 +1,6 @@
 package com.raitcon.hibernate.bean;
-// Generated 23/04/2016 11:00:37 PM by Hibernate Tools 3.2.1.GA
+// Generated 09/05/2016 10:48:05 PM by Hibernate Tools 3.2.1.GA
+
 
 
 import java.util.HashSet;
@@ -27,8 +28,9 @@ public class Distrito  implements java.io.Serializable {
      private int codDistrito;
      private Provincia provincia;
      private String desDistrito;
+     private Set<Proveedor> proveedors = new HashSet<Proveedor>(0);
+     private Set<Proveedor> proveedors_1 = new HashSet<Proveedor>(0);
      private Set<Paciente> pacientes = new HashSet<Paciente>(0);
-     private Set<Paciente> pacientes_1 = new HashSet<Paciente>(0);
 
     public Distrito() {
     }
@@ -39,12 +41,13 @@ public class Distrito  implements java.io.Serializable {
         this.provincia = provincia;
         this.desDistrito = desDistrito;
     }
-    public Distrito(int codDistrito, Provincia provincia, String desDistrito, Set<Paciente> pacientes, Set<Paciente> pacientes_1) {
+    public Distrito(int codDistrito, Provincia provincia, String desDistrito, Set<Proveedor> proveedors, Set<Proveedor> proveedors_1, Set<Paciente> pacientes) {
        this.codDistrito = codDistrito;
        this.provincia = provincia;
        this.desDistrito = desDistrito;
+       this.proveedors = proveedors;
+       this.proveedors_1 = proveedors_1;
        this.pacientes = pacientes;
-       this.pacientes_1 = pacientes_1;
     }
    
      @Id 
@@ -76,20 +79,28 @@ public class Distrito  implements java.io.Serializable {
         this.desDistrito = desDistrito;
     }
 @OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY, mappedBy="distrito")
+    public Set<Proveedor> getProveedors() {
+        return this.proveedors;
+    }
+    
+    public void setProveedors(Set<Proveedor> proveedors) {
+        this.proveedors = proveedors;
+    }
+@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY, mappedBy="distrito")
+    public Set<Proveedor> getProveedors_1() {
+        return this.proveedors_1;
+    }
+    
+    public void setProveedors_1(Set<Proveedor> proveedors_1) {
+        this.proveedors_1 = proveedors_1;
+    }
+@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY, mappedBy="distrito")
     public Set<Paciente> getPacientes() {
         return this.pacientes;
     }
     
     public void setPacientes(Set<Paciente> pacientes) {
         this.pacientes = pacientes;
-    }
-@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY, mappedBy="distrito")
-    public Set<Paciente> getPacientes_1() {
-        return this.pacientes_1;
-    }
-    
-    public void setPacientes_1(Set<Paciente> pacientes_1) {
-        this.pacientes_1 = pacientes_1;
     }
 
 

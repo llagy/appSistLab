@@ -5,8 +5,6 @@
 package com.raitcon.hibernate.db;
 
 import com.raitcon.hibernate.bean.Examen;
-import com.raitcon.hibernate.bean.Paciente;
-import static com.raitcon.hibernate.db.PacienteDB.log;
 import com.raitcon.hibernate.factory.HibernateSessionFactory;
 import com.raitcon.hibernate.factory.HibernateUtil;
 import java.util.List;
@@ -60,5 +58,39 @@ public class ExamenDB {
         }
         return examenList;
     }
+    
+    public List<Examen> findExamenByCode(String code) {
+       List<Examen> examenList = null;
+        try {
+            Transaction tx = session.beginTransaction();
+            Query q = session.createQuery("from Examen WHERE UPPER(cod_examen) LIKE UPPER('%" + code + "%')");
+            
+            System.out.println("Query: " + q.toString());
+            
+            examenList=(List<Examen>) q.list();
+        } catch (Exception e) {
+            log.debug("Error:" + e.getMessage());
+            e.printStackTrace();
+        }
+        return examenList;
+    }
+    
+    public List<Examen> findExamenByClase(Integer idClase) {
+       List<Examen> examenList = null;
+        try {
+            Transaction tx = session.beginTransaction();
+            Query q = session.createQuery("from Examen WHERE id_clase=" + idClase);
+            
+            System.out.println("Query: " + q.toString());
+            
+            examenList=(List<Examen>) q.list();
+        } catch (Exception e) {
+            log.debug("Error:" + e.getMessage());
+            e.printStackTrace();
+        }
+        return examenList;
+    }
+    
+    
     
 }

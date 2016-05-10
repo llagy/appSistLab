@@ -56,20 +56,18 @@
                      <span>
                       <h:panelGroup>
                           <h:selectOneMenu
-                           value="#{bean.state}" valueChangeListener="#{bean.selectionChanged}">
+                              value="#{examenBean.campoBusqueda}">
 
-                                    <f:selectItems  value="#{bean.selectItems}"/>
+                                    <f:selectItem  id="codBusqueda" itemValue="Código"/>            
 
-                                    <f:selectItem itemValue="Código"/>            
+                                    <f:selectItem  id="descBusqueda" itemValue="Descripción"/>
 
-                                    <f:selectItem itemValue="Descripción"/>
-
-                                   <f:selectItem itemValue="Clase"/>
+                                   <f:selectItem  id="classBusqueda" itemValue="Clase"/>
                       
 
                           </h:selectOneMenu>  
                             <h:inputText id="descExamen" 
-                                         value="#{examenBean.descripcion}" style="width: 150px;"
+                                         value="#{examenBean.cadBusca}" style="width: 150px;"
                                          >
                             </h:inputText>
                                 <a4j:commandButton id="btnBuscar" 
@@ -98,12 +96,12 @@
                             <h:outputText value="#{exa.descripcion}" />
                         </rich:column>
                         <rich:column>
-                            <f:facet name="header">Enlace</f:facet>
-                            <h:outputText value="#{exa.enlace}" />
+                            <f:facet name="header">Precio1</f:facet>
+                            <h:outputText value="#{exa.precio1}" />
                         </rich:column>
                         <rich:column>
                             <f:facet name="header">Precio</f:facet>
-                            <h:outputText value="#{exa.precio}" />
+                            <h:outputText value="#{exa.precio2}" />
                         </rich:column>
                         <rich:column>
                             <f:facet name="header">Clase</f:facet>
@@ -588,7 +586,7 @@
              
                  <rich:panel styleClass="top">
                      
-                     <rich:dataTable value="#{pruebaBean.listPruebaValRef}" 
+                     <rich:dataTable value="#{pruebaBean.listValRef}" 
                                     var="valRef" 
                                     id="tb_valRef" 
                                     rows="10" >
